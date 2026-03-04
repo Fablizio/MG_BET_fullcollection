@@ -1,45 +1,21 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Statium Landing Preview</title>
-  <style>
-    body{margin:0;font-family:Inter,system-ui,-apple-system;background:#06090f;color:#e9eef5}
-    .wrap{max-width:1120px;margin:0 auto;padding:20px}
-    .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.14em}
-    .logo{width:40px;height:40px;border:4px solid #f03535;border-radius:999px;position:relative}
-    .logo:before,.logo:after{content:'';position:absolute;left:7px;right:7px;border-top:4px solid #f03535;border-radius:999px}
-    .logo:before{top:11px}.logo:after{top:19px}
-    .cta{background:#f03535;color:#fff;padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:700}
-    h1{font-size:clamp(34px,6vw,58px);margin:.4rem 0}.red{color:#ff4c4c}
-    .sub{max-width:760px;color:#b5c0cf}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
-    .card{background:#0d131d;border:1px solid #212a37;border-radius:14px;padding:14px}
-    .k{color:#ff9f9f;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
-    .footer{margin-top:18px;color:#95a2b3;font-size:14px}
-    @media (max-width:980px){.grid{grid-template-columns:1fr}.top{flex-direction:column;align-items:flex-start}}
-  </style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Statium Preview</title>
+  <style>body{margin:0;background:#040a16;color:#eaf0ff;font-family:Inter,system-ui}.wrap{max-width:1400px;margin:0 auto;padding:14px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.12em}.mark{width:40px;height:40px;border:4px solid #f03535;border-radius:999px;position:relative}.mark:before,.mark:after{content:'';position:absolute;left:6px;right:6px;border-top:4px solid #f03535}.mark:before{top:11px}.mark:after{top:19px}.cta{background:#f03535;color:#fff;padding:8px 12px;border-radius:999px;text-decoration:none;font-weight:700}.grid{display:grid;grid-template-columns:220px 1fr;gap:12px;margin-top:10px}.card{background:#0d1626;border:1px solid #223150;border-radius:16px;padding:14px}h1{margin:.4rem 0}.k{color:#f0c44d;text-transform:uppercase;font-size:.74rem;letter-spacing:.08em}.table{margin-top:10px}.row{display:grid;grid-template-columns:1.1fr 2.1fr .6fr .6fr .6fr 1fr 1.1fr;gap:8px;padding:8px 0;border-bottom:1px solid #1d2a44}.head{background:#1d346866;border-radius:10px;padding:10px;text-transform:uppercase;font-size:.75rem}@media(max-width:1200px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}}</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="brand"><div class="logo"></div><div>STATIUM</div></div>
-      <a class="cta" href="https://www.thefundedpick.com/it" target="_blank" rel="noopener">Partner: The Funded Pick</a>
+<div class="wrap">
+  <div class="top"><div class="logo"><div class="mark"></div><div>STATIUM</div></div><a class="cta" href="https://www.thefundedpick.com/it">The Funded Pick</a></div>
+  <div class="grid">
+    <div class="card"><strong>PREDICTION</strong><p>Belgio · Francia · Germania · Inghilterra · Italia · Scozia · Spagna</p><strong>HISTORY</strong><br/><strong>STORICO</strong></div>
+    <div>
+      <div class="card"><div class="k">Campionati</div><h1>Seleziona il campionato da analizzare</h1><p>Quote aggiornate, variazioni e livello di confidenza per ogni partita.</p></div>
+      <div class="card table"><div class="row head"><div>Data</div><div>Match</div><div>1</div><div>X</div><div>2</div><div>Confidence</div><div>Prediction</div></div><div class="row"><div>08/03/2026</div><div>Club Brugge - Anderlecht</div><div>1.59</div><div>4.16</div><div>4.98</div><div>98.93</div><div>1 oppure 1X</div></div></div>
     </div>
-
-    <p class="k">Piattaforma di predizioni calcistiche data-driven</p>
-    <h1>Decisioni più chiare con <span class="red">Statium</span></h1>
-    <p class="sub">Statium trasforma dati calcistici in insight operativi: trend, probabilità, value spot e segnali giornalieri.</p>
-
-    <div class="grid">
-      <div class="card"><h3>Cosa fa Statium</h3><p>Aggrega dati multi-fonte, applica modelli quantitativi e pubblica insight verificabili.</p></div>
-      <div class="card"><h3>Come lavoriamo</h3><p>Ricerca, validazione continua e pipeline operativa con monitoraggio costante.</p></div>
-      <div class="card"><h3>Collaborazione</h3><p>The Funded Pick × Statium per accelerare qualità, distribuzione e crescita internazionale.</p></div>
-    </div>
-
-    <p class="footer">Preview statica della landing. Implementazione Angular completa sul branch <strong>statium-landing-fork</strong>.</p>
   </div>
+</div>
 </body>
 </html>

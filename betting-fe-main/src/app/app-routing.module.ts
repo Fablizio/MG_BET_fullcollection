@@ -17,9 +17,12 @@ import {ChangeOfOddsComponent} from './change-of-odds/change-of-odds.component';
 import {HistorySmellBetComponent} from './history-smell-bet/history-smell-bet.component';
 import {HistoryTodayMatchComponent} from './history-today-match/history-today-match.component';
 import {SiteComponent} from './site/site.component';
+import {StatiumLandingComponent} from './statium-landing/statium-landing.component';
 
 const routes: Routes = [
-  {path: '', component: AuthComponent},
+  {path: '', component: StatiumLandingComponent},
+  {path: 'auth', component: AuthComponent},
+  {path: 'statium', component: StatiumLandingComponent},
   {path: 'pagamento', component: PagamentoComponent},
   {path: 'home', component: HomePageComponent,canActivate:[AuthGuardService]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},

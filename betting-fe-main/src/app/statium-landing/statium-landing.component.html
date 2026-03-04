@@ -1,131 +1,98 @@
-<div class="statium-page">
-  <header class="topbar">
-    <div class="brand-wrap">
-      <div class="brand-mark" aria-hidden="true"></div>
+<div class="landing">
+  <header class="nav">
+    <div class="logo-wrap">
+      <div class="logo-mark" aria-hidden="true"></div>
       <div>
-        <div class="brand-text">STATIUM</div>
-        <div class="brand-sub">SMART FOOTBALL PREDICTION PANEL</div>
+        <div class="logo-text">STATIUM</div>
+        <div class="logo-sub">Football Prediction Intelligence</div>
       </div>
     </div>
 
-    <nav class="top-nav">
-      <a href="#daily">{{ isIt ? 'Raddoppio del giorno' : 'Daily double' }}</a>
-      <a href="#random">{{ isIt ? 'Schedina casuale' : 'Random ticket' }}</a>
-      <a href="#stats">{{ isIt ? 'Statistiche' : 'Statistics' }}</a>
-    </nav>
-
-    <div class="top-actions">
-      <div class="lang-switch">
-        <button (click)="setLang('it')" [class.active]="isIt">IT</button>
-        <button (click)="setLang('en')" [class.active]="!isIt">EN</button>
-      </div>
-      <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="top-cta">The Funded Pick</a>
+    <div class="nav-actions">
+      <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn ghost">The Funded Pick</a>
+      <a href="/mgbet/auth" class="btn primary">{{ isIt ? 'Accedi alla piattaforma' : 'Enter platform' }}</a>
     </div>
   </header>
 
-  <main class="layout">
-    <aside class="sidebar">
-      <section class="side-card">
-        <h4>PREDICTION</h4>
-        <ul>
-          <li>Belgio</li><li>Francia</li><li>Germania</li><li>Inghilterra</li>
-          <li>Italia</li><li>Scozia</li><li>Spagna</li>
+  <main class="container">
+    <section class="hero card">
+      <p class="eyebrow">{{ isIt ? 'Piattaforma professionale di predizioni calcistiche' : 'Professional football prediction platform' }}</p>
+      <h1>
+        {{ isIt ? 'Dati, modelli e segnali operativi in un unico ecosistema.' : 'Data, models and actionable signals in one ecosystem.' }}
+      </h1>
+      <p class="lead" *ngIf="isIt">
+        Statium trasforma volumi di dati calcistici in insight chiari: selezioni giornaliere, analisi quote,
+        storico performance e strumenti operativi per decisioni più rapide.
+      </p>
+      <p class="lead" *ngIf="!isIt">
+        Statium turns football data at scale into clear insights: daily selections, odds analysis,
+        performance history and operational tools for faster decisions.
+      </p>
+
+      <div class="hero-cta">
+        <a href="/mgbet/auth" class="btn primary big">{{ isIt ? 'Entra ora' : 'Start now' }}</a>
+        <a [href]="'mailto:' + contactEmail" class="btn ghost big">{{ isIt ? 'Partnership / Contatti' : 'Partnership / Contact' }}</a>
+      </div>
+
+      <div class="metrics">
+        <div><span>{{ isIt ? 'Output giornaliero' : 'Daily output' }}</span><strong>{{ isIt ? 'Single + Doppie' : 'Singles + Doubles' }}</strong></div>
+        <div><span>{{ isIt ? 'Metodo' : 'Method' }}</span><strong>{{ isIt ? 'Scoring quantitativo' : 'Quantitative scoring' }}</strong></div>
+        <div><span>{{ isIt ? 'Controllo' : 'Control' }}</span><strong>{{ isIt ? 'Storico e statistiche' : 'History and statistics' }}</strong></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>{{ isIt ? 'Cosa trovi in piattaforma' : 'What you get in platform' }}</h3>
+        <ul *ngIf="isIt">
+          <li>Raddoppio del giorno e predizioni selezionate</li>
+          <li>Schedina casuale con supporto statistico</li>
+          <li>Cronologia completa dei risultati</li>
+          <li>Dashboard performance per campionati</li>
         </ul>
-      </section>
-      <section class="side-card"><h4>HISTORY</h4></section>
-      <section class="side-card"><h4>STORICO</h4></section>
-    </aside>
+        <ul *ngIf="!isIt">
+          <li>Daily doubles and selected predictions</li>
+          <li>Random ticket with statistical support</li>
+          <li>Full historical tracking of outcomes</li>
+          <li>League-level performance dashboards</li>
+        </ul>
+      </article>
 
-    <section class="content">
-      <section id="daily" class="hero card">
-        <div class="pill">{{ isIt ? 'Campionati' : 'Leagues' }}</div>
-        <h1>{{ isIt ? 'Seleziona il campionato da analizzare' : 'Select the league to analyze' }}</h1>
-        <p class="subtitle" *ngIf="isIt">Quote aggiornate, variazioni e livello di confidenza per ogni partita.</p>
-        <p class="subtitle" *ngIf="!isIt">Updated odds, movement and confidence score for each match.</p>
-      </section>
+      <article class="card">
+        <h3>{{ isIt ? 'Come lavoriamo' : 'How we operate' }}</h3>
+        <ul *ngIf="isIt">
+          <li>Raccolta dati multi-fonte e normalizzazione</li>
+          <li>Pipeline di scoring e validazione continua</li>
+          <li>Pubblicazione segnali con controllo qualità</li>
+          <li>Monitoraggio operativo e miglioramento iterativo</li>
+        </ul>
+        <ul *ngIf="!isIt">
+          <li>Multi-source data collection and normalization</li>
+          <li>Scoring pipeline with continuous validation</li>
+          <li>Signal publishing with quality controls</li>
+          <li>Operational monitoring and iterative improvement</li>
+        </ul>
+      </article>
 
-      <section class="table-card card">
-        <div class="table-head">
-          <h3>{{ isIt ? 'Quote & Prediction' : 'Odds & Prediction' }}</h3>
-          <span class="chip">5 {{ isIt ? 'eventi' : 'events' }}</span>
-        </div>
+      <article class="card partner">
+        <p class="mini">{{ isIt ? 'Collaborazione strategica' : 'Strategic collaboration' }}</p>
+        <h3>The Funded Pick × Statium</h3>
+        <p *ngIf="isIt">Partnership per accelerare prodotto, distribuzione e marketing internazionale.</p>
+        <p *ngIf="!isIt">Partnership to accelerate product quality, distribution and international marketing.</p>
+        <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn primary">{{ isIt ? 'Scopri di più' : 'Learn more' }}</a>
+      </article>
+    </section>
 
-        <div class="table-grid header">
-          <div>{{ isIt ? 'Data evento' : 'Date' }}</div>
-          <div>Match</div>
-          <div>1</div>
-          <div>X</div>
-          <div>2</div>
-          <div>Confidence</div>
-          <div>Prediction</div>
-        </div>
-
-        <div class="table-grid row" *ngFor="let r of [1,2,3,4]">
-          <div>08/03/2026 13:30</div>
-          <div>Club Brugge - Anderlecht</div>
-          <div>1.59</div>
-          <div>4.16</div>
-          <div>4.98</div>
-          <div><span class="badge green">98.93</span></div>
-          <div><span class="pred">1 oppure 1X</span></div>
-        </div>
-      </section>
-
-      <section id="random" class="split">
-        <article class="card">
-          <div class="pill">RANDOM TICKET</div>
-          <h3>{{ isIt ? 'Schedina casuale' : 'Random ticket' }}</h3>
-          <p>{{ isIt ? 'Una combinazione di match generata automaticamente dai nostri algoritmi.' : 'A match combination generated by our algorithms.' }}</p>
-          <ul class="ticket-list">
-            <li><span>Bayern - M'gladbach</span><strong>1.14</strong></li>
-            <li><span>Juventus - Pisa</span><strong>1.23</strong></li>
-            <li><span>Lens - Metz</span><strong>1.28</strong></li>
-            <li><span>PSG - Monaco</span><strong>1.35</strong></li>
-          </ul>
-        </article>
-
-        <article class="card metric-box" id="stats">
-          <div>
-            <small>{{ isIt ? 'Quota totale' : 'Total odds' }}</small>
-            <strong>6.65</strong>
-          </div>
-          <div>
-            <small>{{ isIt ? 'Win rate stimata' : 'Estimated win rate' }}</small>
-            <strong>88.84%</strong>
-          </div>
-          <div>
-            <small>{{ isIt ? 'Pipeline' : 'Pipeline' }}</small>
-            <strong>{{ isIt ? 'Data → Scoring → Signal' : 'Data → Scoring → Signal' }}</strong>
-          </div>
-        </article>
-      </section>
-
-      <section class="card storico">
-        <div class="storico-head">
-          <h3>{{ isIt ? 'Storico raddoppi' : 'Double history' }}</h3>
-          <div class="tabs">
-            <span>{{ isIt ? 'Ultimi 30 giorni' : 'Last 30 days' }}</span>
-            <span>{{ isIt ? 'Ultimi 3 mesi' : 'Last 3 months' }}</span>
-            <span>{{ isIt ? 'Ultimi 6 mesi' : 'Last 6 months' }}</span>
-          </div>
-        </div>
-        <div class="history-row" *ngFor="let s of ['Vinto','Perso','Vinto','Perso']">
-          <div>Raddoppio del 03/03/2026</div>
-          <span class="badge" [class.green]="s==='Vinto'" [class.red]="s==='Perso'">{{ s | uppercase }}</span>
-          <div>Quota totale: 1.84</div>
-        </div>
-      </section>
-
-      <section class="collab card">
-        <p class="label">{{ isIt ? 'Collaborazione strategica' : 'Strategic collaboration' }}</p>
-        <h2>The Funded Pick × Statium</h2>
-        <p *ngIf="isIt">Partnership orientata a qualità prodotto, espansione marketing e presenza internazionale.</p>
-        <p *ngIf="!isIt">Partnership focused on product quality, marketing expansion and international presence.</p>
-        <div class="hero-actions">
-          <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn primary">{{ isIt ? 'Scopri il partner' : 'Visit partner' }}</a>
-          <a class="btn ghost" [href]="'mailto:' + contactEmail">{{ isIt ? 'Contattaci' : 'Contact us' }}</a>
-        </div>
-      </section>
+    <section class="faq card">
+      <h3>FAQ</h3>
+      <div class="qa">
+        <h4>{{ isIt ? 'Statium è una community o un tool?' : 'Is Statium a community or a tool?' }}</h4>
+        <p>{{ isIt ? 'Entrambi: piattaforma operativa + ecosistema in crescita con partner e utenti attivi.' : 'Both: an operational platform plus a growing ecosystem with partners and active users.' }}</p>
+      </div>
+      <div class="qa">
+        <h4>{{ isIt ? 'Come entro?' : 'How do I access?' }}</h4>
+        <p>{{ isIt ? 'Accedi dalla piattaforma web con il tuo codice personale.' : 'Access from the web platform using your personal code.' }}</p>
+      </div>
     </section>
   </main>
 </div>

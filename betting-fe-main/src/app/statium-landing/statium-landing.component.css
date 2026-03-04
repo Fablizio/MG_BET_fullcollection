@@ -22,6 +22,32 @@
   gap: 1rem;
 }
 
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+}
+
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid #2a3342;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.lang-switch button {
+  border: 0;
+  background: transparent;
+  color: #9fb0c6;
+  padding: .4rem .7rem;
+  font-weight: 700;
+}
+
+.lang-switch button.active {
+  background: #f03535;
+  color: #fff;
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -216,6 +242,26 @@ main {
 
 .step span { color: #d9e2ef; font-weight: 600; }
 
+.faq {
+  margin-top: 1rem;
+}
+
+.faq h3 { margin-top: 0; }
+
+.qa h4 {
+  font-size: .95rem;
+  margin: .7rem 0 .25rem;
+}
+
+.qa p {
+  color: #b8c4d4;
+  margin: 0;
+}
+
+.cta-row {
+  margin-top: .9rem;
+}
+
 .footer-note {
   margin: 1.2rem 0 .3rem;
   color: #95a2b3;
@@ -233,5 +279,10 @@ main {
   .topbar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .top-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 }

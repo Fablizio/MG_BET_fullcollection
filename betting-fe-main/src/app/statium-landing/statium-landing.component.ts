@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class StatiumLandingComponent {
   fundedPickUrl = 'https://www.thefundedpick.com/it';
+  contactEmail = 'yellowprogram80@agentmail.to';
+  lang: 'it' | 'en' = 'it';
+
+  setLang(l: 'it' | 'en') {
+    this.lang = l;
+  }
+
+  get isIt() {
+    return this.lang === 'it';
+  }
 }

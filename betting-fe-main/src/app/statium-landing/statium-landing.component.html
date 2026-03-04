@@ -4,21 +4,34 @@
       <div class="brand-mark" aria-hidden="true"></div>
       <div class="brand-text">STATIUM</div>
     </div>
-    <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="top-cta">Partner: The Funded Pick</a>
+
+    <div class="top-actions">
+      <div class="lang-switch">
+        <button (click)="setLang('it')" [class.active]="isIt">IT</button>
+        <button (click)="setLang('en')" [class.active]="!isIt">EN</button>
+      </div>
+      <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="top-cta">Partner: The Funded Pick</a>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <p class="kicker">Rebrand ufficiale</p>
-      <h1>Da Money Glitch a <span>Statium</span></h1>
-      <p class="subtitle">
-        Statium è la piattaforma che unisce analisi quantitativa, automazione operativa e controllo del rischio
+      <p class="kicker">{{ isIt ? 'Rebrand ufficiale' : 'Official rebrand' }}</p>
+      <h1>{{ isIt ? 'Da Money Glitch a' : 'From Money Glitch to' }} <span>Statium</span></h1>
+      <p class="subtitle" *ngIf="isIt">
+        Statium unisce analisi quantitativa, automazione operativa e controllo del rischio
         per strategie multi-master su MT5.
       </p>
+      <p class="subtitle" *ngIf="!isIt">
+        Statium combines quantitative analysis, execution automation and risk control
+        for multi-master MT5 strategies.
+      </p>
+
       <div class="hero-actions">
-        <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn primary">Scopri la collaborazione</a>
-        <a routerLink="/chi-siamo" class="btn ghost">Chi siamo</a>
+        <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn primary">{{ isIt ? 'Scopri la collaborazione' : 'Discover the partnership' }}</a>
+        <a routerLink="/chi-siamo" class="btn ghost">{{ isIt ? 'Chi siamo' : 'About us' }}</a>
       </div>
+
       <div class="hero-metrics">
         <div><span>Execution</span><strong>Multi-Master MT5</strong></div>
         <div><span>Focus</span><strong>Risk-first Automation</strong></div>
@@ -28,56 +41,75 @@
 
     <section class="grid three">
       <article class="card">
-        <h3>Cosa fa Statium</h3>
-        <ul>
+        <h3>{{ isIt ? 'Cosa fa Statium' : 'What Statium does' }}</h3>
+        <ul *ngIf="isIt">
           <li>Genera segnali da modelli e regole deterministiche</li>
           <li>Filtra setup per sessione, volatilità e struttura</li>
           <li>Coordina esecuzione su istanze MT5 dedicate</li>
         </ul>
-      </article>
-
-      <article class="card">
-        <h3>Come ci muoviamo</h3>
-        <ul>
-          <li>Ricerca e backtest su più fonti dati (MT5, Yahoo, TradingView)</li>
-          <li>Deploy graduale: demo → validazione → produzione</li>
-          <li>Monitoraggio continuo con cicli automatici e log operativi</li>
+        <ul *ngIf="!isIt">
+          <li>Generates signals from deterministic models and rules</li>
+          <li>Filters setups by session, volatility and structure</li>
+          <li>Coordinates execution on dedicated MT5 instances</li>
         </ul>
       </article>
 
       <article class="card">
-        <h3>Perché la nuova fase</h3>
-        <ul>
+        <h3>{{ isIt ? 'Come ci muoviamo' : 'How we operate' }}</h3>
+        <ul *ngIf="isIt">
+          <li>Ricerca e backtest su più fonti dati (MT5, Yahoo, TradingView)</li>
+          <li>Deploy graduale: demo → validazione → produzione</li>
+          <li>Monitoraggio continuo con cicli automatici e log operativi</li>
+        </ul>
+        <ul *ngIf="!isIt">
+          <li>Research and backtesting across MT5, Yahoo and TradingView</li>
+          <li>Phased deployment: demo → validation → production</li>
+          <li>Continuous monitoring with automated cycles and operational logs</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>{{ isIt ? 'Perché la nuova fase' : 'Why this new phase' }}</h3>
+        <ul *ngIf="isIt">
           <li>Brand unico per tech, prodotto e community</li>
-          <li>Migliore posizionamento marketing internazionale</li>
+          <li>Miglior posizionamento marketing internazionale</li>
           <li>Roadmap condivisa con partner strategici</li>
+        </ul>
+        <ul *ngIf="!isIt">
+          <li>Single brand across tech, product and community</li>
+          <li>Stronger international marketing positioning</li>
+          <li>Shared roadmap with strategic partners</li>
         </ul>
       </article>
     </section>
 
     <section class="collab">
       <div class="collab-copy">
-        <p class="label">Collaborazione in evidenza</p>
+        <p class="label">{{ isIt ? 'Collaborazione in evidenza' : 'Featured collaboration' }}</p>
         <h2>The Funded Pick × Statium</h2>
-        <p>
-          La partnership nasce per accelerare qualità dei segnali, robustezza delle strategie e capacità di scaling.
+        <p *ngIf="isIt">
+          Partnership orientata a qualità segnali, robustezza strategica e capacità di scaling.
           Focus su execution disciplinata, metriche trasparenti e crescita sostenibile.
         </p>
-        <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn primary">Vai al partner</a>
+        <p *ngIf="!isIt">
+          Partnership focused on signal quality, strategy robustness and scalable execution.
+          We prioritize disciplined execution, transparent metrics and sustainable growth.
+        </p>
+        <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn primary">{{ isIt ? 'Vai al partner' : 'Visit partner' }}</a>
       </div>
       <div class="collab-panel">
-        <p><strong>Pilastri operativi</strong></p>
+        <p><strong>{{ isIt ? 'Pilastri operativi' : 'Operating pillars' }}</strong></p>
         <ul>
           <li>Risk-first framework</li>
-          <li>Validazione quantitativa continua</li>
-          <li>Automazione MT5 segmentata per master</li>
+          <li>{{ isIt ? 'Validazione quantitativa continua' : 'Continuous quantitative validation' }}</li>
+          <li>{{ isIt ? 'Automazione MT5 segmentata per master' : 'Segmented MT5 automation per master' }}</li>
           <li>Reportistica e audit trail</li>
         </ul>
       </div>
     </section>
 
     <section class="roadmap">
-      <p class="label">Roadmap operativa</p>
+      <p class="label">{{ isIt ? 'Roadmap operativa' : 'Execution roadmap' }}</p>
       <div class="roadmap-grid">
         <div class="step"><strong>01</strong><span>Research & Backtest</span></div>
         <div class="step"><strong>02</strong><span>Demo Validation</span></div>
@@ -85,9 +117,24 @@
       </div>
     </section>
 
+    <section class="faq card">
+      <h3>FAQ</h3>
+      <div class="qa">
+        <h4>{{ isIt ? 'Statium vende segnali garantiti?' : 'Does Statium sell guaranteed signals?' }}</h4>
+        <p>{{ isIt ? 'No. Statium fornisce framework operativo, automazione e analisi dati. Nessuna promessa di rendimento.' : 'No. Statium provides operational framework, automation and analytics. No return guarantees.' }}</p>
+      </div>
+      <div class="qa">
+        <h4>{{ isIt ? 'Qual è il primo step per collaborare?' : 'What is the first step to collaborate?' }}</h4>
+        <p>{{ isIt ? 'Contattaci via email con obiettivo, mercato e profilo di rischio.' : 'Contact us by email with your objective, market and risk profile.' }}</p>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" [href]="'mailto:' + contactEmail">{{ isIt ? 'Contattaci' : 'Contact us' }}</a>
+      </div>
+    </section>
+
     <section class="footer-note">
       <p>
-        Statium fornisce strumenti informativi e operativi. Nessun contenuto costituisce consulenza finanziaria.
+        {{ isIt ? 'Statium fornisce strumenti informativi e operativi. Nessun contenuto costituisce consulenza finanziaria.' : 'Statium provides informational and operational tools. Nothing here constitutes financial advice.' }}
       </p>
     </section>
   </main>

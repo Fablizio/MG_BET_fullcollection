@@ -8,6 +8,10 @@
       </div>
     </div>
     <div class="nav-actions">
+      <div class="lang-switch" aria-label="language switch">
+        <button type="button" class="lang-btn" [class.active]="isIt" (click)="setLang('it')">IT</button>
+        <button type="button" class="lang-btn" [class.active]="!isIt" (click)="setLang('en')">EN</button>
+      </div>
       <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn ghost">The Funded Pick</a>
       <a href="/mgbet/auth" class="btn primary">{{ isIt ? 'Accedi' : 'Sign In' }}</a>
     </div>
@@ -24,6 +28,7 @@
         <div><strong>{{ isIt ? 'Analisi quantitativa' : 'Quantitative analysis' }}</strong></div>
         <div><strong>{{ isIt ? 'Storico completo' : 'Full history' }}</strong></div>
       </div>
+      <p class="risk-note">{{ isIt ? 'Gioca responsabilmente. Le predizioni non garantiscono risultati e comportano rischio economico.' : 'Bet responsibly. Predictions do not guarantee outcomes and involve financial risk.' }}</p>
     </section>
 
     <section class="modules">
@@ -84,6 +89,8 @@
       <a href="/mgbet/auth" class="cta-primary">{{ isIt ? 'Accedi alla piattaforma' : 'Access platform' }}</a>
     </section>
   </main>
+
+  <a href="/mgbet/auth" class="sticky-cta-mobile">{{ isIt ? 'Accedi a Statium' : 'Access Statium' }}</a>
 
   <footer class="footer">
     <p>© 2026 Statium · {{ isIt ? 'Piattaforma di predizioni calcistiche' : 'Football predictions platform' }}</p>

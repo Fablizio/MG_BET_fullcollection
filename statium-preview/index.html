@@ -44,6 +44,10 @@
     .trust-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
     .trust-grid article { background: rgba(13, 20, 34, .76); border: 1px solid rgba(148, 163, 184, .2); border-radius: 14px; padding: 16px; }
     .trust-kicker { margin: 0 0 6px; color: #8e9dbd; font-size: .79rem; }
+    .proof-strip { margin-top: 18px; display:grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap:12px; }
+    .proof-strip article { background: rgba(14,20,34,.75); border:1px solid rgba(148,163,184,.2); border-radius:14px; padding:14px 16px; text-align:center; }
+    .proof-strip strong { display:block; font-size:1.2rem; color:#fff; }
+    .proof-strip span { font-size:.86rem; color:#aeb9d3; }
     .modules { padding-top: 66px; }
     .section-head { text-align: center; margin-bottom: 30px; }
     .section-head span { color: #98a6c7; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; font-size: .76rem; }
@@ -63,7 +67,7 @@
     .footer { text-align:center; padding: 28px 20px 40px; color:#8a95b0; font-size:.86rem; }
     .sticky { display:none; }
     @media (max-width: 900px) {
-      .trust-grid, .module-grid { grid-template-columns: 1fr; }
+      .trust-grid, .module-grid, .proof-strip { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .shell { width: min(1140px, calc(100% - 24px)); }
@@ -105,6 +109,12 @@
         <article><p class="trust-kicker">Motore</p><strong>Scoring multi-fattore</strong></article>
         <article><p class="trust-kicker">Controllo</p><strong>Storico trasparente</strong></article>
       </div>
+    </section>
+
+    <section class="proof-strip">
+      <article><strong>4</strong><span>moduli operativi</span></article>
+      <article><strong>24/7</strong><span>monitoraggio segnali</span></article>
+      <article><strong>Storico</strong><span>verificabile e consultabile</span></article>
     </section>
 
     <section class="modules">

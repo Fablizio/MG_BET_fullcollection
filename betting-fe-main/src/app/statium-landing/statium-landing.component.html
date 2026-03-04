@@ -16,15 +16,16 @@
 
   <main>
     <section class="hero">
-      <p class="kicker">{{ isIt ? 'Piattaforma intelligente per il betting data-driven' : 'Intelligent platform for data-driven betting' }}</p>
-      <h1>{{ isIt ? 'Benvenuto in' : 'Welcome to' }} <span>Statium</span></h1>
+      <p class="kicker">{{ isIt ? 'Piattaforma di predizioni calcistiche data-driven' : 'Data-driven football prediction platform' }}</p>
+      <h1>{{ isIt ? 'Decisioni più chiare con' : 'Sharper decisions with' }} <span>Statium</span></h1>
+
       <p class="subtitle" *ngIf="isIt">
-        Statium unisce analisi quantitativa, automazione operativa e controllo del rischio
-        per strategie multi-master su MT5.
+        Statium analizza grandi volumi di dati calcistici e li trasforma in insight operativi: trend, probabilità,
+        value spot e segnali giornalieri leggibili in pochi secondi.
       </p>
       <p class="subtitle" *ngIf="!isIt">
-        Statium combines quantitative analysis, execution automation and risk control
-        for multi-master MT5 strategies.
+        Statium turns large-scale football data into actionable insights: trends, probabilities,
+        value spots and daily signals you can read in seconds.
       </p>
 
       <div class="hero-actions">
@@ -33,8 +34,8 @@
       </div>
 
       <div class="hero-metrics">
-        <div><span>Execution</span><strong>Multi-Master MT5</strong></div>
-        <div><span>Focus</span><strong>Risk-first Automation</strong></div>
+        <div><span>{{ isIt ? 'Copertura' : 'Coverage' }}</span><strong>{{ isIt ? 'Campionati multipli' : 'Multi-league coverage' }}</strong></div>
+        <div><span>{{ isIt ? 'Metodo' : 'Method' }}</span><strong>{{ isIt ? 'Modelli + validazione continua' : 'Models + continuous validation' }}</strong></div>
         <div><span>Partner</span><strong>The Funded Pick</strong></div>
       </div>
     </section>
@@ -43,42 +44,42 @@
       <article class="card">
         <h3>{{ isIt ? 'Cosa fa Statium' : 'What Statium does' }}</h3>
         <ul *ngIf="isIt">
-          <li>Genera segnali da modelli e regole deterministiche</li>
-          <li>Filtra setup per sessione, volatilità e struttura</li>
-          <li>Coordina esecuzione su istanze MT5 dedicate</li>
+          <li>Aggrega feed e statistiche da più fonti calcistiche</li>
+          <li>Calcola segnali con regole quantitative e filtri qualità</li>
+          <li>Mostra opportunità giornaliere in modo semplice e verificabile</li>
         </ul>
         <ul *ngIf="!isIt">
-          <li>Generates signals from deterministic models and rules</li>
-          <li>Filters setups by session, volatility and structure</li>
-          <li>Coordinates execution on dedicated MT5 instances</li>
+          <li>Aggregates football feeds and statistics from multiple sources</li>
+          <li>Computes signals with quantitative rules and quality filters</li>
+          <li>Shows daily opportunities in a simple, auditable format</li>
         </ul>
       </article>
 
       <article class="card">
-        <h3>{{ isIt ? 'Come ci muoviamo' : 'How we operate' }}</h3>
+        <h3>{{ isIt ? 'Come lavoriamo' : 'How we work' }}</h3>
         <ul *ngIf="isIt">
-          <li>Ricerca e backtest su più fonti dati (MT5, Yahoo, TradingView)</li>
-          <li>Deploy graduale: demo → validazione → produzione</li>
-          <li>Monitoraggio continuo con cicli automatici e log operativi</li>
+          <li>Ricerca e benchmark su dataset storici e live</li>
+          <li>Pipeline operativa: raccolta dati → scoring → pubblicazione segnali</li>
+          <li>Monitoraggio costante con metriche di qualità e stabilità</li>
         </ul>
         <ul *ngIf="!isIt">
-          <li>Research and backtesting across MT5, Yahoo and TradingView</li>
-          <li>Phased deployment: demo → validation → production</li>
-          <li>Continuous monitoring with automated cycles and operational logs</li>
+          <li>Research and benchmarking on historical and live datasets</li>
+          <li>Operational pipeline: data collection → scoring → signal delivery</li>
+          <li>Continuous monitoring with quality and reliability metrics</li>
         </ul>
       </article>
 
       <article class="card">
-        <h3>{{ isIt ? 'Perché la nuova fase' : 'Why this new phase' }}</h3>
+        <h3>{{ isIt ? 'Perché adesso' : 'Why now' }}</h3>
         <ul *ngIf="isIt">
-          <li>Brand unico per tech, prodotto e community</li>
-          <li>Miglior posizionamento marketing internazionale</li>
-          <li>Roadmap condivisa con partner strategici</li>
+          <li>Nuovo brand per comunicare meglio valore e visione</li>
+          <li>Focus su prodotto chiaro, scalabile e internazionale</li>
+          <li>Collaborazioni strategiche per accelerare crescita e qualità</li>
         </ul>
         <ul *ngIf="!isIt">
-          <li>Single brand across tech, product and community</li>
-          <li>Stronger international marketing positioning</li>
-          <li>Shared roadmap with strategic partners</li>
+          <li>New brand to communicate value and vision clearly</li>
+          <li>Product-first focus designed for scale and international growth</li>
+          <li>Strategic collaborations to accelerate quality and expansion</li>
         </ul>
       </article>
     </section>
@@ -88,22 +89,22 @@
         <p class="label">{{ isIt ? 'Collaborazione in evidenza' : 'Featured collaboration' }}</p>
         <h2>The Funded Pick × Statium</h2>
         <p *ngIf="isIt">
-          Partnership orientata a qualità segnali, robustezza strategica e capacità di scaling.
-          Focus su execution disciplinata, metriche trasparenti e crescita sostenibile.
+          Partnership strategica per alzare qualità predittiva, velocità operativa e distribuzione internazionale.
+          Obiettivo: insight più affidabili e fruibili per utenti e partner.
         </p>
         <p *ngIf="!isIt">
-          Partnership focused on signal quality, strategy robustness and scalable execution.
-          We prioritize disciplined execution, transparent metrics and sustainable growth.
+          Strategic partnership to improve predictive quality, operational speed and international reach.
+          Goal: more reliable and accessible insights for users and partners.
         </p>
         <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn primary">{{ isIt ? 'Vai al partner' : 'Visit partner' }}</a>
       </div>
       <div class="collab-panel">
-        <p><strong>{{ isIt ? 'Pilastri operativi' : 'Operating pillars' }}</strong></p>
+        <p><strong>{{ isIt ? 'Focus condivisi' : 'Shared focus areas' }}</strong></p>
         <ul>
-          <li>Risk-first framework</li>
-          <li>{{ isIt ? 'Validazione quantitativa continua' : 'Continuous quantitative validation' }}</li>
-          <li>{{ isIt ? 'Automazione MT5 segmentata per master' : 'Segmented MT5 automation per master' }}</li>
-          <li>Reportistica e audit trail</li>
+          <li>{{ isIt ? 'Qualità dati e robustezza del segnale' : 'Data quality and signal robustness' }}</li>
+          <li>{{ isIt ? 'Esperienza utente più chiara e utile' : 'Clearer and more useful user experience' }}</li>
+          <li>{{ isIt ? 'Standard operativi replicabili e auditabili' : 'Replicable and auditable operational standards' }}</li>
+          <li>{{ isIt ? 'Espansione internazionale del progetto' : 'International project expansion' }}</li>
         </ul>
       </div>
     </section>
@@ -111,21 +112,21 @@
     <section class="roadmap">
       <p class="label">{{ isIt ? 'Roadmap operativa' : 'Execution roadmap' }}</p>
       <div class="roadmap-grid">
-        <div class="step"><strong>01</strong><span>Research & Backtest</span></div>
-        <div class="step"><strong>02</strong><span>Demo Validation</span></div>
-        <div class="step"><strong>03</strong><span>Live Guarded Rollout</span></div>
+        <div class="step"><strong>01</strong><span>{{ isIt ? 'Data & Model Validation' : 'Data & Model Validation' }}</span></div>
+        <div class="step"><strong>02</strong><span>{{ isIt ? 'Release graduale prodotto' : 'Gradual product rollout' }}</span></div>
+        <div class="step"><strong>03</strong><span>{{ isIt ? 'Scale con partner strategici' : 'Scale with strategic partners' }}</span></div>
       </div>
     </section>
 
     <section class="faq card">
       <h3>FAQ</h3>
       <div class="qa">
-        <h4>{{ isIt ? 'Statium vende segnali garantiti?' : 'Does Statium sell guaranteed signals?' }}</h4>
-        <p>{{ isIt ? 'No. Statium fornisce framework operativo, automazione e analisi dati. Nessuna promessa di rendimento.' : 'No. Statium provides operational framework, automation and analytics. No return guarantees.' }}</p>
+        <h4>{{ isIt ? 'Statium sostituisce la valutazione personale?' : 'Does Statium replace personal judgment?' }}</h4>
+        <p>{{ isIt ? 'No. Statium supporta il processo decisionale con dati e modelli, ma la decisione finale resta dell’utente.' : 'No. Statium supports decision-making with data and models, but final decisions remain with the user.' }}</p>
       </div>
       <div class="qa">
-        <h4>{{ isIt ? 'Qual è il primo step per collaborare?' : 'What is the first step to collaborate?' }}</h4>
-        <p>{{ isIt ? 'Contattaci via email con obiettivo, mercato e profilo di rischio.' : 'Contact us by email with your objective, market and risk profile.' }}</p>
+        <h4>{{ isIt ? 'Come si avvia una collaborazione?' : 'How do we start a collaboration?' }}</h4>
+        <p>{{ isIt ? 'Scrivici via email con obiettivo, mercati d’interesse e contesto operativo.' : 'Send us an email with your goals, target markets and operating context.' }}</p>
       </div>
       <div class="cta-row">
         <a class="btn primary" [href]="'mailto:' + contactEmail">{{ isIt ? 'Contattaci' : 'Contact us' }}</a>
@@ -134,7 +135,7 @@
 
     <section class="footer-note">
       <p>
-        {{ isIt ? 'Statium fornisce strumenti informativi e operativi. Nessun contenuto costituisce consulenza finanziaria.' : 'Statium provides informational and operational tools. Nothing here constitutes financial advice.' }}
+        {{ isIt ? 'Statium fornisce contenuti informativi e analitici a supporto decisionale.' : 'Statium provides informational and analytical content for decision support.' }}
       </p>
     </section>
   </main>

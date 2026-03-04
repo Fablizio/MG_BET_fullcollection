@@ -1,0 +1,66 @@
+<ion-card class="mg-card-eventi" [class.mg-card-eventi--open]="show">
+
+    <!-- HEADER COLLASSABILE -->
+    <ion-card-header class="mg-card-eventi__header" (click)="show = !show">
+        <div class="mg-card-eventi__header-main">
+            <div class="mg-card-eventi__pill">
+                <span class="mg-card-eventi__pill-dot"></span>
+                <span class="mg-card-eventi__pill-label">{{ title }}</span>
+            </div>
+
+            <div class="mg-card-eventi__meta" *ngIf="eventi?.length">
+        <span class="mg-card-eventi__meta-chip">
+          {{ eventi.length }} event{{ eventi.length > 1 ? 'i' : 'o' }}
+        </span>
+            </div>
+        </div>
+
+        <ion-icon class="mg-card-eventi__toggle" name="arrow-down"></ion-icon>
+    </ion-card-header>
+
+    <!-- CONTENUTO -->
+    <ion-card-content class="mg-card-eventi__content" *ngIf="show">
+
+        <!-- Stato vuoto -->
+        <div class="mg-card-eventi__empty" *ngIf="!eventi || !eventi.length">
+            <h2>Non disponibile per ora…</h2>
+            <p>Appena abbiamo nuovi pronostici li troverai qui.</p>
+        </div>
+
+        <!-- Lista eventi -->
+        <ng-container *ngIf="eventi && eventi.length">
+            <div class="mg-event-panel">
+                <ion-list class="mg-event-list" lines="none">
+                    <ion-item class="mg-event-list__header" lines="none">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="6">
+                                    <span>Evento</span>
+                                </ion-col>
+                                <ion-col size="6" class="ion-text-right">
+                                    <span>Prediction</span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+
+                    <app-evento
+                            *ngFor="let evento of eventi"
+                            [evento]="evento">
+                    </app-evento>
+                </ion-list>
+
+                <div class="mg-total-row">
+                    <div class="mg-total-pill">
+                        <span class="mg-total-label">Quota totale</span>
+                        <span class="mg-total-value">
+              {{ totalOdds(eventi) | number:'1.2-2' }}
+            </span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-content></ng-content>
+    </ion-card-content>
+</ion-card>

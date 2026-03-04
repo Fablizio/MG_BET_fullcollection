@@ -1,0 +1,101 @@
+<app-header>
+    <ion-title>
+        {{ renew ? 'Rinnova' : 'Nuovo' }} abbonamento
+    </ion-title>
+
+    <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</app-header>
+
+<ion-content class="payment-content">
+    <div class="payment-inner">
+
+        <!-- CARD PIANO ABBONAMENTO -->
+        <ion-card class="mg-plan-card">
+            <ion-card-header class="mg-plan-card__header">
+                <div class="mg-kicker">
+                    {{ renew ? 'Rinnovo abbonamento' : 'Nuovo abbonamento' }}
+                </div>
+                <div class="mg-title">
+                    Scegli il piano che fa per te
+                </div>
+                <div class="mg-subtitle" *ngIf="renew">
+                    Il tuo accesso resterà attivo senza interruzioni.
+                </div>
+                <div class="mg-subtitle" *ngIf="!renew">
+                    Attiva subito il tuo accesso alle statistiche MG BET.
+                </div>
+            </ion-card-header>
+
+            <ion-card-content class="mg-plan-card__content">
+                <!-- piano -->
+                <ion-list class="mg-plan-list" lines="none">
+                    <ion-item class="mg-plan-item">
+                        <ion-label class="mg-plan-label">
+                            <div class="mg-plan-name">Mensile</div>
+                            <div class="mg-plan-duration">1 mese</div>
+                        </ion-label>
+
+                        <div class="mg-plan-price" slot="end">
+                            <span class="mg-plan-price-main">€ 20,00</span>
+                        </div>
+                    </ion-item>
+                </ion-list>
+
+                <!-- CTA PayPal -->
+                <div class="mg-plan-pay">
+                    <a
+                            class="mg-paypal-btn"
+                            (click)="trackClick(10)"
+                            target="_blank"
+                            href="https://app.suby.fi/sub/9Q5TA27GSAU4VN0RTIOF">
+                        <span>Paga</span>
+                    </a>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <!-- CARD ATTENZIONE / ISTRUZIONI -->
+        <ion-card class="mg-warning-card">
+            <ion-card-header class="mg-warning-card__header">
+                <div class="mg-warning-pill">
+                    ATTENZIONE
+                </div>
+            </ion-card-header>
+
+            <ion-card-content class="mg-warning-card__content">
+                <ion-text>
+                    <p class="mg-warning-text-intro">
+                        Per completare il rinnovo segui questi passaggi:
+                    </p>
+                    <ol class="mg-warning-steps">
+                        <li>
+                            Clicca sul pulsante del tuo abbonamento e completa il pagamento.
+                        </li>
+                        <li>
+                            Dopo il pagamento, vai sul nostro bot Telegram
+                            <a href="https://t.me/mgbet2bot" target="_blank">@mgbet2bot</a>.
+                        </li>
+                        <li>
+                            Usa il pulsante <strong>“Invia screenshot del pagamento”</strong>
+                            per confermare il rinnovo.
+                        </li>
+                        <li>
+                            Attenzione: se lo screenshot del pagamento non viene inviato, non sarà possibile effettuare l'estensione dell'abbonamento e l'importo pagato andrà perso.
+                        </li>
+                    </ol>
+                </ion-text>
+            </ion-card-content>
+        </ion-card>
+
+    </div>
+</ion-content>
+
+<ion-footer class="payment-footer ion-padding">
+    <ion-button expand="block" fill="clear" color="medium" (click)="dismiss()">
+        Annulla
+    </ion-button>
+</ion-footer>

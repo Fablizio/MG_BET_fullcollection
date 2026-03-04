@@ -1,0 +1,485 @@
+<app-page-template>
+
+  <div class="mg-stats-page container-fluid">
+    <!-- Header + toggle -->
+    <div class="row align-items-center mb-3 mg-header-row">
+      <div class="col-md-7">
+        <div class="mg-page-kicker">
+          <i class="fa fa-bolt mr-1"></i> Analytics Center
+        </div>
+        <h2 class="mg-page-title">
+          <i class="fa fa-chart-line mr-2"></i>
+          Dashboard statistiche MG BET
+        </h2>
+        <p class="mg-page-subtitle">
+          Analisi avanzata delle performance per campionato, segno secco, doppia chance e raddoppi.
+        </p>
+      </div>
+
+      <div class="col-md-5 text-md-right text-left mt-3 mt-md-0">
+        <div class="btn-group mg-view-toggle" role="group">
+          <button
+            type="button"
+            class="btn mg-toggle-btn"
+            [class.active]="viewMode === 'totali'"
+            (click)="setViewMode('totali')">
+            <span class="dot"></span>
+            Statistiche totali
+          </button>
+
+          <button
+            type="button"
+            class="btn mg-toggle-btn"
+            [class.active]="viewMode === 'raddoppi'"
+            (click)="setViewMode('raddoppi')">
+            <span class="dot"></span>
+            Statistiche raddoppi
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI GLOBALI -->
+    <div class="row mb-4" [hidden]="viewMode !== 'totali'">
+      <div class="col-sm-6 col-md-3 mb-3">
+        <div class="mg-kpi-card">
+          <div class="mg-kpi-label">Partite analizzate</div>
+          <div class="mg-kpi-value">{{ globalTotalePartite }}</div>
+          <div class="mg-kpi-footer">Campionati + raddoppi</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 mb-3">
+        <div class="mg-kpi-card">
+          <div class="mg-kpi-label">Predizioni corrette</div>
+          <div class="mg-kpi-value mg-text-success">{{ globalVinte }}</div>
+          <div class="mg-kpi-footer">Esiti allineati al modello</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 mb-3">
+        <div class="mg-kpi-card">
+          <div class="mg-kpi-label">Predizioni errate</div>
+          <div class="mg-kpi-value mg-text-danger">{{ globalPerse }}</div>
+          <div class="mg-kpi-footer">Esiti non allineati</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 mb-3">
+        <div class="mg-kpi-card">
+          <div class="mg-kpi-label">Win rate globale</div>
+          <div class="mg-kpi-value">
+            {{ (globalWinRate * 100) | number:'1.0-1' }}%
+          </div>
+          <div class="mg-kpi-footer">Su tutte le prediction</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: STATISTICHE GLOBALI -->
+    <div class="mg-stats-card mb-4" [hidden]="viewMode !== 'totali'">
+      <div class="mg-stats-card-header">
+        <div>
+          <span class="mg-card-kicker">
+            <i class="fa fa-globe-europe mr-1"></i> Statistiche globali
+          </span>
+          <h3 class="mg-card-title">Performance complessiva del modello</h3>
+        </div>
+      </div>
+
+      <div class="mg-stats-card-body">
+        <div class="row">
+          <div class="col-lg-6 mb-4">
+            <h6 class="mg-chart-title">Win rate complessivo</h6>
+            <div id="chartGlobalWin" class="mg-chart-container"></div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <h6 class="mg-chart-title">Secco vs doppia chance</h6>
+            <div id="chartGlobalTipo" class="mg-chart-container"></div>
+          </div>
+        </div>
+
+        <!-- Nuovi grafici globali -->
+        <div class="row mt-2">
+          <div class="col-12 mb-4">
+            <h6 class="mg-chart-title">Win rate per fascia di confidenza</h6>
+            <div id="chartConfWinRate" class="mg-chart-container mg-chart-wide"></div>
+          </div>
+        </div>
+
+        <hr class="mg-divider">
+
+        <div class="row mt-3">
+          <div class="col-12">
+            <h6 class="mg-chart-title">Win rate per campionato</h6>
+            <div id="chartCampionatiBar" class="mg-chart-container mg-chart-wide"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- CARD: DETTAGLIO PER CAMPIONATO -->
+    <div class="mg-stats-card mb-4" [hidden]="viewMode !== 'totali'">
+      <div class="mg-stats-card-header">
+        <div>
+          <span class="mg-card-kicker">
+            <i class="fa fa-list-ul mr-1"></i> Dettaglio per campionato
+          </span>
+          <h3 class="mg-card-title">Analisi granulare per torneo</h3>
+        </div>
+      </div>
+
+      <div class="mg-stats-card-body">
+        <!-- Filtri -->
+        <div class="row mb-3">
+          <div class="col-md-4 mb-3">
+            <label class="mg-form-label">
+              Territorio
+              <select
+                class="form-control mg-select"
+                [(ngModel)]="selectedTerritorio"
+                (change)="onTerritorioChange()">
+                <option [ngValue]="null">Seleziona territorio</option>
+                <option *ngFor="let g of campionatiGroup" [ngValue]="g.territorio">
+                  {{ g.territorio }}
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="mg-form-label">
+              Campionato
+              <select
+                class="form-control mg-select"
+                [(ngModel)]="selectedCampionatoId"
+                (change)="onCampionatoChange()"
+                [disabled]="!territorioCampionati.length">
+                <option [ngValue]="null">Seleziona campionato</option>
+                <option *ngFor="let c of territorioCampionati" [ngValue]="c.id">
+                  {{ c.nomeCampionato }}
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <div class="col-md-4 mb-3" *ngIf="selectedCampionatoStats">
+            <div class="mg-camp-summary">
+              <div class="summary-title">
+                {{ selectedCampionatoStats?.territorio }} – {{ selectedCampionatoStats?.nomeCampionato }}
+              </div>
+              <div class="summary-row">
+                <span>Partite</span>
+                <span>{{ selectedCampionatoStats?.totalePartite }}</span>
+              </div>
+              <div class="summary-row">
+                <span>Win rate</span>
+                <span>{{ (selectedCampionatoStats?.winRate || 0) * 100 | number:'1.0-1' }}%</span>
+              </div>
+              <div class="summary-row">
+                <span>Media confidenza</span>
+                <span>{{ selectedCampionatoStats?.mediaConfidence | number:'1.0-1' }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafici campionato selezionato -->
+        <div class="row" [hidden]="!selectedCampionatoStats">
+          <div class="col-lg-6 mb-4">
+            <h6 class="mg-chart-title">Numero pronostici per tipo</h6>
+            <div id="chartCampionatoDettaglioBar" class="mg-chart-container"></div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <h6 class="mg-chart-title">Percentuali di prediction</h6>
+            <div id="chartCampionatoPie" class="mg-chart-container"></div>
+          </div>
+        </div>
+
+        <!-- Movimento quote sul segno secco -->
+        <div class="row mt-2" [hidden]="!selectedCampionatoStats">
+          <div class="col-12 mb-3">
+            <h6 class="mg-chart-title">Win rate per fascia di movimento quota (segno secco)</h6>
+            <div id="chartCampionatoOdds" class="mg-chart-container mg-chart-wide"></div>
+            <p class="mg-helper-text mt-2">
+              Ogni barra mostra il win rate delle prediction in cui la quota del segno secco è
+              cambiata in quella fascia percentuale tra apertura e chiusura.
+              Se la quota <strong>crolla</strong> o <strong>sale</strong> molto, vedi subito se il modello
+              è riuscito ad allinearsi ai movimenti del mercato.
+            </p>
+          </div>
+        </div>
+
+        <!-- Accordion partite vinte (secco / doppia chance) -->
+        <div class="row mt-3" *ngIf="selectedCampionatoStats">
+          <div class="col-12">
+            <div class="mg-accordion" id="accordionCampionato">
+
+              <!-- SECCO -->
+              <div class="mg-accordion-item">
+                <h2 class="mg-accordion-header">
+                  <button
+                    type="button"
+                    class="btn btn-link mg-accordion-toggle"
+                    (click)="seccoCollapsed = !seccoCollapsed">
+                    <span>
+                      Partite vinte con segno secco
+                      <span class="badge badge-pill badge-success ml-1">
+                        {{ campionatoVinteSeccoMatches.length }}
+                      </span>
+                    </span>
+                    <i class="fa"
+                       [ngClass]="seccoCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'"></i>
+                  </button>
+                </h2>
+
+                <div class="mg-accordion-body" [hidden]="seccoCollapsed">
+                  <div class="table-responsive">
+                    <table class="table table-sm mg-mini-table mb-2">
+                      <thead>
+                      <tr>
+                        <th>Data</th>
+                        <th>Match</th>
+                        <th>1</th>
+                        <th>X</th>
+                        <th>2</th>
+                        <th>Somma quote</th>
+                        <th>Prediction</th>
+                        <th>Risultato</th>
+                        <th>Conf.</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let m of campionatoVinteSeccoMatches">
+                        <td>{{ m.dataEvent }}</td>
+                        <td>{{ m.team }}</td>
+                        <td>{{ m.uno }}</td>
+                        <td>{{ m.x }}</td>
+                        <td>{{ m.due }}</td>
+                        <td>{{ m.uno + m.x + m.due | number:'1.0-2' }} </td>
+                        <td>{{ m.prediction }}</td>
+                        <td>{{ m.result }}</td>
+                        <td>{{ m.predictionConfidence | number:'1.0-1' }}%</td>
+                      </tr>
+                      <tr *ngIf="!campionatoVinteSeccoMatches.length">
+                        <td colspan="9" class="text-muted small">
+                          Nessuna partita vinta col segno secco in questo campionato.
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DOPPIA CHANCE -->
+              <div class="mg-accordion-item">
+                <h2 class="mg-accordion-header">
+                  <button
+                    type="button"
+                    class="btn btn-link mg-accordion-toggle"
+                    (click)="doppiaCollapsed = !doppiaCollapsed">
+                    <span>
+                      Partite vinte solo con doppia chance
+                      <span class="badge badge-pill badge-info ml-1">
+                        {{ campionatoVinteDoppiaMatches.length }}
+                      </span>
+                    </span>
+                    <i class="fa"
+                       [ngClass]="doppiaCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'"></i>
+                  </button>
+                </h2>
+
+                <div class="mg-accordion-body" [hidden]="doppiaCollapsed">
+                  <div class="table-responsive">
+                    <table class="table table-sm mg-mini-table mb-2">
+                      <thead>
+                      <tr>
+                        <th>Data</th>
+                        <th>Match</th>
+                        <th>1</th>
+                        <th>X</th>
+                        <th>2</th>
+                        <th>Somma quote</th>
+                        <th>Prediction</th>
+                        <th>Risultato</th>
+                        <th>Conf.</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let m of campionatoVinteDoppiaMatches">
+                        <td>{{ m.dataEvent }}</td>
+                        <td>{{ m.team }}</td>
+                        <td>{{ m.uno }}</td>
+                        <td>{{ m.x }}</td>
+                        <td>{{ m.due }}</td>
+                        <td>{{ m.uno + m.x + m.due | number:'1.0-2' }} </td>
+                        <td>{{ m.prediction }}</td>
+                        <td>{{ m.result }}</td>
+                        <td>{{ m.predictionConfidence | number:'1.0-1' }}%</td>
+                      </tr>
+                      <tr *ngIf="!campionatoVinteDoppiaMatches.length">
+                        <td colspan="9" class="text-muted small">
+                          Nessuna partita vinta solo in doppia chance in questo campionato.
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CARD: CALIBRATION PLOT -->
+    <div class="mg-stats-card mb-4" [hidden]="viewMode !== 'totali'">
+      <div class="mg-stats-card-header">
+        <div>
+      <span class="mg-card-kicker">
+        <i class="fa fa-balance-scale mr-1"></i> Calibration plot
+      </span>
+          <h3 class="mg-card-title">Confidenza vs realtà</h3>
+        </div>
+      </div>
+
+      <div class="mg-stats-card-body">
+        <!-- Riga con il grafico -->
+        <div class="row">
+          <div class="col-12 mb-3">
+            <h6 class="mg-chart-title">Probabilità prevista vs osservata</h6>
+            <div id="chartCalibration" class="mg-chart-container mg-chart-wide"></div>
+          </div>
+        </div>
+
+        <!-- Riga con il testo esplicativo sotto al grafico -->
+        <div class="row">
+          <div class="col-12">
+            <div class="mg-helper-text">
+
+              <!-- Cos'è il grafico -->
+              <p class="mb-2">
+                Questo grafico serve a capire <strong>quanto ci possiamo fidare</strong>
+                delle percentuali mostrate dal modello.
+              </p>
+              <p class="mb-2">
+                Ogni punto rappresenta un gruppo di partite in cui il modello era
+                più o meno sicuro di vincere (ad esempio: 50–60%, 60–70%, 70–80%, ecc.).
+              </p>
+
+              <!-- Assi e linea ideale -->
+              <p class="mb-2">
+                <strong>Asse X</strong>: la probabilità media di vittoria
+                <strong>stimata dal modello</strong> in quel gruppo.<br>
+                <strong>Asse Y</strong>: quante volte, in percentuale,
+                <strong>la vittoria è avvenuta davvero</strong> in quel gruppo.
+              </p>
+              <p class="mb-2">
+                La linea tratteggiata è il riferimento ideale:
+                se un punto sta sulla linea, significa che
+                <em>“quando il modello dice X%, succede davvero circa X% delle volte”</em>.
+              </p>
+
+              <!-- Come leggerlo -->
+              <h6 class="mt-3 mb-2">Come leggerlo in pratica</h6>
+              <ul class="mb-2">
+                <li>
+                  Punti <strong>vicino alla linea</strong> →
+                  le percentuali del modello sono <strong>affidabili</strong>.
+                </li>
+                <li>
+                  Punti <strong>sotto la linea</strong> →
+                  il modello è <strong>troppo ottimista</strong>
+                  (promette più di quello che mantiene).
+                </li>
+                <li>
+                  Punti <strong>sopra la linea</strong> →
+                  il modello è <strong>troppo pessimista</strong>
+                  (si sottovaluta: vince più spesso di quanto dica).
+                </li>
+              </ul>
+
+              <!-- Esempi concreti -->
+              <h6 class="mt-3 mb-2">Esempi concreti</h6>
+
+              <p class="mb-2">
+                🔹 <strong>Esempio 1</strong><br>
+                Il modello, per un certo gruppo di partite, mostra in media
+                <strong>80% di probabilità di vittoria</strong>.<br>
+                Nel grafico, il punto corrispondente è intorno a
+                <strong>80% anche sull’asse Y</strong>.<br>
+                Significa che, quando dice “80%”, in quelle situazioni
+                vinci davvero circa <strong>8 volte su 10</strong>:
+                la confidenza è ben calibrata.
+              </p>
+
+              <p class="mb-2">
+                🔹 <strong>Esempio 2</strong><br>
+                In un’altra fascia, il modello mostra in media
+                <strong>70% di probabilità di vittoria</strong>,
+                ma nel grafico il punto sta a circa
+                <strong>50% sull’asse Y</strong>.<br>
+                In pratica, quando sembra molto sicuro (70%), in realtà
+                vinci solo <strong>5 volte su 10</strong>.<br>
+                Qui il modello è <strong>troppo ottimista</strong>:
+                le sue percentuali sono gonfiate.
+              </p>
+
+              <p class="mb-2">
+                🔹 <strong>Esempio 3</strong><br>
+                In una fascia bassa, il modello mostra in media
+                <strong>30% di probabilità di vittoria</strong>,
+                ma il punto è a circa <strong>45% sull’asse Y</strong>.<br>
+                Vuol dire che, anche se il modello ti dà poche chance,
+                in realtà vinci quasi <strong>1 volta su 2</strong>.<br>
+                Qui il modello è <strong>troppo pessimista</strong>.
+              </p>
+
+              <!-- Numero di partite -->
+              <p class="mt-3 mb-0">
+                Passando con il mouse su un punto puoi vedere:
+                fascia di confidenza, probabilità prevista, probabilità osservata
+                e <strong>numero di partite</strong> considerate.<br>
+                Più partite ci sono, più quel punto è
+                <strong>statisticamente affidabile</strong>.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- CARD: STATISTICHE RADDOPPI -->
+    <div class="mg-stats-card mb-4" [hidden]="viewMode !== 'raddoppi'">
+      <div class="mg-stats-card-header">
+        <div>
+          <span class="mg-card-kicker">
+            <i class="fa fa-bolt mr-1"></i> Statistiche raddoppi
+          </span>
+          <h3 class="mg-card-title">Performance modalità raddoppio</h3>
+        </div>
+      </div>
+
+      <div class="mg-stats-card-body">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4">
+            <h6 class="mg-chart-title">Esito dei raddoppi</h6>
+            <div id="chartRaddoppiPie" class="mg-chart-container"></div>
+          </div>
+          <div class="col-lg-6">
+            <p class="mg-helper-text mb-0">
+              Il grafico mostra la distribuzione dei raddoppi tra
+              <strong>vinti</strong> e <strong>persi</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</app-page-template>

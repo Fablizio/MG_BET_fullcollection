@@ -1,0 +1,10 @@
+html, body, .row {
+  height: 100%;
+}
+.content {
+  margin-top: 90px;
+}
+
+.col-9 {
+  margin-left: 220px;
+}

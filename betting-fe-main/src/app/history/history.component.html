@@ -1,0 +1,159 @@
+<ngx-ui-loader></ngx-ui-loader>
+
+<app-page-template>
+  <div class="mg-history-page container-fluid">
+
+    <!-- FILTRO CAMPIONATO -->
+    <div class="row justify-content-center mb-3">
+      <div class="col-md-10 col-lg-8">
+        <div class="mg-filter-bar">
+          <div class="mg-filter-label">
+            <span class="mg-filter-kicker">
+              <i class="fa fa-history mr-1"></i> Storico
+            </span>
+            <h2 class="mg-filter-title">Risultati delle prediction per campionato</h2>
+            <p class="mg-filter-subtitle">
+              Confronta le quote pre-match con l’esito reale e il livello di confidenza.
+            </p>
+          </div>
+
+          <div class="mg-filter-select">
+            <label class="mg-select-label">Campionato</label>
+            <select class="form-control form-control-lg mg-select"
+                    [(ngModel)]="idLegaSelected"
+                    (change)="load()">
+              <option *ngFor="let lega of leghe | async" [value]="lega.id">
+                {{ lega.campionato }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD STORICO -->
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="card border-0 mg-card-history">
+
+          <!-- Header card -->
+          <div class="mg-card-history-header">
+            <div>
+              <span class="mg-card-kicker">Storico previsioni</span>
+              <h3 class="mg-card-title">
+                {{ campionato || 'Seleziona un campionato' }}
+              </h3>
+            </div>
+
+            <div class="mg-card-meta" *ngIf="listaOdds.getValue().length !== 0">
+              <span class="mg-card-chip">
+                {{ listaOdds.getValue().length }} eventi
+              </span>
+
+              <button class="btn btn-sm btn-outline-light mg-sort-btn"
+                      (click)="reverseList()"
+                      title="Inverti ordine per data evento">
+                <i class="fa"
+                   [class.fa-chevron-down]="!direction"
+                   [class.fa-chevron-up]="direction"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="card-body mg-card-history-body">
+
+            <!-- ALERT -->
+            <div class="alert alert-danger mg-alert"
+                 role="alert"
+                 *ngIf="listaOdds.getValue().length === 0">
+              <i class="fa fa-info-circle mr-2"></i>
+              Non sono presenti risultati per il campionato selezionato.
+            </div>
+
+            <!-- LEGGENDA -->
+            <div class="mg-legend" *ngIf="listaOdds.getValue().length !== 0">
+              <span class="mg-legend-item">
+                <span class="mg-legend-dot mg-legend-dot-win"></span> Presa
+              </span>
+              <span class="mg-legend-item">
+                <span class="mg-legend-dot mg-legend-dot-loss"></span> Non presa
+              </span>
+            </div>
+
+            <!-- TABELLA STORICO -->
+            <div class="table-responsive" *ngIf="listaOdds.getValue().length !== 0">
+              <table class="table mg-history-table">
+                <thead>
+                <tr>
+                  <th scope="col">Data evento</th>
+                  <th scope="col">Match</th>
+                  <th scope="col" class="text-center">1</th>
+                  <th scope="col" class="text-center">X</th>
+                  <th scope="col" class="text-center">2</th>
+                  <th scope="col" class="text-center">Confidence</th>
+                  <th scope="col" class="text-center">Prediction</th>
+                  <th scope="col" class="text-center">Risultato finale</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr *ngFor="let p of listaOdds | async"
+                    [ngClass]="p.presa ? 'mg-row-win' : 'mg-row-loss'">
+                  <!-- Data -->
+                  <td>
+                    <div class="mg-event-date">{{ p.dataEvent }}</div>
+                  </td>
+
+                  <!-- Match -->
+                  <td>
+                    <div class="mg-event-team">{{ p.team }}</div>
+                  </td>
+
+                  <!-- Quote -->
+                  <td class="text-center">{{ p.uno }}</td>
+                  <td class="text-center">{{ p.x }}</td>
+                  <td class="text-center">{{ p.due }}</td>
+
+                  <!-- Confidence -->
+                  <td class="text-center">
+                      <span class="mg-confidence-pill"
+                            [ngClass]="{
+                              'mg-confidence-high': p.predictionConfidence >= 70,
+                              'mg-confidence-mid': p.predictionConfidence < 70 && p.predictionConfidence >= 40,
+                              'mg-confidence-low': p.predictionConfidence < 40
+                            }">
+                        {{ p.predictionConfidence | number:'1.2-2' }}
+                      </span>
+                  </td>
+
+                  <!-- Prediction -->
+                  <td class="text-center">
+                    <span class="mg-prediction-pill">{{ p.prediction }}</span>
+                  </td>
+
+                  <!-- Risultato finale -->
+                  <td class="text-center">
+                    <div class="mg-result-main">{{ p.result }}</div>
+                    <div class="mg-result-pill"
+                         [ngClass]="p.presa ? 'mg-result-win' : 'mg-result-loss'">
+                      <i class="fa"
+                         [ngClass]="p.presa ? 'fa-check' : 'fa-times'"></i>
+                      <span class="ml-1">
+                          {{ p.presa ? 'Presa' : 'Non presa' }}
+                        </span>
+                    </div>
+                  </td>
+
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</app-page-template>

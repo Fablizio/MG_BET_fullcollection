@@ -1,0 +1,426 @@
+:host {
+  display: block;
+}
+
+/* CONTAINER GENERALE */
+.mg-home {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+/* ========== HERO ========== */
+
+.mg-home-hero {
+  margin-bottom: 1.75rem;
+}
+
+.mg-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  color: #facc15;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.mg-hero-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #f9fafb;
+  margin-bottom: 0.4rem;
+}
+
+.mg-hero-subtitle {
+  color: #9ca3af;
+  font-size: 0.95rem;
+  max-width: 540px;
+}
+
+.mg-hero-actions {
+  margin-top: 1rem;
+}
+
+.mg-hero-btn {
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* piccolo glow sul bottone giallo */
+.mg-hero-btn.btn-warning {
+  border: none;
+  box-shadow: 0 0 18px rgba(250, 204, 21, 0.5);
+}
+
+/* Ticket riassuntivo */
+.mg-hero-ticket {
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
+  padding: 1rem 1.2rem;
+  color: #e5e7eb;
+  position: relative;
+  overflow: hidden;
+}
+
+.mg-hero-ticket::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top right,
+  rgba(250, 204, 21, 0.12),
+  transparent 60%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.mg-hero-ticket-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.mg-hero-ticket-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #9ca3af;
+}
+
+.mg-hero-ticket-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0.75rem;
+  position: relative;
+}
+
+.mg-hero-ticket-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  font-size: 0.85rem;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.4);
+}
+
+.mg-hero-ticket-list li:last-child {
+  border-bottom: none;
+}
+
+.mg-status-pill {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mg-status-on {
+  background: rgba(34, 197, 94, 0.2);
+  color: #bbf7d0;
+  border: 1px solid rgba(34, 197, 94, 0.8);
+}
+
+.mg-status-off {
+  background: rgba(148, 163, 184, 0.15);
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+.mg-hero-ticket-footer {
+  position: relative;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* ========== CARTE GIOCATE ========== */
+
+.mg-home-bets {
+  margin-bottom: 1.75rem;
+}
+
+.mg-bet-card {
+  position: relative;
+  background: rgba(15, 23, 42, 0.96);
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.55);
+  padding: 0.9rem 1.1rem 0.8rem;
+  color: #e5e7eb;
+  overflow: hidden;
+}
+
+.mg-bet-card::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at top center,
+  rgba(250, 204, 21, 0.08),
+  transparent 60%);
+  pointer-events: none;
+}
+
+.mg-bet-card-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.6rem;
+}
+
+.mg-bet-title {
+  font-size: 1rem;
+  margin-bottom: 0;
+  color: #f9fafb;
+}
+
+.mg-bet-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.25rem;
+}
+
+.pill-single {
+  background: rgba(56, 189, 248, 0.1);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.7);
+}
+
+.pill-double {
+  background: rgba(250, 204, 21, 0.1);
+  color: #fde68a;
+  border: 1px solid rgba(250, 204, 21, 0.7);
+}
+
+.pill-dchance {
+  background: rgba(96, 165, 250, 0.1);
+  color: #bfdbfe;
+  border: 1px solid rgba(96, 165, 250, 0.7);
+}
+
+.mg-bet-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+}
+
+/* Tabella interna */
+.mg-bet-card-body {
+  position: relative;
+}
+
+.mg-bet-table {
+  margin-bottom: 0.35rem;
+  color: inherit;
+}
+
+.mg-bet-table td {
+  border-top: 0;
+  padding: 0.35rem 0.2rem;
+}
+
+.mg-bet-table tr:not(:last-child) td {
+  border-bottom: 1px dashed rgba(55, 65, 81, 0.9);
+}
+
+.mg-bet-league {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.mg-bet-date {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.mg-bet-team {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.mg-bet-prediction {
+  display: inline-flex;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: rgba(15, 118, 110, 0.25);
+  border: 1px solid rgba(45, 212, 191, 0.6);
+  color: #a5f3fc;
+}
+
+.mg-bet-odd {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #facc15;
+}
+
+/* Footer quota totale */
+.mg-bet-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(55, 65, 81, 0.9);
+  padding-top: 0.4rem;
+  margin-top: 0.1rem;
+}
+
+.mg-bet-total {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fde68a;
+}
+
+/* ========== DISCLAIMER + SOCIAL ========== */
+
+.mg-home-bottom {
+  margin-top: 0.5rem;
+}
+
+.mg-disclaimer-card {
+  background: radial-gradient(circle at top left, #111827 0, #0b1120 65%);
+  border-radius: 18px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  padding: 1.1rem 1.3rem;
+  color: #fee2e2;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
+}
+
+.mg-disclaimer-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.8rem;
+  background: rgba(127, 29, 29, 0.9);
+  box-shadow: 0 0 0 2px rgba(252, 165, 165, 0.7);
+}
+
+.mg-disclaimer-icon i {
+  color: #fecaca;
+}
+
+.mg-disclaimer-title {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.mg-disclaimer-text {
+  font-size: 0.85rem;
+  color: #fee2e2;
+}
+
+/* Social */
+.mg-social-card {
+  background: rgba(15, 23, 42, 0.97);
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  padding: 1rem 1.2rem;
+  color: #e5e7eb;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.6);
+}
+
+.mg-social-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.mg-social-pill {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(250, 204, 21, 0.7);
+  color: #fde68a;
+}
+
+.mg-social-text {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.mg-social-buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.mg-social-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.mg-social-btn:last-child {
+  margin-right: 0;
+}
+
+.mg-social-facebook {
+  background: #1877f2;
+  box-shadow: 0 10px 22px rgba(24, 119, 242, 0.45);
+}
+
+.mg-social-instagram {
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  box-shadow: 0 10px 22px rgba(220, 39, 67, 0.6);
+}
+
+.mg-social-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+  opacity: 0.95;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 767.98px) {
+  .mg-hero-title {
+    font-size: 1.4rem;
+  }
+
+  .mg-hero-ticket {
+    margin-top: 0.5rem;
+  }
+
+  .mg-bet-card {
+    padding: 0.85rem 0.9rem 0.75rem;
+  }
+}

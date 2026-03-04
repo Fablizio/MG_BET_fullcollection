@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Campionati</ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button (click)="onClose.emit()">
+                <ion-icon slot="end" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content color="dark">
+    <div class="ion-no-padding">
+        <ng-container *ngFor="let nation of nations">
+            <!-- parent -->
+            <ion-item color="dark" detail="false" (click)="nation.open = !nation.open">
+                <ion-icon slot="start" name="arrow-forward" *ngIf="!nation.open"></ion-icon>
+                <ion-icon slot="start" name="arrow-down" *ngIf="nation.open"></ion-icon>
+                <ion-label>{{nation.territorio}}</ion-label>
+            </ion-item>
+            <!-- children -->
+            <ion-list *ngIf="nation.open" class="ion-no-padding">
+                <ng-container *ngFor="let site of nation.sites">
+                    <ion-item color="dark" class="sub-item" [id]="site.id" [class.active]="selectedId === site.id"
+                              (click)="selectSite(site)">
+                        <ion-icon slot="start" name="football"></ion-icon>
+                        <ion-label>
+                            {{site.campionato}}
+                        </ion-label>
+                    </ion-item>
+                </ng-container>
+            </ion-list>
+        </ng-container>
+    </div>
+</ion-content>

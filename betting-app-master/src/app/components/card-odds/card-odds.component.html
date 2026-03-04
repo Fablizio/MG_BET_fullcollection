@@ -1,0 +1,184 @@
+<ion-card class="mg-card-odds" [class.mg-card-odds--history]="history">
+
+    <!-- HEADER CAMPIONATO -->
+    <ion-card-header class="mg-card-odds__header">
+        <div class="mg-card-odds__league">
+            <span class="mg-card-odds__league-dot"></span>
+            <span class="mg-card-odds__league-name">
+        {{ campionato }}
+      </span>
+        </div>
+
+        <div class="mg-card-odds__mode-badge" *ngIf="history">
+            Storico
+        </div>
+        <div class="mg-card-odds__mode-badge" *ngIf="!history && showPercentage">
+            Movimenti quote
+        </div>
+        <div class="mg-card-odds__mode-badge" *ngIf="!history && !showPercentage">
+            Quote di oggi
+        </div>
+    </ion-card-header>
+
+    <!-- CONTENUTO -->
+    <ion-card-content class="mg-card-odds__content">
+
+        <!-- Stato vuoto -->
+        <div class="mg-card-odds__empty" *ngIf="odds.length === 0">
+            <h2>Non disponibile per ora…</h2>
+            <p>Appena il campionato riparte, troverai qui le nuove partite.</p>
+        </div>
+
+        <!-- TABELLA QUOTE -->
+        <div class="mg-card-odds__table" *ngIf="odds.length > 0">
+            <ion-list class="mg-odds-list" lines="none">
+
+                <!-- HEADER COLONNE -->
+                <ion-item class="mg-odds-list__header" lines="none">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="6">
+                                <span>Evento</span>
+                            </ion-col>
+
+                            <ion-col *ngIf="!history" size="6" class="ion-text-right">
+                                <span>Quote 1X2</span>
+                            </ion-col>
+
+                            <ion-col *ngIf="history" size="6" class="ion-text-right">
+                                <span>Esito</span>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+
+                <!-- RIGHE -->
+                <ion-item
+                        class="mg-odds-row"
+                        *ngFor="let odd of odds"
+                        [class.mg-odds-row--win]="history && odd.presa"
+                        [class.mg-odds-row--loss]="history && !odd.presa">
+
+                    <ion-grid>
+
+                        <!-- Riga evento + quote/risultato -->
+                        <ion-row>
+                            <!-- Evento -->
+                            <ion-col size="6" class="mg-odds-event">
+                                <div class="mg-odds-team">
+                                    {{ odd.team }}
+                                </div>
+                                <div class="mg-odds-meta">
+                                    <span class="mg-odds-date">{{ odd.dataEvent }}</span>
+                                </div>
+                            </ion-col>
+
+                            <!-- Strip 1X2 (no storico) -->
+                            <ion-col  size="6" class="mg-odds-strip-col">
+                                <div class="mg-odds-strip">
+                                    <div class="mg-odds-strip-labels">
+                                        <span>1</span>
+                                        <span>X</span>
+                                        <span>2</span>
+                                    </div>
+                                    <div class="mg-odds-strip-values">
+                                        <span>{{ odd.uno | number:'1.2-2' }}</span>
+                                        <span>{{ odd.x   | number:'1.2-2' }}</span>
+                                        <span>{{ odd.due | number:'1.2-2' }}</span>
+                                    </div>
+                                    <div *ngIf="showPercentage" class="mg-odds-strip-deltas">
+                                        <!-- 1 -->
+                                        <span
+                                                [class.mg-delta-down]="odd.uno <= odd.quotaInizialeUno"
+                                                [class.mg-delta-up]="odd.uno >  odd.quotaInizialeUno">
+                      <ion-icon
+                              class="delta-icon"
+                              [name]="odd.uno <= odd.quotaInizialeUno ? 'arrow-down' : 'arrow-up'">
+                      </ion-icon>
+                                            {{ ((odd.uno - odd.quotaInizialeUno) / odd.uno) * 100 | number:'1.1-1' }}%
+                    </span>
+                                        <!-- X -->
+                                        <span
+                                                [class.mg-delta-down]="odd.x <= odd.quotaInizialeX"
+                                                [class.mg-delta-up]="odd.x >  odd.quotaInizialeX">
+                      <ion-icon
+                              class="delta-icon"
+                              [name]="odd.x <= odd.quotaInizialeX ? 'arrow-down' : 'arrow-up'">
+                      </ion-icon>
+                                            {{ ((odd.x - odd.quotaInizialeX) / odd.x) * 100 | number:'1.1-1' }}%
+                    </span>
+                                        <!-- 2 -->
+                                        <span
+                                                [class.mg-delta-down]="odd.due <= odd.quotaInizialeDue"
+                                                [class.mg-delta-up]="odd.due >  odd.quotaInizialeDue">
+                      <ion-icon
+                              class="delta-icon"
+                              [name]="odd.due <= odd.quotaInizialeDue ? 'arrow-down' : 'arrow-up'">
+                      </ion-icon>
+                                            {{ ((odd.due - odd.quotaInizialeDue) / odd.due) * 100 | number:'1.1-1' }}%
+                    </span>
+                                    </div>
+                                </div>
+                            </ion-col>
+
+                            <!-- Esito storico -->
+                            <ion-col *ngIf="history" size="6" class="mg-odds-result-col ion-text-right">
+                                <div class="mg-result-pill"
+                                     [class.mg-result-pill--win]="odd.presa"
+                                     [class.mg-result-pill--loss]="!odd.presa">
+                                    {{ odd.result }}
+                                </div>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- Prediction + confidence -->
+                        <ion-row class="mg-odds-pred-row">
+                            <ion-col size="12" class="mg-odds-prediction">
+                                <div class="mg-prediction-text">
+                                    {{ odd.prediction.replace('oppure', 'o') }}
+                                </div>
+
+                                <div *ngIf="showPercentage" class="mg-confidence-chip">
+                                    <span class="mg-confidence-label">Confidence</span>
+                                    <span class="mg-confidence-value">
+                    {{ odd.predictionConfidence | number:'1.0-1' }}%
+                  </span>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- Toggle nota -->
+                        <ion-row class="mg-note-toggle-row">
+                            <ion-col size="12" class="ion-text-right">
+                                <ion-button *ngIf="showDetail"
+                                        fill="clear"
+                                        size="small"
+                                        class="mg-note-btn"
+                                        (click)="odd.showNote = !odd.showNote">
+                                    <ion-icon
+                                            slot="start"
+                                            [name]="odd.showNote ? 'chevron-up' : 'information-circle-outline'">
+                                    </ion-icon>
+                                    {{ odd.showNote ? 'Nascondi nota' : 'Dettagli' }}
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- Box nota -->
+                        <ion-row *ngIf="odd.showNote" class="note-box">
+                            <ion-col size="12">
+                                <div class="note-content">
+                                    <ion-icon name="document-text-outline"></ion-icon>
+                                    <span>{{ odd.predictionNote }}</span>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+
+                    </ion-grid>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <ng-content></ng-content>
+    </ion-card-content>
+</ion-card>

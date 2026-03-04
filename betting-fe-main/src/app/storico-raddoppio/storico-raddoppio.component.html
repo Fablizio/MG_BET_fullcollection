@@ -1,0 +1,176 @@
+<ngx-ui-loader></ngx-ui-loader>
+
+<app-page-template>
+
+  <div class="mg-raddhist-page container-fluid">
+
+    <!-- HEADER + FILTRI PERIODO -->
+    <div class="row justify-content-center mb-3">
+      <div class="col-lg-10">
+        <div class="mg-raddhist-header">
+
+          <div>
+            <span class="mg-raddhist-kicker">
+              <i class="fa fa-bolt mr-1"></i> Raddoppio
+            </span>
+            <h2 class="mg-raddhist-title">Storico raddoppi</h2>
+            <p class="mg-raddhist-subtitle">
+              Visualizza tutti i raddoppi giocati negli ultimi 30 giorni, 3 mesi o 6 mesi.
+            </p>
+          </div>
+
+          <div class="mg-raddhist-filters text-center text-md-right">
+            <div class="btn-group mg-period-toggle" role="group">
+              <button
+                type="button"
+                class="btn mg-period-btn"
+                [class.active]="oneMonth"
+                (click)="search(1)">
+                Ultimi 30 giorni
+              </button>
+              <button
+                type="button"
+                class="btn mg-period-btn"
+                [class.active]="threeMonth"
+                (click)="search(3)">
+                Ultimi 3 mesi
+              </button>
+              <button
+                type="button"
+                class="btn mg-period-btn"
+                [class.active]="sixMonth"
+                (click)="search(6)">
+                Ultimi 6 mesi
+              </button>
+            </div>
+
+            <div class="mg-period-chip" *ngIf="oneMonth || threeMonth || sixMonth">
+              <span class="label">Periodo selezionato</span>
+              <span class="value" *ngIf="oneMonth">Ultimi 30 giorni</span>
+              <span class="value" *ngIf="threeMonth">Ultimi 3 mesi</span>
+              <span class="value" *ngIf="sixMonth">Ultimi 6 mesi</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENUTO -->
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <!-- EMPTY STATE -->
+        <div class="mg-raddhist-empty" *ngIf="(raddoppio | async)?.length === 0">
+          <div class="mg-raddhist-empty-icon">
+            <i class="fa fa-file-alt"></i>
+          </div>
+          <h3 class="mg-raddhist-empty-title">Nessun raddoppio nel periodo selezionato</h3>
+          <p class="mg-raddhist-empty-text">
+            Prova a cambiare intervallo di tempo per visualizzare altri raddoppi giocati.
+          </p>
+        </div>
+
+        <!-- ACCORDION RADDOPPI -->
+        <div
+          id="accordionRaddHist"
+          class="mg-raddhist-accordion"
+          *ngIf="(raddoppio | async)?.length > 0 && (raddoppio| async)?.length > 0">
+
+          <div
+            class="mg-raddhist-card"
+            *ngFor="let r of raddoppio | async; let i = index"
+            [ngClass]="{'mg-card-win': r.preso, 'mg-card-loss': !r.preso}">
+
+            <!-- HEADER COLLAPSABILE -->
+            <div class="mg-raddhist-card-header" *ngIf="r.odds.length > 0">
+              <a
+                class="mg-raddhist-toggle collapsed"
+                data-toggle="collapse"
+                [attr.href]="'#collapse-'+i"
+                [attr.aria-controls]="'collapse-'+i"
+                aria-expanded="false">
+
+                <div class="mg-raddhist-header-main">
+                  <span class="mg-raddhist-date">
+                    Raddoppio del {{ r.dataRaddoppio }}
+                  </span>
+
+                  <span
+                    class="mg-raddhist-status"
+                    [ngClass]="r.preso ? 'mg-status-win' : 'mg-status-loss'">
+                    <i class="fa"
+                       [ngClass]="r.preso ? 'fa-check' : 'fa-times'"></i>
+                    <span class="ml-1">
+                      {{ r.preso ? 'Vinto' : 'Perso' }}
+                    </span>
+                  </span>
+                </div>
+
+                <div class="mg-raddhist-header-meta">
+                  <span class="mg-raddhist-meta">
+                    Eventi: {{ r.odds.length }}
+                  </span>
+                  <span class="mg-raddhist-meta mg-raddhist-quote">
+                    Quota totale:
+                    <strong>{{ r.quotaTotale | number:'1.0-2' }}</strong>
+                  </span>
+                  <i class="fa fa-chevron-down mg-raddhist-chevron"></i>
+                </div>
+
+              </a>
+            </div>
+
+            <!-- BODY COLLASSABILE -->
+            <div
+              [attr.id]="'collapse-'+i"
+              class="collapse"
+              data-parent="#accordionRaddHist">
+              <div class="mg-raddhist-card-body">
+
+                <div class="table-responsive">
+                  <table class="table mg-raddhist-table">
+                    <thead>
+                    <tr>
+                      <th scope="col">Campionato</th>
+                      <th scope="col">Data evento</th>
+                      <th scope="col">Match</th>
+                      <th scope="col" class="text-center">Prediction</th>
+                      <th scope="col" class="text-right">Quota</th>
+                      <th scope="col" class="text-center">Risultato finale</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr
+                      *ngFor="let p of r.odds"
+                      [ngClass]="{'mg-row-win': r.preso, 'mg-row-loss': !r.preso}">
+                      <td>{{ p.campionato }}</td>
+                      <td>{{ p.dateMatch }}</td>
+                      <td>{{ p.team }}</td>
+                      <td class="text-center">
+                        <span class="mg-prediction-pill">{{ p.prediction }}</span>
+                      </td>
+                      <td class="text-right">
+                        <span class="mg-odd-pill">{{ p.quota }}</span>
+                      </td>
+                      <td class="text-center">
+                          <span class="mg-result-pill">
+                            {{ p.finalResult }}
+                          </span>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</app-page-template>

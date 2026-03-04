@@ -1,0 +1,299 @@
+:root {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.45);
+  --mg-accent: #facc15;
+}
+
+/* Layout pagina */
+.mg-smell-page {
+  padding: 1.5rem 0 2rem;
+}
+
+/* Header + filtro */
+.mg-smell-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+  border-radius: 18px;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.7);
+  padding: 1rem 1.4rem;
+  color: #e5e7eb;
+}
+
+.mg-smell-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(250, 204, 21, 0.6);
+  color: var(--mg-accent);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+}
+
+.mg-smell-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: #f9fafb;
+}
+
+.mg-smell-subtitle {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 0;
+}
+
+/* filtro a destra */
+.mg-smell-filter {
+  min-width: 230px;
+}
+
+.mg-form-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+}
+
+.mg-date-group {
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.mg-date-input {
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 0.85rem;
+}
+
+.mg-date-input::placeholder {
+  color: #6b7280;
+}
+
+.mg-date-input:focus {
+  box-shadow: none;
+}
+
+.mg-calendar-btn {
+  border: none;
+  background: rgba(15, 23, 42, 0.98);
+  color: var(--mg-accent);
+  padding: 0.35rem 0.7rem;
+}
+
+.mg-calendar-btn i {
+  font-size: 0.9rem;
+}
+
+.mg-search-btn {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--mg-accent);
+  background: rgba(15, 23, 42, 0.98);
+  color: var(--mg-accent);
+}
+
+.mg-search-btn:hover {
+  background: var(--mg-accent);
+  color: #111827;
+}
+
+/* Card principale */
+.mg-smell-card {
+  background: rgba(15, 23, 42, 0.97);
+  border-radius: 20px;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.8);
+  color: #e5e7eb;
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+.mg-smell-card::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at top center,
+  rgba(250, 204, 21, 0.06),
+  transparent 60%);
+  pointer-events: none;
+}
+
+.mg-smell-card-body {
+  position: relative;
+  padding: 0.9rem 1.4rem 1.3rem;
+}
+
+/* Alert */
+.mg-alert-empty {
+  background: rgba(248, 113, 113, 0.12);
+  border-color: rgba(248, 113, 113, 0.75);
+  color: #fecaca;
+  font-size: 0.85rem;
+}
+
+/* Tabella */
+.mg-smell-table {
+  margin-bottom: 0;
+  font-size: 0.83rem;
+  color: #e5e7eb;
+}
+
+.mg-smell-table thead th {
+  border-bottom: 1px solid rgba(55, 65, 81, 0.95);
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(30, 64, 175, 0.55)
+  );
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  color: #d1d5db;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+  white-space: nowrap;
+}
+
+.mg-smell-table tbody td {
+  border-top: 0;
+  padding: 0.45rem 0.35rem;
+  vertical-align: middle;
+}
+
+.mg-smell-table tbody tr {
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+/* Testi base */
+.mg-event-date {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.mg-event-team {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+/* Prediction */
+.mg-prediction-pill {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  color: #e5e7eb;
+}
+
+/* Risultato */
+.mg-result-main {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.1rem;
+}
+
+.mg-result-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mg-result-pill i {
+  font-size: 0.7rem;
+}
+
+/* Stato riga */
+.mg-row-win {
+  background: linear-gradient(
+    90deg,
+    rgba(22, 163, 74, 0.18),
+    transparent
+  );
+  border-left: 3px solid #22c55e;
+}
+
+.mg-row-loss {
+  background: linear-gradient(
+    90deg,
+    rgba(248, 113, 113, 0.18),
+    transparent
+  );
+  border-left: 3px solid #fb7185;
+}
+
+.mg-row-postp {
+  background: linear-gradient(
+    90deg,
+    rgba(234, 179, 8, 0.18),
+    transparent
+  );
+  border-left: 3px solid #eab308;
+}
+
+/* Pills per stato */
+.mg-result-pill-win {
+  background: rgba(22, 163, 74, 0.2);
+  color: #bbf7d0;
+  border: 1px solid rgba(22, 163, 74, 0.9);
+}
+
+.mg-result-pill-loss {
+  background: rgba(248, 113, 113, 0.2);
+  color: #fecaca;
+  border: 1px solid rgba(248, 113, 113, 0.9);
+}
+
+.mg-result-pill-postp {
+  background: rgba(234, 179, 8, 0.2);
+  color: #fef9c3;
+  border: 1px solid rgba(234, 179, 8, 0.9);
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+  .mg-smell-header {
+    padding: 0.9rem 1rem;
+  }
+
+  .mg-smell-title {
+    font-size: 1.25rem;
+  }
+
+  .mg-smell-filter {
+    margin-top: 0.8rem;
+  }
+
+  .mg-smell-card-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mg-smell-table {
+    font-size: 0.8rem;
+  }
+}

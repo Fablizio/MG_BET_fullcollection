@@ -1,0 +1,242 @@
+:host {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.4);
+  --mg-accent: #38bdf8;
+  --mg-accent-strong: #0ea5e9;
+  --mg-accent-soft: rgba(56, 189, 248, 0.16);
+  --mg-text-main: #e5e7eb;
+  --mg-text-muted: #9ca3af;
+}
+
+/* SFONDO MODAL */
+.payment-content {
+  --background: transparent;
+  background:
+          radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.22), transparent 55%),
+          radial-gradient(circle at 90% 100%, rgba(30, 64, 175, 0.28), transparent 55%),
+          linear-gradient(135deg, #020617 0%, #020617 45%, #111827 100%);
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.payment-inner {
+  padding: 12px 10px 24px;
+}
+
+/* ========== CARD PIANO ========== */
+
+.mg-plan-card {
+  border-radius: 20px;
+  --background: transparent;
+  background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.32), transparent 55%),
+          rgba(15, 23, 42, 0.98);
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+}
+
+.mg-plan-card__header {
+  padding: 10px 14px 8px;
+  background: linear-gradient(
+                  90deg,
+                  rgba(15, 23, 42, 0.98),
+                  rgba(30, 64, 175, 0.9)
+  );
+}
+
+.mg-kicker {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--mg-text-muted);
+}
+
+.mg-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.mg-subtitle {
+  font-size: 0.8rem;
+  color: var(--mg-text-muted);
+  margin-top: 2px;
+}
+
+/* contenuto */
+.mg-plan-card__content {
+  padding: 10px 10px 14px;
+}
+
+/* LISTA PIANI */
+.mg-plan-list {
+  --background: transparent;
+  background: transparent;
+}
+
+.mg-plan-item {
+  --background: rgba(15, 23, 42, 0.96);
+  --inner-padding-end: 10px;
+  --padding-start: 10px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(31, 41, 55, 1);
+}
+
+.mg-plan-label {
+  margin-right: 10px;
+}
+
+.mg-plan-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--mg-text-main);
+}
+
+.mg-plan-duration {
+  font-size: 0.78rem;
+  color: var(--mg-text-muted);
+}
+
+.mg-plan-price {
+  text-align: right;
+}
+
+.mg-plan-price-main {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+/* CTA PAYPAL */
+.mg-plan-pay {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.mg-paypal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background:
+          radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), transparent 60%),
+          rgba(15, 23, 42, 0.98);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+}
+
+.mg-paypal-btn img {
+  height: 16px;
+  display: block;
+}
+
+.mg-paypal-btn span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.mg-paypal-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.9);
+}
+
+.mg-pay-note {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  color: var(--mg-text-muted);
+}
+
+/* ========== CARD ATTENZIONE ========== */
+
+.mg-warning-card {
+  margin-top: 14px;
+  border-radius: 18px;
+  --background: transparent;
+  background:
+          radial-gradient(circle at top left, rgba(248, 113, 113, 0.25), transparent 55%),
+          rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95);
+}
+
+.mg-warning-card__header {
+  padding: 8px 12px 4px;
+}
+
+.mg-warning-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(248, 113, 113, 0.16);
+  border: 1px solid rgba(248, 113, 113, 0.8);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #fecaca;
+}
+
+.mg-warning-card__content {
+  padding: 6px 12px 10px;
+  font-size: 0.8rem;
+  color: var(--mg-text-main);
+}
+
+.mg-warning-text-intro {
+  margin-bottom: 6px;
+}
+
+.mg-warning-steps {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.78rem;
+}
+
+.mg-warning-steps li + li {
+  margin-top: 4px;
+}
+
+.mg-warning-steps a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.mg-warning-steps a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+.payment-footer {
+  --background: transparent;
+  background: transparent;
+}
+
+.payment-footer ion-button {
+  --border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+/* MOBILE PICCOLI */
+@media (max-width: 360px) {
+  .mg-plan-card__header {
+    padding-inline: 10px;
+  }
+
+  .mg-plan-card__content {
+    padding-inline: 8px;
+  }
+
+  .mg-warning-card__content {
+    padding-inline: 10px;
+  }
+}

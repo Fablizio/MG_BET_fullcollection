@@ -1,0 +1,127 @@
+<app-page-template>
+
+  <ngx-ui-loader></ngx-ui-loader>
+
+  <div class="mg-slip-page container-fluid">
+
+    <!-- EMPTY STATE -->
+    <div class="row justify-content-center" *ngIf="(schedina | async).length === 0">
+      <div class="col-md-10 col-lg-8">
+        <div class="mg-slip-empty">
+          <div class="mg-slip-empty-icon">
+            <i class="fa fa-dice"></i>
+          </div>
+          <h3 class="mg-slip-empty-title">Nessuna schedina generata</h3>
+          <p class="mg-slip-empty-text">
+            Crea una schedina casuale per iniziare: generiamo per te una combinazione di match e prediction.
+          </p>
+          <button class="btn mg-slip-btn" (click)="generaSchedina()">
+            <i class="fa fa-random mr-2"></i>
+            Genera nuova schedina
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHEDINA -->
+    <div class="row justify-content-center" *ngIf="(schedina | async).length > 0">
+      <div class="col-md-10 col-lg-8">
+        <div class="card border-0 mg-slip-card">
+
+          <!-- HEADER -->
+          <div class="mg-slip-card-header">
+            <div>
+              <span class="mg-slip-kicker">
+                <i class="fa fa-dice mr-1"></i> Random Ticket
+              </span>
+              <h3 class="mg-slip-title">Schedina casuale</h3>
+              <p class="mg-slip-subtitle">
+                Una combinazione di match generata automaticamente dai nostri algoritmi.
+              </p>
+            </div>
+
+            <div class="mg-slip-header-summary">
+              <div class="mg-slip-chip">
+                <span class="label">Quota totale</span>
+                <span class="value">
+                  {{ totaleQuota | number:'1.1-2' }}
+                </span>
+              </div>
+              <div class="mg-slip-chip mg-slip-chip-secondary">
+                <span class="label">Win rate stimata</span>
+                <span class="value">
+                  {{ percentuale | number:'1.1-2' }}%
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BODY -->
+          <div class="card-body mg-slip-card-body">
+            <div class="table-responsive">
+              <table class="table mg-slip-table">
+                <tbody>
+                <tr *ngFor="let p of schedina | async">
+                  <td>
+                    <div class="mg-slip-league">{{ p.campionato }}</div>
+                    <div class="mg-slip-date">{{ p.dateMatch }}</div>
+                    <div class="mg-slip-team">{{ p.team }}</div>
+                  </td>
+                  <td class="align-middle text-center">
+                      <span class="mg-slip-prediction">
+                        {{ p.prediction }}
+                      </span>
+                  </td>
+                  <td class="align-middle text-right">
+                      <span class="mg-slip-odd">
+                        {{ p.quota }}
+                      </span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="mg-slip-summary row align-items-center mt-2">
+              <div class="col-md-7">
+                <div class="mg-slip-total">
+                  <span class="label">Quota totale</span>
+                  <span class="value">
+                    {{ totaleQuota | number:'1.1-2' }}
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-5 text-md-right mt-3 mt-md-0">
+                <div class="mg-slip-winrate">
+                  <span class="label">Percentuale di vincita stimata</span>
+                  <span class="value">
+                    {{ percentuale | number:'1.1-2' }}%
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- AZIONI -->
+            <div class="mg-slip-actions text-right mt-4">
+              <button class="btn mg-slip-btn" (click)="generaSchedina()">
+                <i class="fa fa-random mr-2"></i>
+                Genera nuova schedina
+              </button>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="mg-slip-footer mt-3">
+              <span class="mg-slip-footnote">
+                Le schedine generate hanno esclusivamente scopo informativo e statistico.
+              </span>
+              <span class="mg-slip-brand">MG BET</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</app-page-template>

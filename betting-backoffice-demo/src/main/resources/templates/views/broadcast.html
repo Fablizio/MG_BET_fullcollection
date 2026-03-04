@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .page-header {
+            margin: 1.5rem 0 1rem;
+        }
+
+        .page-title {
+            font-weight: 600;
+            margin-bottom: .25rem;
+        }
+
+        .page-subtitle {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .broadcast-card {
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.09);
+        }
+
+        .broadcast-card .card-header {
+            border-bottom: 1px solid #e5e7eb;
+            background-color: #ffffff;
+        }
+
+        .broadcast-card .card-body {
+            padding: 1.5rem 1.5rem 1.25rem;
+        }
+
+        .form-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #9ca3af;
+            margin-bottom: .75rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .alert-errors {
+            border-radius: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            border-radius: 999px;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .btn-outline-secondary {
+            border-radius: 999px;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 180px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:include="fragment/header"/>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+
+            <!-- Header pagina -->
+            <div class="page-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h4 class="page-title">Messaggio broadcast</h4>
+                    <p class="page-subtitle">
+                        Invia un messaggio a tutti gli utenti abbonati dal bot.
+                    </p>
+                </div>
+                <div>
+                    <a class="btn btn-outline-secondary" th:href="@{/web}">Home</a>
+                </div>
+            </div>
+
+            <!-- Card form -->
+            <div class="card broadcast-card">
+                <div class="card-header">
+                    <span class="form-section-title">Contenuto del messaggio</span>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/web/broadcast}" method="post" th:object="${message}">
+
+                        <!-- Alert errori globali -->
+                        <div class="alert alert-danger alert-errors mb-3"
+                             th:if="${#fields.hasErrors()}">
+                            Sono presenti errori nel form. Controlla il messaggio.
+                        </div>
+
+                        <div class="form-group">
+                            <label for="broadcastText">Messaggio</label>
+                            <textarea id="broadcastText"
+                                      class="form-control"
+                                      rows="8"
+                                      th:field="*{text}"
+                                      th:classappend="${#fields.hasErrors('text')} ? ' is-invalid'"
+                                      placeholder="Scrivi qui il testo da inviare a tutti gli utenti..."></textarea>
+                            <div class="invalid-feedback d-block"
+                                 th:if="${#fields.hasErrors('text')}"
+                                 th:errors="*{text}">
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                Conferma invio
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

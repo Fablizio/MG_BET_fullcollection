@@ -1,0 +1,291 @@
+:root {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.4);
+  --mg-accent: #facc15;
+}
+
+/* layout pagina */
+.mg-slip-page {
+  padding-top: 1.2rem;
+  padding-bottom: 2rem;
+}
+
+/* ========== EMPTY STATE ========== */
+
+.mg-slip-empty {
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+  border-radius: 18px;
+  border: 1px dashed rgba(148, 163, 184, 0.7);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
+  color: #e5e7eb;
+  padding: 1.8rem 1.6rem;
+  text-align: center;
+}
+
+.mg-slip-empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  margin: 0 auto 0.8rem;
+  background: rgba(15, 23, 42, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.6);
+}
+
+.mg-slip-empty-icon i {
+  font-size: 1.8rem;
+  color: var(--mg-accent);
+}
+
+.mg-slip-empty-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.mg-slip-empty-text {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+/* ========== CARD SCHEDINA ========== */
+
+.mg-slip-card {
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%) !important;
+  border-radius: 18px;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.7);
+  color: #e5e7eb;
+  overflow: hidden;
+  position: relative;
+}
+
+.mg-slip-card::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background: radial-gradient(circle at top right,
+  rgba(250, 204, 21, 0.08),
+  transparent 60%);
+  pointer-events: none;
+}
+
+.mg-slip-card-header {
+  position: relative;
+  padding: 1rem 1.5rem 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mg-slip-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(250, 204, 21, 0.6);
+  color: var(--mg-accent);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+}
+
+.mg-slip-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.1rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.mg-slip-subtitle {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-bottom: 0;
+}
+
+/* header summary */
+.mg-slip-header-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.mg-slip-chip {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 12px;
+  border: 1px solid rgba(250, 204, 21, 0.7);
+  padding: 0.35rem 0.7rem;
+  margin-bottom: 0.35rem;
+  min-width: 140px;
+}
+
+.mg-slip-chip-secondary {
+  border-color: rgba(148, 163, 184, 0.8);
+}
+
+.mg-slip-chip .label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+}
+
+.mg-slip-chip .value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fef9c3;
+}
+
+/* body */
+.mg-slip-card-body {
+  position: relative;
+  padding: 0.7rem 1.4rem 1.2rem;
+}
+
+/* tabella schedina */
+.mg-slip-table {
+  margin-bottom: 0.3rem;
+  color: inherit;
+}
+
+.mg-slip-table tbody tr {
+  border-bottom: 1px dashed rgba(55, 65, 81, 0.9);
+}
+
+.mg-slip-table tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.mg-slip-table td {
+  border-top: 0;
+  padding: 0.45rem 0.2rem;
+}
+
+.mg-slip-league {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.mg-slip-date {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.mg-slip-team {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+/* prediction & odd */
+.mg-slip-prediction {
+  display: inline-flex;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  color: #e5e7eb;
+}
+
+.mg-slip-odd {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mg-accent);
+}
+
+/* summary quota + winrate */
+.mg-slip-summary .label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+}
+
+.mg-slip-summary .value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fef9c3;
+}
+
+.mg-slip-total .value {
+  color: #facc15;
+}
+
+.mg-slip-winrate .value {
+  color: #a5b4fc;
+}
+
+/* azioni */
+.mg-slip-btn {
+  border-radius: 999px;
+  padding: 0.45rem 1.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--mg-accent);
+  background: rgba(15, 23, 42, 0.98);
+  color: var(--mg-accent);
+  box-shadow: 0 0 18px rgba(250, 204, 21, 0.45);
+}
+
+.mg-slip-btn:hover {
+  background: var(--mg-accent);
+  color: #111827;
+}
+
+/* footer */
+.mg-slip-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #9ca3af;
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+  padding-top: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.mg-slip-brand {
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fef3c7;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 767.98px) {
+  .mg-slip-card-header {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+    flex-direction: column;
+  }
+
+  .mg-slip-header-summary {
+    align-items: flex-start;
+    margin-top: 0.6rem;
+  }
+
+  .mg-slip-card-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mg-slip-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 0.25rem;
+  }
+}

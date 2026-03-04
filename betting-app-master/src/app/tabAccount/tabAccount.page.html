@@ -1,0 +1,124 @@
+<app-header>
+    <ion-title>
+        Account
+    </ion-title>
+
+    <ion-buttons slot="end">
+        <ion-button class="report-btn" (click)="showReportMessage()">
+            <ion-icon slot="start" name="mail"></ion-icon>
+            Segnalazioni
+        </ion-button>
+    </ion-buttons>
+</app-header>
+
+<ion-content class="account-content">
+
+    <div class="account-inner" *ngIf="account">
+
+        <!-- CARD PROFILO -->
+        <ion-card class="account-card">
+
+            <!-- HEADER CARD: avatar + info principali -->
+            <ion-card-header class="account-card__header">
+
+                <div class="account-header-main">
+                    <div class="account-nickname">
+                        {{ account.nickName }}
+                    </div>
+                    <div class="account-username" *ngIf="account.username">
+                        @{{ account.username }}
+                    </div>
+                </div>
+
+                <div class="account-header-meta">
+                    <div class="meta-label">Codice</div>
+                    <div class="meta-code">{{ account.code }}</div>
+                    <div class="meta-expire">
+                        Scadenza: <span>{{ account.expireDate }}</span>
+                    </div>
+                </div>
+            </ion-card-header>
+
+            <!-- CONTENUTO CARD -->
+            <ion-card-content class="account-card__content">
+
+                <!-- RISCATTA CODICE -->
+                <div class="account-section" *ngIf="!account.friendCodeActive">
+                    <div class="section-title">Riscatta codice</div>
+                    <ion-item lines="none" class="account-item">
+                        <ion-icon name="card" slot="start"></ion-icon>
+                        <ion-label position="stacked">Inserisci codice</ion-label>
+                        <ion-input
+                                [(ngModel)]="friendCodeAdded"
+                                name="friendCodeAdded"
+                                placeholder="Inserisci codice">
+                        </ion-input>
+                        <ion-button
+                                slot="end"
+                                size="default"
+                                [disabled]="!friendCodeAdded"
+                                (click)="redeem()">
+                            Riscatta
+                        </ion-button>
+                    </ion-item>
+                </div>
+
+                <!-- ACCOUNT -->
+                <div class="account-section">
+                    <div class="section-title">Account</div>
+
+                    <ion-item lines="none" class="account-item">
+                        <ion-icon name="key" slot="start"></ion-icon>
+                        <ion-label position="stacked">Codice d'accesso</ion-label>
+                        <ion-input [value]="account.code" readonly></ion-input>
+                    </ion-item>
+
+                    <ion-item lines="none" class="account-item">
+                        <ion-icon name="card" slot="start"></ion-icon>
+                        <ion-label position="stacked">Scadenza</ion-label>
+                        <ion-input [value]="account.expireDate" readonly></ion-input>
+                        <ion-button slot="end" size="default" (click)="presentModalPayment()">
+                            Rinnova
+                        </ion-button>
+                    </ion-item>
+
+                    <ion-item lines="none" class="account-item">
+                        <ion-icon name="gift" slot="start"></ion-icon>
+                        <ion-label position="stacked">Codice Amico</ion-label>
+                        <ion-input value="➡" readonly></ion-input>
+                        <ion-button slot="end" size="default" (click)="openFriendCodeModal()">
+                            Scopri
+                        </ion-button>
+                    </ion-item>
+
+                    <ion-item lines="none" class="account-item">
+                        <ion-icon name="logo-discord" slot="start"></ion-icon>
+                        <ion-label position="stacked">Username Discord</ion-label>
+                        <ion-input
+                                [(ngModel)]="account.discordUsername"
+                                placeholder="Inserisci qui il tuo username">
+                        </ion-input>
+                        <ion-button
+                                slot="end"
+                                size="default"
+                                (click)="addDiscordUsername()">
+                            {{ account.discordUsername ? 'Aggiorna' : 'Aggiungi' }}
+                        </ion-button>
+                    </ion-item>
+
+                    <ion-item lines="none" class="account-item">
+                        <ion-icon name="heart" slot="start"></ion-icon>
+                        <ion-label position="stacked">Versione</ion-label>
+                        <ion-input [value]="version" readonly></ion-input>
+                    </ion-item>
+                </div>
+
+            </ion-card-content>
+        </ion-card>
+
+        <!-- SOCIAL -->
+        <app-socials></app-socials>
+    </div>
+</ion-content>
+
+

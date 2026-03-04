@@ -1,0 +1,91 @@
+<ngx-ui-loader></ngx-ui-loader>
+
+<!-- SFONDO -->
+<div class="bg"></div>
+
+<!-- WRAPPER LOGIN -->
+<div class="mg-login-page d-flex align-items-center justify-content-center">
+  <div class="mg-login-card">
+
+    <!-- LOGO + TITOLO -->
+    <div class="mg-login-header text-center">
+      <div class="mg-logo-wrap">
+        <img src="assets/images/MGBET.png" alt="MG BET" class="mg-logo-img">
+      </div>
+      <h1 class="mg-login-title">Benvenuto in MG BET</h1>
+      <p class="mg-login-subtitle">
+        Inserisci il tuo <strong>codice abbonamento</strong> per accedere alle prediction.
+      </p>
+    </div>
+
+    <!-- FORM -->
+    <form (ngSubmit)="login()" class="mg-login-form">
+
+      <div class="form-group mb-3">
+        <label class="mg-input-label">Codice</label>
+        <div class="mg-input-wrapper">
+          <i class="fa fa-key mg-input-icon"></i>
+          <input
+            class="form-control mg-input"
+            name="username"
+            placeholder="Inserisci il tuo codice"
+            [(ngModel)]="code"
+            required>
+        </div>
+      </div>
+
+      <div *ngIf="error" class="alert mg-alert-error">
+        <i class="fa fa-exclamation-triangle mr-2"></i>
+        Utente non autorizzato
+      </div>
+
+      <div class="form-group mt-3">
+        <button
+          type="submit"
+          class="btn mg-btn-primary btn-block mb-2"
+          (click)="login()"
+          [disabled]="!code">
+          Accedi
+        </button>
+
+        <a
+          class="btn mg-btn-secondary btn-block"
+          href="https://t.me/mgbet2bot"
+          target="_blank"
+          rel="noopener noreferrer">
+          Richiedi codice di prova
+        </a>
+      </div>
+
+      <!-- SOCIAL / CONTATTI -->
+      <p class="hint-text text-center mt-4 mb-2">
+        Per ottenere l'accesso contattaci tramite i nostri social
+      </p>
+      <div class="social-btn text-center d-flex justify-content-center align-items-center">
+        <a
+          href="https://www.facebook.com/MGBETLIVE"
+          target="_blank"
+          class="btn btn-primary btn-lg d-flex justify-content-center align-items-center"
+          title="Facebook">
+          <i class="fab fa-facebook fa-2x"></i>
+        </a>
+
+        <a
+          href="https://t.me/mgbet2bot"
+          class="btn btn-info btn-lg d-flex justify-content-center align-items-center"
+          title="Telegram">
+          <i class="fab fa-telegram-plane fa-2x"></i>
+        </a>
+
+        <a
+          href="https://www.instagram.com/mgbet20/"
+          target="_blank"
+          class="btn btn-danger btn-lg d-flex justify-content-center align-items-center"
+          title="Instagram">
+          <i class="fab fa-instagram fa-2x"></i>
+        </a>
+      </div>
+    </form>
+
+  </div>
+</div>

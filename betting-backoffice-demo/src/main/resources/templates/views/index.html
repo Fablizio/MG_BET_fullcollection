@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+
+    <!-- Stili specifici della dashboard -->
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .page-header {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .page-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .kpi-card {
+            border: none;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+        }
+
+        .kpi-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #6c757d;
+            margin-bottom: .25rem;
+        }
+
+        .kpi-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .kpi-chip {
+            font-size: 0.75rem;
+            padding: .2rem .55rem;
+            border-radius: 999px;
+        }
+
+        .card-main-table {
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 0 3px 12px rgba(15, 23, 42, 0.08);
+        }
+
+        #main-table thead th {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: #6c757d;
+            border-bottom-width: 1px;
+        }
+
+        #main-table tbody td {
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+
+        .table-actions .btn {
+            padding: 0.25rem 0.45rem;
+            font-size: 0.8rem;
+        }
+
+        .badge-status {
+            font-size: 0.75rem;
+            padding: .3rem .6rem;
+            border-radius: 999px;
+        }
+
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+        }
+
+        .btn-icon i {
+            font-size: 0.9rem;
+        }
+
+        .toolbar-actions .btn {
+            margin-left: .35rem;
+        }
+
+        .modal-header {
+            border-bottom: none;
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+    </style>
+    <style>
+        /* --- TABELLA MODERNA --- */
+
+        .table-modern {
+            margin-bottom: 0;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table-modern thead th {
+            background-color: #f3f4f6;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #6b7280;
+            font-weight: 600;
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+        }
+
+        .table-modern tbody td {
+            font-size: 0.9rem;
+            vertical-align: middle;
+            border-top: 1px solid #f1f1f1;
+            padding-top: .65rem;
+            padding-bottom: .65rem;
+        }
+
+        .table-modern tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .card-main-table {
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.09);
+            overflow: hidden;
+        }
+
+        .card-main-table .card-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* --- DataTables wrapper --- */
+
+        /* Contenitore sopra la tabella (search + info) */
+        .dataTables_wrapper .top-row {
+            padding: .75rem 1.25rem 0.25rem;
+        }
+
+        /* Contenitore sotto la tabella (length + paginazione) */
+        .dataTables_wrapper .bottom-row {
+            padding: .25rem 1.25rem .75rem;
+        }
+
+        /* Search globale */
+        .dataTables_wrapper .dataTables_filter {
+            text-align: right;
+        }
+
+        .dataTables_wrapper .dataTables_filter label {
+            font-size: 0.8rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            border-radius: 999px;
+            border: 1px solid #d1d5db;
+            padding: .25rem .75rem;
+            font-size: 0.9rem;
+            margin-left: .5rem;
+            max-width: 220px;
+        }
+
+        /* "Mostra X righe" */
+        .dataTables_wrapper .dataTables_length label {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+            border-radius: 999px;
+            padding: .15rem .5rem;
+            font-size: 0.85rem;
+            border: 1px solid #d1d5db;
+            margin: 0 .25rem;
+        }
+
+        /* Info "Mostra da X a Y..." */
+        .dataTables_wrapper .dataTables_info {
+            font-size: 0.8rem;
+            color: #6b7280;
+            padding-top: .4rem;
+        }
+
+        /* Paginazione */
+        .dataTables_wrapper .dataTables_paginate {
+            text-align: right;
+            padding-top: .25rem;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            border-radius: 999px;
+            padding: .25rem .6rem;
+            margin: 0 .1rem;
+            border: 1px solid transparent;
+            font-size: 0.8rem;
+            color: #4b5563 !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: #2563eb !important;
+            color: #ffffff !important;
+            border-color: #2563eb;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #e5e7eb !important;
+            color: #111827 !important;
+            border-color: #d1d5db;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+            color: #9ca3af !important;
+            box-shadow: none;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:include="fragment/header"/>
+
+    <!-- HEADER PAGINA + KPI -->
+    <div class="page-header d-flex flex-wrap justify-content-between align-items-center mb-3">
+        <div class="mb-2 mb-md-0">
+            <h4 class="page-title">Lista abbonamenti</h4>
+            <p class="page-subtitle">Gestione utenti, stato abbonamenti e comunicazioni</p>
+        </div>
+
+        <div class="toolbar-actions d-flex flex-wrap justify-content-end">
+            <a class="btn btn-primary btn-icon" th:href="@{/web/newUser}">
+                <i class="fa fa-plus"></i><span>Nuovo utente</span>
+            </a>
+            <a class="btn btn-outline-primary btn-icon" th:href="@{/web/broadcast}">
+                <i class="fa fa-bullhorn"></i><span>Broadcast</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="row mb-4">
+        <div class="col-sm-6 col-md-3 mb-3">
+            <div class="card kpi-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="kpi-label">In scadenza</div>
+                            <div class="kpi-value" th:text="${userList.getExpiring()}"></div>
+                        </div>
+                        <span class="badge badge-warning kpi-chip">Prossimi 5 giorni</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-3">
+            <div class="card kpi-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="kpi-label">Scaduti</div>
+                            <div class="kpi-value text-danger" th:text="${userList.getExpirated()}"></div>
+                        </div>
+                        <span class="badge badge-danger kpi-chip">Attenzione</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-3">
+            <div class="card kpi-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="kpi-label">Attivi paganti</div>
+                            <div class="kpi-value text-success" th:text="${userList.getActivedPayed()}"></div>
+                        </div>
+                        <span class="badge badge-success kpi-chip">Premium</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-3">
+            <div class="card kpi-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="kpi-label">Attivi in test</div>
+                            <div class="kpi-value text-success" th:text="${userList.getActivedTest()}"></div>
+                        </div>
+                        <span class="badge badge-info kpi-chip">Trial</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABELLA PRINCIPALE -->
+    <div class="card card-main-table mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Utenti</h5>
+            <small class="text-muted">Clicca sulle colonne per ordinare, usa la ricerca in alto a destra</small>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table id="main-table" class="table table-hover table-modern mb-0">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nickname</th>
+                        <th>Discord Nick</th>
+                        <th>Username</th>
+                        <th>Codice</th>
+                        <th>Scadenza</th>
+                        <th>Importo pagato</th>
+                        <th>Amici portati</th>
+                        <th>Ultima richiesta</th>
+                        <th>Bot</th>
+                        <th class="text-right">Azioni</th>
+                    </tr>discordUsername
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${userList.getUsers()}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.nickname}"></td>
+                        <td th:text="${user.discordUsername != null ? '@'+user.discordUsername : ''}"></td>
+                        <td th:text="${user.username != null ? '@'+user.username : ''}"></td>
+                        <td th:text="${user.code}"></td>
+                        <td th:with="localDate=${T(java.time.LocalDate)},
+                                     chronoUnit=${T(java.time.temporal.ChronoUnit)},
+                                     utility=${T(it.smibet.utils.Utility)}">
+                            <div class="d-flex flex-column">
+                                <span th:text="${user.expiration}"></span>
+                                <div class="mt-1">
+                                    <span th:if="${user.expiration != null && (localDate.parse(user.expiration).isAfter(utility.now()) || localDate.parse(user.expiration).isEqual(utility.now())) && (localDate.parse(user.expiration).isBefore(utility.now().plus(5,chronoUnit.DAYS)) || localDate.parse(user.expiration).isEqual(utility.now().plus(5,chronoUnit.DAYS)))}"
+                                          class="badge badge-warning badge-status">
+                                        In scadenza
+                                    </span>
+                                    <span th:if="${user.expiration != null && localDate.parse(user.expiration).isBefore(utility.now())}"
+                                          class="badge badge-danger badge-status">
+                                        Scaduto
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span th:if="${user.payment != null}"
+                                  th:text="${#numbers.formatDecimal(user.payment,1,'POINT',2,'COMMA') + ' €'}"></span>
+                        </td>
+                        <td>
+                            <span
+                                  th:text="${user.friends}"></span>
+                        </td>
+                        <td>
+                            <!-- Bottone che apre il dettaglio pagamento -->
+                            <button type="button"
+                                    class="btn btn-link p-0"
+                                    th:if="${user.lastUserRequestDTO != null && user.lastUserRequestDTO.requestType.toString() == 'RENEW_WAIT'}"
+                                    data-toggle="modal"
+                                    th:data-target="${'#modal' + user.lastUserRequestDTO.id}">
+                                Attesa rinnovo
+                            </button>
+                            <span th:if="${user.lastUserRequestDTO == null}">-</span>
+
+                            <!-- Modal dettaglio pagamento -->
+                            <div th:if="${user.lastUserRequestDTO != null}"
+                                 class="modal fade"
+                                 th:id="${'modal' + user.lastUserRequestDTO.id}"
+                                 tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                Richiesta di
+                                                <span th:text="${user.nickname}"></span>
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <img class="img-fluid"
+                                                 th:src="${'data:image/png;base64, '+user.lastUserRequestDTO.paymentCode}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <i th:if="${user.telegramSession != null}"
+                               class="fa fa-check text-success"
+                               title="Bot associato"></i>
+                            <i th:if="${user.telegramSession == null}"
+                               class="fa fa-times text-danger"
+                               title="Nessun bot associato"></i>
+                        </td>
+                        <td class="text-right table-actions">
+                            <a class="btn btn-success"
+                               th:if="${user.lastUserRequestDTO != null && user.lastUserRequestDTO.requestType.toString() == 'RENEW_WAIT'}"
+                               th:href="@{'/web/rinnovaCodice/'+${user.id}}"
+                               title="Approva rinnovo">
+                                <i class="fa fa-sync"></i>
+                            </a>
+
+                            <button class="btn btn-outline-primary"
+                                    data-toggle="modal"
+                                    th:data-target="${'#modal-message-' + user.id}"
+                                    title="Invia messaggio">
+                                <i class="fa fa-comment"></i>
+                            </button>
+
+                            <a class="btn btn-outline-secondary"
+                               th:href="@{'/web/editUser/'+${user.id}}"
+                               title="Modifica utente">
+                                <i class="fa fa-edit"></i>
+                            </a>
+
+                            <button class="btn btn-outline-danger"
+                                    data-toggle="modal"
+                                    th:data-target="${'#modal-delete-' + user.id}"
+                                    title="Elimina utente">
+                                <i class="fa fa-trash"></i>
+                            </button>
+
+                            <!-- Modal eliminazione -->
+                            <div class="modal fade"
+                                 th:id="${'modal-delete-' + user.id}"
+                                 tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                Eliminazione di
+                                                <span th:text="${user.nickname}"></span>
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Sei sicuro di eliminare l'utente?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn btn-danger"
+                                               th:href="@{'/web/delete/'+${user.id}}">
+                                                Conferma
+                                            </a>
+                                            <button class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal invio messaggio -->
+                            <div class="modal fade"
+                                 th:id="${'modal-message-' + user.id}"
+                                 tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <form method="post" th:action="@{'/web/sendMessage/'+${user.id}}">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    Invia messaggio a
+                                                    <span th:text="${user.nickname}"></span>
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Messaggio</label>
+                                                    <textarea class="form-control"
+                                                              name="message"
+                                                              rows="4"
+                                                              placeholder="Scrivi il messaggio da inviare..."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary btn-icon">
+                                                    <i class="fa fa-paper-plane"></i>
+                                                    <span>Invia</span>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-secondary"
+                                                        data-dismiss="modal">Chiudi
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="none">
+    $(function () {
+        $('#main-table').DataTable({
+            pageLength: 25,
+            order: [[0, 'desc']],
+            // Layout: top (search + info), tabella, bottom (length + paginazione)
+            dom:
+                "<'row top-row'<'col-sm-6'i><'col-sm-6'f>>" +
+                "tr" +
+                "<'row bottom-row'<'col-sm-6'l><'col-sm-6'p>>",
+            language: {
+                lengthMenu: "Mostra _MENU_ righe",
+                search: "Cerca",
+                searchPlaceholder: "Cerca per nickname, username, codice...",
+                info: "Mostra da _START_ a _END_ di _TOTAL_ utenti",
+                infoEmpty: "Nessun utente trovato",
+                infoFiltered: "(filtrati da _MAX_ utenti totali)",
+                zeroRecords: "Nessun risultato trovato",
+                paginate: {
+                    first: "Prima",
+                    last: "Ultima",
+                    next: "Successiva",
+                    previous: "Precedente"
+                }
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>

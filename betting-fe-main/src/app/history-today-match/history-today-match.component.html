@@ -1,0 +1,178 @@
+<ngx-ui-loader></ngx-ui-loader>
+
+<app-page-template>
+  <div class="mg-dayhist-page container-fluid">
+
+    <!-- HEADER + FILTRO DATA -->
+    <div class="row justify-content-center mb-3">
+      <div class="col-lg-10">
+        <div class="mg-dayhist-header">
+          <div>
+            <span class="mg-dayhist-kicker">
+              <i class="fa fa-calendar-day mr-1"></i> Partite del giorno
+            </span>
+            <h2 class="mg-dayhist-title">History Partite del giorno</h2>
+            <p class="mg-dayhist-subtitle">
+              Storico delle partite consigliate con movimento quote, prediction e risultato finale.
+            </p>
+          </div>
+
+          <div class="mg-dayhist-filter">
+            <label class="mg-form-label d-block mb-1">Seleziona giorno</label>
+            <div class="input-group mg-date-group">
+              <input
+                class="form-control mg-date-input"
+                placeholder="Scegli il giorno"
+                name="dp"
+                [(ngModel)]="model"
+                ngbDatepicker
+                #d="ngbDatepicker"
+                [container]="'body'">
+
+              <div class="input-group-append">
+                <button class="btn mg-calendar-btn" (click)="d.toggle()" type="button">
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </div>
+            </div>
+
+            <button class="btn mg-search-btn mt-2" (click)="search()">
+              <i class="fa fa-search mr-1"></i>
+              Cerca
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD TABELLA -->
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="mg-dayhist-card">
+          <div class="mg-dayhist-card-body">
+
+            <!-- ALERT NESSUN RISULTATO -->
+            <div class="alert mg-alert-empty" role="alert"
+                 *ngIf="listaOdds.getValue().length === 0">
+              <i class="fa fa-info-circle mr-2"></i>
+              Non sono presenti risultati per la data selezionata.
+            </div>
+
+            <!-- TABELLA -->
+            <div class="table-responsive" *ngIf="listaOdds.getValue().length !== 0">
+              <table class="table mg-dayhist-table">
+                <thead>
+                <tr>
+                  <th scope="col">Data evento</th>
+                  <th scope="col">Match</th>
+                  <th scope="col" class="text-center">1</th>
+                  <th scope="col" class="text-center">X</th>
+                  <th scope="col" class="text-center">2</th>
+                  <th scope="col" class="text-center">Prediction</th>
+                  <th scope="col" class="text-center">Risultato finale</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr
+                  *ngFor="let p of listaOdds | async"
+                  [ngClass]="{
+                      'mg-row-win': p.presa,
+                      'mg-row-loss': !p.presa && p.result !== 'POSTP.',
+                      'mg-row-postp': !p.presa && p.result === 'POSTP.'
+                    }">
+
+                  <!-- DATA -->
+                  <td>
+                    <div class="mg-event-date">{{ p.dataEvent }}</div>
+                  </td>
+
+                  <!-- MATCH -->
+                  <td>
+                    <div class="mg-event-team">{{ p.team }}</div>
+                  </td>
+
+                  <!-- 1 -->
+                  <td class="text-center mg-odd-cell">
+                    <div class="mg-odd-main">
+                      {{ p.uno }}
+                      <i
+                        title="{{p.quotaInizialeUno}} - {{p.uno}}"
+                        [ngClass]="p.uno <= p.quotaInizialeUno ? 'fa fa-arrow-down green' : 'fa fa-arrow-up red'">
+                      </i>
+                    </div>
+                    <div class="mg-odd-change">
+                      {{ ((p.uno - p.quotaInizialeUno)/p.uno)*100 | number:'1.2-2' }}%
+                    </div>
+                  </td>
+
+                  <!-- X -->
+                  <td class="text-center mg-odd-cell">
+                    <div class="mg-odd-main">
+                      {{ p.x }}
+                      <i
+                        title="{{p.quotaInizialeX}} - {{p.x}}"
+                        [ngClass]="p.x <= p.quotaInizialeX ? 'fa fa-arrow-down green' : 'fa fa-arrow-up red'">
+                      </i>
+                    </div>
+                    <div class="mg-odd-change">
+                      {{ ((p.x - p.quotaInizialeX)/p.x)*100 | number:'1.2-2' }}%
+                    </div>
+                  </td>
+
+                  <!-- 2 -->
+                  <td class="text-center mg-odd-cell">
+                    <div class="mg-odd-main">
+                      {{ p.due }}
+                      <i
+                        title="{{p.quotaInizialeDue}} - {{p.due}}"
+                        [ngClass]="p.due <= p.quotaInizialeDue ? 'fa fa-arrow-down green' : 'fa fa-arrow-up red'">
+                      </i>
+                    </div>
+                    <div class="mg-odd-change">
+                      {{ ((p.due - p.quotaInizialeDue)/p.due)*100 | number:'1.2-2' }}%
+                    </div>
+                  </td>
+
+                  <!-- PREDICTION -->
+                  <td class="text-center">
+                      <span class="mg-prediction-pill">
+                        {{ p.prediction }}
+                      </span>
+                  </td>
+
+                  <!-- RISULTATO -->
+                  <td class="text-center">
+                    <span class="mg-result-main">{{ p.result }}</span>
+                    <span
+                      class="mg-result-pill"
+                      [ngClass]="{
+                          'mg-result-pill-win': p.presa,
+                          'mg-result-pill-loss': !p.presa && p.result !== 'POSTP.',
+                          'mg-result-pill-postp': !p.presa && p.result === 'POSTP.'
+                        }">
+                        <i
+                          class="fa"
+                          [ngClass]="{
+                            'fa-check': p.presa,
+                            'fa-times': !p.presa && p.result !== 'POSTP.',
+                            'fa-clock': !p.presa && p.result === 'POSTP.'
+                          }">
+                        </i>
+                        <span class="ml-1">
+                          {{ p.presa ? 'Presa' : (p.result === 'POSTP.' ? 'Posticipata' : 'Non presa') }}
+                        </span>
+                      </span>
+                  </td>
+
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</app-page-template>

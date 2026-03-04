@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .page-header {
+            margin: 1.5rem 0 1rem;
+        }
+
+        .page-title {
+            font-weight: 600;
+            margin-bottom: .25rem;
+        }
+
+        .page-subtitle {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .form-card {
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.09);
+        }
+
+        .form-card .card-header {
+            border-bottom: 1px solid #e5e7eb;
+            background-color: #ffffff;
+        }
+
+        .form-card .card-body {
+            padding: 1.5rem 1.5rem 1.25rem;
+        }
+
+        .form-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #9ca3af;
+            margin-bottom: .75rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-text-muted {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .invalid-feedback {
+            font-size: 0.8rem;
+        }
+
+        .alert-errors {
+            border-radius: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            border-radius: 999px;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .btn-outline-secondary {
+            border-radius: 999px;
+        }
+
+        .form-check-label span.font-weight-bold {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:include="fragment/header"/>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-xl-5">
+
+            <!-- Header pagina -->
+            <div class="page-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h4 class="page-title">Aggiorna utente</h4>
+                    <p class="page-subtitle">
+                        Modifica i dati dell’utente e lo stato dell’abbonamento.
+                    </p>
+                </div>
+                <div>
+                    <a class="btn btn-outline-secondary" th:href="@{/web}">
+                        Home
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card form -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <span class="form-section-title">Dati utente</span>
+                </div>
+                <div class="card-body">
+                    <form id="updateForm" th:action="@{/web/editUser}" method="post" th:object="${user}">
+
+                        <!-- Alert errori globali (dentro il form) -->
+                        <div class="alert alert-danger alert-errors mb-3"
+                             th:if="${#fields.hasErrors()}">
+                            Sono presenti errori nel form. Controlla i campi evidenziati.
+                        </div>
+
+                        <!-- Codice -->
+                        <div class="form-group">
+                            <label for="code">Codice</label>
+                            <input id="code"
+                                   type="text"
+                                   th:field="*{code}"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('code')} ? ' is-invalid'">
+                            <div class="invalid-feedback d-block"
+                                 th:if="${#fields.hasErrors('code')}"
+                                 th:errors="*{code}">
+                            </div>
+                        </div>
+
+                        <!-- Nickname -->
+                        <div class="form-group">
+                            <label for="nickname">Nickname</label>
+                            <input id="nickname"
+                                   type="text"
+                                   th:field="*{nickname}"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('nickname')} ? ' is-invalid'">
+                            <div class="invalid-feedback d-block"
+                                 th:if="${#fields.hasErrors('nickname')}"
+                                 th:errors="*{nickname}">
+                            </div>
+                        </div>
+
+                        <!-- Data di scadenza -->
+                        <div class="form-group">
+                            <label for="dataScadenza">Data di scadenza</label>
+                            <input id="dataScadenza"
+                                   type="text"
+                                   class="form-control"
+                                   th:field="*{expiration}"
+                                   placeholder="YYYY-MM-DD"
+                                   th:classappend="${#fields.hasErrors('expiration')} ? ' is-invalid'">
+                            <small class="form-text-muted">
+                                Seleziona la nuova data di scadenza dell’abbonamento.
+                            </small>
+                            <div class="invalid-feedback d-block"
+                                 th:if="${#fields.hasErrors('expiration')}"
+                                 th:errors="*{expiration}">
+                            </div>
+                        </div>
+
+                        <!-- Importo pagato -->
+                        <div class="form-group">
+                            <label for="payment">Importo pagato</label>
+                            <div class="input-group">
+                                <input id="payment"
+                                       type="number"
+                                       min="0"
+                                       step=".01"
+                                       th:field="*{payment}"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('payment')} ? ' is-invalid'">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€</span>
+                                </div>
+                            </div>
+                            <small class="form-text-muted">
+                                Importo totale corrisposto per l’ultima sottoscrizione.
+                            </small>
+                            <div class="invalid-feedback d-block"
+                                 th:if="${#fields.hasErrors('payment')}"
+                                 th:errors="*{payment}">
+                            </div>
+                        </div>
+
+                        <!-- Chiudi ultima richiesta -->
+                        <div class="form-group" th:if="${user.lastUserRequestDTO != null}">
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       th:field="*{cleanLastRequest}"
+                                       id="cleanLastRequest">
+                                <label class="form-check-label" for="cleanLastRequest">
+                                    Chiudi ultima richiesta:
+                                    <span th:if="${user.lastUserRequestDTO.requestType.toString().equals('CREATION_WAIT')}"
+                                          class="font-weight-bold">
+                                        Attesa iscrizione
+                                    </span>
+                                    <span th:if="${user.lastUserRequestDTO.requestType.toString().equals('RENEW_WAIT')}"
+                                          class="font-weight-bold">
+                                        Attesa rinnovo
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Hidden ID -->
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <!-- Bottoni -->
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="submit" class="btn btn-primary mx-1">
+                                Conferma update
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Datepicker -->
+<script th:inline="none">
+    $(function () {
+        $('#dataScadenza').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>
+</body>
+</html>

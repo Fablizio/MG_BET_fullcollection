@@ -1,0 +1,122 @@
+<app-header>
+    <ion-title>
+        News
+    </ion-title>
+
+    <ion-buttons slot="end">
+        <ion-button (click)="sideMenu.open()">
+            Categorie
+            <ion-icon slot="end" name="menu"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</app-header>
+
+<app-side-menu #sideMenu>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Categorie</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="sideMenu.close()">
+                    <ion-icon slot="end" name="close"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content color="dark">
+        <ion-list class="ion-no-padding">
+            <ng-container *ngFor="let site of sites">
+                <ion-item color="dark"  [class.ion-color-tertiary]="selectedId === site.id"
+                          (click)="sideMenu.close(); fetchArticle(site.id)">
+                    <ion-icon slot="start" name="paper"></ion-icon>
+                    <ion-label>
+                        {{site.categoria}}
+                    </ion-label>
+                </ion-item>
+            </ng-container>
+        </ion-list>
+    </ion-content>
+</app-side-menu>
+
+<ion-content>
+    <ng-container *ngIf="loaded">
+        <ion-card *ngFor="let article of articles">
+            <ion-card-header>
+                <ion-card-subtitle>{{article.autore}}</ion-card-subtitle>
+                <ion-card-title>{{article.titolo}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <p [innerHTML]="article.descrizione"></p>
+                <a *ngIf="article.link" [href]="article.link" target="_blank">
+                    <ion-button color="primary">
+                        <ion-icon name="open"></ion-icon>&ensp;
+                        Vai alla notizia
+                    </ion-button>
+                </a>
+            </ion-card-content>
+        </ion-card>
+    </ng-container>
+
+    <!-- skeleton -->
+    <ng-container *ngIf="!loaded">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </ion-card-subtitle>
+                <ion-card-title>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <p>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </p>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </ion-card-subtitle>
+                <ion-card-title>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <p>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </p>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </ion-card-subtitle>
+                <ion-card-title>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <p>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </p>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </ion-card-subtitle>
+                <ion-card-title>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <p>
+                    <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                </p>
+            </ion-card-content>
+        </ion-card>
+    </ng-container>
+</ion-content>

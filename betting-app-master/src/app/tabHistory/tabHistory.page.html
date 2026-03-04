@@ -1,0 +1,70 @@
+<app-header>
+    <ion-title>
+        {{ loadSmellBet ? 'History Smell Bet' : 'History' }}
+    </ion-title>
+</app-header>
+
+<ion-content class="odds-content">
+    <div class="odds-inner">
+
+        <!-- TOGGLE MODALITÀ: HISTORY / SMELLBET HISTORY -->
+        <div class="mode-switch">
+            <button
+                    type="button"
+                    class="mode-switch-btn"
+                    [class.mode-switch-btn--active]="!loadSmellBet"
+                    (click)="!loadSmellBet ? null : fetchHistory()">
+                <div class="mode-switch-label">History</div>
+                <div class="mode-switch-caption">Tutte le giocate passate</div>
+            </button>
+
+            <button
+                    type="button"
+                    class="mode-switch-btn"
+                    [class.mode-switch-btn--active]="loadSmellBet"
+                    (click)="loadSmellBet ? null : fetchHistorySmellBet()">
+                <div class="mode-switch-label">History Smell Bet</div>
+                <div class="mode-switch-caption">Solo le Smell Bet</div>
+            </button>
+        </div>
+
+        <!-- FILTRO DATA -->
+        <ion-card class="history-filter-card">
+            <ion-card-content>
+                <div class="history-filter-header">
+                    <span class="history-filter-kicker">Filtra per data</span>
+                    <span class="history-filter-date">
+            {{ datepickerValue ? (datepickerValue | date:'dd.MM.yyyy') : 'Nessuna data selezionata' }}
+          </span>
+                </div>
+
+                <ion-item lines="none" class="history-datepicker">
+                    <ion-label position="stacked">Seleziona data</ion-label>
+                    <ion-datetime
+                            displayFormat="DD.MM.YYYY"
+                            [(ngModel)]="datepickerValue"
+                            (ionChange)="loadByDatepicker()">
+                    </ion-datetime>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+
+        <!-- CONTENUTO -->
+        <ng-container *ngIf="loaded; else skeleton">
+            <app-card-odds
+                    [campionato]="campionato"
+                    [odds]="odds"
+                    [history]="true"
+                    [showPercentage]="true"
+                    [showPredictionConfidence]="true"
+                    [showDetail] = "false"
+            >
+            </app-card-odds>
+        </ng-container>
+
+        <ng-template #skeleton>
+            <app-card-odds-skeleton></app-card-odds-skeleton>
+        </ng-template>
+
+    </div>
+</ion-content>

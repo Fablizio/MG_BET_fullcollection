@@ -1,0 +1,103 @@
+<!-- Pulsante flottante per mobile -->
+<div *ngIf="mobileView"
+     class="side-toggler mg-side-toggler"
+     [ngClass]="{'opened': isOpen, 'closed': !isOpen}"
+     [@openClose]="isOpen"
+     (click)="isOpen = !isOpen">
+  <span class="fa" [ngClass]="{'fa-chevron-left': isOpen, 'fa-chevron-right': !isOpen}"></span>
+</div>
+
+<!-- SIDENAV -->
+<nav class="sidenav mg-sidenav" *ngIf="isOpen" [@enterAnimation]>
+
+  <!-- Prediction -->
+  <div class="mg-sidenav-section">
+    <button class="btn btn-link mg-sidenav-header"
+            type="button"
+            data-toggle="collapse"
+            href="#nazioniMenu"
+            (click)="showMenuNazioni = !showMenuNazioni">
+      <div class="d-flex align-items-center">
+        <span class="mg-section-icon">
+          <i class="fa fa-futbol"></i>
+        </span>
+        <span class="mg-section-title">Prediction</span>
+      </div>
+      <i class="fa mg-chevron"
+         [ngClass]="{'fa-chevron-down' : showMenuNazioni, 'fa-chevron-up' : !showMenuNazioni}"></i>
+    </button>
+
+    <div class="collapse show" id="nazioniMenu">
+      <a class="mg-sidenav-link"
+         *ngFor="let c of campionati | async"
+         (click)="clickOnLink()"
+         [routerLink]="['/view',c.territorio]">
+        {{ c.territorio }}
+      </a>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="mg-sidenav-section">
+    <button class="btn btn-link mg-sidenav-header"
+            type="button"
+            data-toggle="collapse"
+            href="#historyMenu"
+            (click)="showMenuHistory = !showMenuHistory">
+      <div class="d-flex align-items-center">
+        <span class="mg-section-icon">
+          <i class="fa fa-chart-bar"></i>
+        </span>
+        <span class="mg-section-title">History</span>
+      </div>
+      <i class="fa mg-chevron"
+         [ngClass]="{'fa-chevron-down' : showMenuHistory, 'fa-chevron-up' : !showMenuHistory}"></i>
+    </button>
+
+    <div class="collapse" id="historyMenu">
+      <a class="mg-sidenav-link"
+         *ngFor="let c of campionati | async"
+         (click)="clickOnLink()"
+         [routerLink]="['/history',c.territorio]">
+        {{ c.territorio }}
+      </a>
+    </div>
+  </div>
+
+  <!-- Storico -->
+  <div class="mg-sidenav-section">
+    <button class="btn btn-link mg-sidenav-header"
+            type="button"
+            data-toggle="collapse"
+            href="#historyExtra"
+            (click)="showHistory = !showHistory">
+      <div class="d-flex align-items-center">
+        <span class="mg-section-icon">
+          <i class="fa fa-history"></i>
+        </span>
+        <span class="mg-section-title">Storico</span>
+      </div>
+      <i class="fa mg-chevron"
+         [ngClass]="{'fa-chevron-down' : showHistory, 'fa-chevron-up' : !showHistory}"></i>
+    </button>
+
+    <div class="collapse" id="historyExtra">
+      <a class="mg-sidenav-link"
+         (click)="clickOnLink()"
+         [routerLink]="'/history-smell-bet'">
+        Smell bet
+      </a>
+      <a class="mg-sidenav-link"
+         (click)="clickOnLink()"
+         [routerLink]="'/storico-raddoppio'">
+        Raddoppi
+      </a>
+      <a class="mg-sidenav-link"
+         (click)="clickOnLink()"
+         [routerLink]="'/history-today-match'">
+        Partite del giorno
+      </a>
+    </div>
+  </div>
+
+</nav>

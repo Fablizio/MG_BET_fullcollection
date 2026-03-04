@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  background-image: url('assets/images/stadio-sfondo.jpg');
+  background-repeat: no-repeat;
+  background-color: #1d1d1d;
+  background-attachment: fixed;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  font-size: large;
+
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: transparent !important;
+}
+
+app-auth {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  background-color: rgba(245, 245, 245, 0.4);
+}
+
+.card-header, .card-footer {
+  opacity: 1
+}
+
+.article-content table tr td:first-child {
+  width: 20%;
+  vertical-align: unset;
+}
+
+.article-content table {
+  width: 100%;
+}
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at bottom, rgba(59, 130, 246, 0.18), #020617 65%);
+  z-index: -1;
+}
+.article-content table tr td:first-child img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.article-content table tr td:last-child p:first-child a:first-child {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.article-content table tr td:last-child p,
+.article-content table tr td:last-child a {
+  color: black;
+}
+
+.article-content table tr td:last-child a:hover {
+  color: #666666;
+  text-decoration: none;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  -moz-transition: color 0.2s ease-in-out;
+  -o-transition: color 0.2s ease-in-out;
+}
+

@@ -1,0 +1,32 @@
+version: '3'
+services:
+  betting-batch:
+    image: betting-batch:latest
+    depends_on:
+      - db
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=IUHf87shfh/Y7whfeuih
+      - MYSQL_URI=jdbc:mysql://db:3306/mgbet
+
+
+  betting-be:
+    image: betting-be:latest
+    depends_on:
+      - db
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=IUHf87shfh/Y7whfeuih
+      - MYSQL_URI=jdbc:mysql://db:3306/mgbet
+
+
+  db:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=IUHf87shfh/Y7whfeuih
+      - MYSQL_DATABASE=mgbet
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

@@ -1,0 +1,139 @@
+:root {
+  --mg-bg: #111827;
+  --mg-bg-soft: #1f2933;
+  --mg-border: #2d3748;
+  --mg-accent: #ffc107;
+  --mg-text-muted: #9ca3af;
+}
+
+/* NAVBAR BASE */
+.mg-navbar {
+  background: radial-gradient(circle at top left, #1f2933 0, #050816 60%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Brand */
+.brand-logo-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #111827;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.brand-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.brand-text {
+  line-height: 1.1;
+}
+
+.brand-title {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.brand-subtitle {
+  font-size: 0.7rem;
+  color: var(--mg-text-muted);
+  text-transform: uppercase;
+}
+
+/* Links */
+.mg-nav-link {
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #e5e7eb !important;
+  padding: 0.75rem 1rem;
+  position: relative;
+}
+
+.mg-nav-link i {
+  font-size: 0.9rem;
+}
+
+/* underline animata */
+.mg-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.35rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--mg-accent), #fff);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.2s ease-out;
+}
+
+.navbar-nav .nav-item.active .mg-nav-link,
+.navbar-nav .nav-item .mg-nav-link:hover {
+  color: #ffffff !important;
+}
+
+.navbar-nav .nav-item.active .mg-nav-link::after,
+.navbar-nav .nav-item .mg-nav-link:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Right side info */
+.mg-expire-badge {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+/* Buttons */
+.mg-btn-rounded {
+  border-radius: 999px;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.9rem;
+}
+
+.mg-btn-rounded.btn-outline-warning {
+  border-width: 1px;
+}
+
+.mg-btn-rounded.btn-outline-warning:hover {
+  color: #111827;
+  background-color: var(--mg-accent);
+  border-color: var(--mg-accent);
+}
+
+/* Mobile */
+@media (max-width: 991.98px) {
+  .mg-navbar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .navbar-collapse {
+    background: rgba(15, 23, 42, 0.98);
+    margin-top: 0.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.55);
+    padding: 0.5rem 0.75rem 0.75rem;
+  }
+
+  .mg-nav-link {
+    padding-left: 0.75rem;
+  }
+}

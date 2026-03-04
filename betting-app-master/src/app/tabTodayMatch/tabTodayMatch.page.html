@@ -1,0 +1,81 @@
+<app-header>
+    <ion-title>
+        {{ loadSmellBet ? 'SmellBet di oggi' : 'Partite di oggi' }}
+    </ion-title>
+</app-header>
+
+<ion-content class="odds-content">
+    <div class="odds-inner ion-padding">
+
+        <!-- TOGGLE MODALITÀ -->
+        <div class="mode-switch">
+            <button
+                    type="button"
+                    class="mode-switch-btn"
+                    [class.mode-switch-btn--active]="!loadSmellBet"
+                    (click)="!loadSmellBet ? null : fetchTodayMatch()">
+                <div class="mode-switch-label">Partite di oggi</div>
+                <div class="mode-switch-caption">Tutte le gare con quote</div>
+            </button>
+
+            <button
+                    type="button"
+                    class="mode-switch-btn"
+                    [class.mode-switch-btn--active]="loadSmellBet"
+                    (click)="loadSmellBet ? null : fetchSmellBet()">
+                <div class="mode-switch-label">SmellBet di oggi</div>
+                <div class="mode-switch-caption">Match pi&ugrave; “sospetti”</div>
+            </button>
+        </div>
+
+        <!-- BARRA FILTRI / ORDINAMENTO -->
+        <div class="filters-bar" *ngIf="loaded">
+            <div class="filters-main">
+                <span class="filters-label">Ordina per</span>
+
+                <div class="filters-pills">
+                    <button
+                            type="button"
+                            class="filter-pill"
+                            [class.filter-pill--active]="sortBy === 'time'"
+                            (click)="onSortChange('time')">
+                        Orario partita
+                    </button>
+
+                    <button
+                            type="button"
+                            class="filter-pill"
+                            [class.filter-pill--active]="sortBy === 'confidence'"
+                            (click)="onSortChange('confidence')">
+                        Confidence
+                    </button>
+                </div>
+            </div>
+
+            <button
+                    type="button"
+                    class="filters-dir-btn"
+                    (click)="toggleSortDirection()"
+                    [attr.aria-label]="sortDirection === 'asc' ? 'Ordina crescente' : 'Ordina decrescente'">
+        <span class="filters-dir-icon">
+          {{ sortDirection === 'asc' ? '↑' : '↓' }}
+        </span>
+            </button>
+        </div>
+
+        <!-- CONTENUTO -->
+        <ng-container *ngIf="loaded; else skeleton">
+            <app-card-odds
+                    *ngFor="let campionato of campionati"
+                    [campionato]="campionato.name"
+                    [odds]="campionato.odds"
+                    [showPercentage]="true">
+            </app-card-odds>
+        </ng-container>
+
+        <ng-template #skeleton>
+            <app-card-odds-skeleton></app-card-odds-skeleton>
+        </ng-template>
+
+    </div>
+</ion-content>

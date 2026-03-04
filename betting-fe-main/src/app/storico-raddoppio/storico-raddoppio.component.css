@@ -1,0 +1,365 @@
+:root {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.45);
+  --mg-accent: #facc15;
+}
+
+/* Layout pagina */
+.mg-raddhist-page {
+  padding: 1.5rem 0 2.5rem;
+}
+
+/* HEADER + FILTRI */
+.mg-raddhist-header {
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+  border-radius: 18px;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.7);
+  padding: 1rem 1.4rem;
+  color: #e5e7eb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mg-raddhist-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(250, 204, 21, 0.6);
+  color: var(--mg-accent);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+}
+
+.mg-raddhist-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f9fafb;
+  margin-bottom: 0.25rem;
+}
+
+.mg-raddhist-subtitle {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 0;
+}
+
+.mg-raddhist-filters {
+  min-width: 260px;
+}
+
+.mg-period-toggle {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  padding: 0.15rem;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.75);
+}
+
+.mg-period-btn {
+  border-radius: 999px !important;
+  padding: 0.35rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+}
+
+.mg-period-btn.active {
+  background: rgba(15, 23, 42, 0.98);
+  color: #fef3c7;
+}
+
+.mg-period-chip {
+  margin-top: 0.6rem;
+  font-size: 0.76rem;
+  color: #9ca3af;
+}
+
+.mg-period-chip .label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-right: 0.25rem;
+  font-size: 0.7rem;
+}
+
+.mg-period-chip .value {
+  padding: 0.12rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  color: #fef9c3;
+}
+
+/* EMPTY STATE */
+.mg-raddhist-empty {
+  margin-top: 1rem;
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+  border-radius: 18px;
+  border: 1px dashed rgba(148, 163, 184, 0.9);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.7);
+  padding: 1.4rem 1.6rem;
+  text-align: center;
+  color: #e5e7eb;
+}
+
+.mg-raddhist-empty-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  margin: 0 auto 0.7rem;
+  background: rgba(15, 23, 42, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.8);
+}
+
+.mg-raddhist-empty-icon i {
+  font-size: 1.6rem;
+  color: var(--mg-accent);
+}
+
+.mg-raddhist-empty-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.mg-raddhist-empty-text {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+/* ACCORDION CARDS */
+.mg-raddhist-accordion {
+  margin-top: 1.2rem;
+}
+
+.mg-raddhist-card {
+  background: rgba(15, 23, 42, 0.97);
+  border-radius: 18px;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.85);
+  margin-bottom: 0.9rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.mg-raddhist-card::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at top center,
+  rgba(250, 204, 21, 0.06),
+  transparent 60%);
+  pointer-events: none;
+}
+
+/* bordo colorato a sinistra */
+.mg-card-win {
+  border-left: 3px solid #22c55e;
+}
+
+.mg-card-loss {
+  border-left: 3px solid #fb7185;
+}
+
+/* HEADER CARD */
+.mg-raddhist-card-header {
+  padding: 0.7rem 1.3rem;
+}
+
+.mg-raddhist-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+}
+
+.mg-raddhist-toggle:hover {
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.96;
+}
+
+.mg-raddhist-header-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mg-raddhist-date {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-right: 0.7rem;
+}
+
+.mg-raddhist-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.mg-status-win {
+  background: rgba(22, 163, 74, 0.18);
+  color: #bbf7d0;
+  border: 1px solid rgba(22, 163, 74, 0.9);
+}
+
+.mg-status-loss {
+  background: rgba(248, 113, 113, 0.18);
+  color: #fecaca;
+  border: 1px solid rgba(248, 113, 113, 0.9);
+}
+
+.mg-raddhist-header-meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.mg-raddhist-meta {
+  margin-right: 0.6rem;
+}
+
+.mg-raddhist-quote strong {
+  color: var(--mg-accent);
+}
+
+.mg-raddhist-chevron {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+/* rotazione freccia quando la card è aperta */
+.mg-raddhist-toggle:not(.collapsed) .mg-raddhist-chevron {
+  transform: rotate(180deg);
+}
+
+/* BODY CARD */
+.mg-raddhist-card-body {
+  padding: 0.6rem 1.3rem 0.9rem;
+}
+
+/* TABELLA */
+.mg-raddhist-table {
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  color: #e5e7eb;
+}
+
+.mg-raddhist-table thead th {
+  border-bottom: 1px solid rgba(55, 65, 81, 0.95);
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(30, 64, 175, 0.55)
+  );
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  color: #d1d5db;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  white-space: nowrap;
+}
+
+.mg-raddhist-table tbody td {
+  border-top: 0;
+  padding: 0.4rem 0.35rem;
+  vertical-align: middle;
+}
+
+.mg-raddhist-table tbody tr {
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+/* colore righe */
+.mg-row-win {
+  background: linear-gradient(
+    90deg,
+    rgba(22, 163, 74, 0.14),
+    transparent
+  );
+}
+
+.mg-row-loss {
+  background: linear-gradient(
+    90deg,
+    rgba(248, 113, 113, 0.14),
+    transparent
+  );
+}
+
+/* pill prediction / quota / risultato */
+.mg-prediction-pill {
+  display: inline-block;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  color: #e5e7eb;
+}
+
+.mg-odd-pill {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--mg-accent);
+}
+
+.mg-result-pill {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  color: #e5e7eb;
+}
+
+/* RESPONSIVE */
+@media (max-width: 767.98px) {
+  .mg-raddhist-header {
+    padding: 0.9rem 1rem;
+  }
+
+  .mg-raddhist-title {
+    font-size: 1.3rem;
+  }
+
+  .mg-raddhist-filters {
+    margin-top: 0.8rem;
+  }
+
+  .mg-raddhist-card-header {
+    padding: 0.6rem 1rem;
+  }
+
+  .mg-raddhist-card-body {
+    padding: 0.55rem 1rem 0.8rem;
+  }
+
+  .mg-raddhist-table {
+    font-size: 0.78rem;
+  }
+}

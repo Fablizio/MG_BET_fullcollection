@@ -1,0 +1,38 @@
+<ion-item class="mg-event">
+    <div class="mg-event-inner">
+        <div class="mg-event-accent"></div>
+
+        <ion-grid>
+            <ion-row>
+                <!-- Colonna sinistra: match + meta -->
+                <ion-col size="8" class="mg-event-main">
+                    <div class="mg-event-team">
+                        {{ evento.team }}
+                    </div>
+
+                    <div class="mg-event-meta">
+                        <span class="mg-event-date">{{ evento.dateMatch }}</span>
+                        <span class="mg-event-separator">•</span>
+                        <span class="mg-event-league">{{ evento.campionato }}</span>
+                    </div>
+                </ion-col>
+
+                <!-- Colonna destra: prediction + quota -->
+                <ion-col size="4" class="mg-event-right ion-text-right">
+                    <div class="mg-event-prediction">
+            <span class="mg-event-tag">
+              {{ evento.prediction }}
+            </span>
+                    </div>
+
+                    <div class="mg-event-odds">
+                        <span class="mg-odds-label">Quota</span>
+                        <span class="mg-odds-value">
+              {{ evento.quota }}
+            </span>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-item>

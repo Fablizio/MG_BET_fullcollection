@@ -1,0 +1,98 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>🎁 Codice Amico</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">
+                Chiudi
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="friend-code-page">
+
+    <ion-content class="friend-referral">
+
+        <div class="referral-wrapper">
+            <ion-card class="referral-card">
+
+                <!-- Header interno -->
+                <div class="referral-header">
+                    <div class="badge">🎁 Programma Amico</div>
+                    <h1>Ottieni giorni gratis</h1>
+                    <p class="subtitle">
+                        Invita i tuoi amici su <strong>MGBET</strong> e ricevi giorni extra ogni volta che si abbonano. 💸
+                    </p>
+                </div>
+
+                <!-- Numeri chiave -->
+                <div class="stats-row">
+                    <div class="stat">
+                        <div class="value">+5</div>
+                        <div class="label">Giorni<br>per il tuo amico</div>
+                    </div>
+                    <div class="stat highlight">
+                        <div class="value">+14</div>
+                        <div class="label">Giorni<br>per te</div>
+                    </div>
+                </div>
+
+                <!-- Steps -->
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <p>Invia il tuo codice 🔗</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <p>L’amico si iscrive e acquista un abbonamento 🧾</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <p>Vi accreditiamo i giorni bonus ⏱️</p>
+                    </div>
+                </div>
+
+                <!-- Esempio -->
+                <div class="example-box">
+                    ✨ <strong>Esempio:</strong><br>
+                    Inviti <strong>2 amici</strong>?<br>
+                    Ricevi <strong>4 settimane gratis</strong>! 🙌
+                </div>
+
+                <!-- Call to action -->
+                <p class="cta-text">
+                    🚀 Condividi subito il tuo Codice Amico e inizia a accumulare giorni gratis!
+                </p>
+                <br>
+                <br>
+                <br>
+                <!-- Codice amico -->
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Il tuo Codice Amico</span>
+                    </div>
+
+                    <div class="code-row">
+                        <ion-input
+                                class="code-input"
+                                [value]="friendCode"
+                                readonly
+                        ></ion-input>
+
+                        <ion-button
+                                class="copy-btn"
+                                color="success"
+                                size="small"
+                                (click)="copyCode()"
+                        >
+                            <ion-icon name="copy-outline" slot="center"></ion-icon>
+                            Copia
+                        </ion-button>
+                    </div>
+                </div>
+
+            </ion-card>
+        </div>
+
+    </ion-content>

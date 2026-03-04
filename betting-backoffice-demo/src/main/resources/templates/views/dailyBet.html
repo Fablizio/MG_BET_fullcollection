@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:include="fragment/header"/>
+    <br><br>
+
+    <div class="row" th:if="${dailyBet == null}">
+        <div class="col-md-6">
+            <form action="#" class="form-horizontal"
+                  th:action="@{/web/dailyBet/initial}"
+                  method="get">
+                <input type="number" th:name="rows">
+                <button type="submit">Inizializza</button>
+            </form>
+
+        </div>
+    </div>
+    <br><br>
+
+    <div class="row" th:if="${bets != null}">
+        <div class="col-md-6">
+            <form action="#" class="form-horizontal"
+                  th:action="@{/web/dailyBet}"
+                  th:object="${bets}"
+                  method="post">
+                <fieldset>
+					<span class="pull-right">
+						    <input type="submit" id="submitButton" class="btn btn-success" th:value="Save">
+						    <input type="reset" id="resetButton" class="btn btn-danger" th:value="Reset"/>
+					</span>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th> Squadre</th>
+                            <th> Data Evento</th>
+                            <th> Prediction</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="dailyBet, itemStat : *{odds}">
+                            <td><input th:placeholder="Title + ' ' + ${itemStat.count}"
+                                       th:field="*{odds[__${itemStat.index}__].team}" required/></td>
+                            <td><input th:placeholder="Author + ' ' + ${itemStat.count}"
+                                       th:field="*{odds[__${itemStat.index}__].dataEvent}" th:id="'id'+ ${itemStat.index}" required/>
+                                <script>$('#+${itemStat.index}').datepicker({dateFormat: "yy-mm-dd"});</script>
+                            </td>
+
+
+
+                            <td><input th:placeholder="Author + ' ' + ${itemStat.count}"
+                                       th:field="*{odds[__${itemStat.index}__].prediction}" required/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

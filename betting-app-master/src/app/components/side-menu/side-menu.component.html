@@ -1,0 +1,4 @@
+<div class="backdrop" *ngIf="visible" (click)="close()"></div>
+<div class="side-menu" *ngIf="visible" [@slideInOut]>
+    <ng-content></ng-content>
+</div>

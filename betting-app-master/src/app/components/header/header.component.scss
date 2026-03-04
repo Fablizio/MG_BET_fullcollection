@@ -1,0 +1,90 @@
+:host {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-accent: #38bdf8;
+  --mg-border-subtle: rgba(148, 163, 184, 0.4);
+  --mg-text-main: #e5e7eb;
+  --mg-text-muted: #9ca3af;
+}
+
+.mg-header {
+  --background: transparent;
+  background: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+.mg-toolbar {
+  --background: linear-gradient(
+                  135deg,
+                  rgba(15, 23, 42, 0.98),
+                  rgba(30, 64, 175, 0.9)
+  );
+  --color: var(--mg-text-main);
+  --min-height: 60px;
+  --border-width: 0;
+
+  padding-inline-start: 12px;
+  padding-inline-end: 12px;
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.95);
+}
+
+/* brand a sinistra */
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand .logo {
+  height: 32px;
+  width: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.9));
+}
+
+.brand-name {
+  margin-left: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f9fafb;
+}
+
+/* ion-title passato via ng-content */
+.mg-toolbar ::ng-deep ion-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* linea blu sotto header */
+.mg-header::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+                  90deg,
+                  transparent,
+                  var(--mg-accent),
+                  transparent
+  );
+  opacity: 0.95;
+}
+
+/* mobile piccoli */
+@media (max-width: 360px) {
+  .brand-name {
+    display: none;
+  }
+
+  .brand .logo {
+    height: 30px;
+  }
+}

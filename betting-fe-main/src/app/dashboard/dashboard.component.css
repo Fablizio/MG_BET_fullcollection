@@ -1,0 +1,343 @@
+:root {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.45);
+  --mg-accent: #facc15;
+}
+
+/* LAYOUT PAGINA */
+.mg-stats-page {
+  padding: 1.5rem 0 2.5rem;
+}
+
+/* HEADER */
+.mg-header-row {
+  margin-bottom: 1.25rem;
+}
+
+.mg-page-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(153, 158, 182, 0.95);
+  border: 1px solid rgba(250, 204, 21, 0.6);
+  color: var(--mg-accent);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.mg-page-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #f9fafb;
+}
+
+.mg-page-subtitle {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 0;
+}
+
+/* TOGGLE VIEW MODE */
+.mg-view-toggle {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 999px;
+  padding: 0.15rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.65);
+}
+
+.mg-toggle-btn {
+  border-radius: 999px !important;
+  padding: 0.4rem 1.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  color: #e5e7eb;
+  background: transparent;
+  position: relative;
+}
+
+.mg-toggle-btn .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  margin-right: 0.4rem;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: transparent;
+}
+
+.mg-toggle-btn.active .dot {
+  background: var(--mg-accent);
+  border-color: var(--mg-accent);
+}
+
+.mg-toggle-btn.active {
+  background: rgba(15, 23, 42, 0.95);
+  color: #fef3c7;
+}
+
+/* KPI CARDS */
+.mg-kpi-card {
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.7);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #e5e7eb;
+}
+
+.mg-kpi-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+  margin-bottom: 0.15rem;
+}
+
+.mg-kpi-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fefce8;
+}
+
+.mg-kpi-footer {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.15rem;
+}
+
+.mg-text-success {
+  color: #4ade80 !important;
+}
+
+.mg-text-danger {
+  color: #fb7185 !important;
+}
+
+.mg-text-info {
+  color: #38bdf8 !important;
+}
+
+/* CARDS PRINCIPALI */
+.mg-stats-card {
+  background: rgba(15, 23, 42, 0.97);
+  border-radius: 20px;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.8);
+  color: #e5e7eb;
+  overflow: hidden;
+  position: relative;
+}
+
+.mg-stats-card::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at top center,
+  rgba(250, 204, 21, 0.08),
+  transparent 60%);
+  pointer-events: none;
+}
+
+.mg-stats-card-header {
+  position: relative;
+  padding: 0.95rem 1.5rem 0.3rem;
+}
+
+.mg-card-kicker {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+}
+
+.mg-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #f9fafb;
+}
+
+.mg-stats-card-body {
+  position: relative;
+  padding: 0.7rem 1.4rem 1.2rem;
+}
+
+/* CHARTS */
+.mg-chart-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+  margin-bottom: 0.35rem;
+}
+
+.mg-chart-container {
+  width: 100%;
+  height: 320px;
+}
+
+.mg-chart-wide {
+  height: 380px;
+}
+
+.mg-divider {
+  border-top-color: rgba(55, 65, 81, 0.9);
+}
+
+/* FORM / SELECT */
+.mg-form-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+  display: block;
+}
+
+.mg-select {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.96);
+  color: #e5e7eb;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.mg-select:disabled {
+  opacity: 0.6;
+}
+
+.mg-select:focus {
+  outline: none;
+  border-color: var(--mg-accent);
+  box-shadow: 0 0 0 0.1rem rgba(250, 204, 21, 0.25);
+}
+
+/* CAMPIONATO SUMMARY */
+.mg-camp-summary {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 14px;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--mg-border-subtle);
+  font-size: 0.8rem;
+}
+
+.mg-camp-summary .summary-title {
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #f9fafb;
+}
+
+.mg-camp-summary .summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.1rem;
+}
+
+.mg-camp-summary .summary-row span:first-child {
+  color: #9ca3af;
+}
+
+/* HELP TEXT */
+.mg-helper-text {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+/* ACCORDION */
+.mg-accordion {
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+  margin-top: 0.5rem;
+}
+
+.mg-accordion-item {
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+  padding: 0.35rem 0;
+}
+
+.mg-accordion-header {
+  margin: 0;
+}
+
+.mg-accordion-toggle {
+  width: 100%;
+  padding: 0.45rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e5e7eb;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mg-accordion-toggle:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.mg-accordion-toggle:focus {
+  box-shadow: none;
+}
+
+.mg-accordion-toggle i {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.mg-accordion-body {
+  padding-top: 0.3rem;
+}
+
+/* MINI TABLE */
+.mg-mini-table {
+  font-size: 0.78rem;
+  color: #e5e7eb;
+}
+
+.mg-mini-table thead th {
+  border-bottom-color: rgba(55, 65, 81, 0.95);
+  color: #9ca3af;
+}
+
+.mg-mini-table tbody td {
+  border-top-color: rgba(31, 41, 55, 0.95);
+}
+
+/* RESPONSIVE */
+@media (max-width: 767.98px) {
+  .mg-page-title {
+    font-size: 1.4rem;
+  }
+
+  .mg-chart-container {
+    height: 260px;
+  }
+
+  .mg-stats-card-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mg-stats-card-header {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  .mg-view-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

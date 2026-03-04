@@ -1,0 +1,261 @@
+:root {
+  --mg-bg: #020617;
+  --mg-panel: #020617;
+  --mg-border-subtle: rgba(148, 163, 184, 0.45);
+  --mg-accent: #facc15;
+}
+
+/* SFONDO FULLSCREEN */
+
+
+.mg-login-page {
+  position: fixed;          /* prende tutto lo schermo, indipendente dal resto */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center !important;     /* centro verticale */
+  justify-content: center !important; /* centro orizzontale */
+
+  padding: 1.5rem;
+  z-index: 1;               /* sopra lo sfondo, sotto eventuali loader */
+}
+
+
+/* CARD LOGIN */
+.mg-login-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 22px;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.9);
+  padding: 3.5rem 1.8rem 1.6rem;   /* più spazio sotto il logo */
+  color: #e5e7eb;
+  position: relative;
+  overflow: visible;               /* 🔥 importante: il logo può uscire sopra */
+}
+
+
+.mg-login-card::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+}
+
+/* HEADER + LOGO */
+.mg-login-header {
+  position: relative;
+  margin-bottom: 1.4rem;
+}
+
+.mg-logo-wrap {
+  width: 160px;
+  height: 160px;
+  margin: -110px auto 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mg-logo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mg-login-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: #f9fafb;
+}
+
+.mg-login-subtitle {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 0;
+}
+
+/* FORM */
+.mg-login-form {
+  position: relative;
+  margin-top: 0.6rem;
+}
+
+/* LABEL + INPUT */
+.mg-input-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+  margin-bottom: 0.25rem;
+}
+
+.mg-input-wrapper {
+  position: relative;
+}
+
+.mg-input-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.85rem;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.mg-input {
+  padding-left: 2.2rem;
+  border-radius: 999px;
+  min-height: 42px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  color: #e5e7eb;
+  box-shadow: none !important;
+}
+
+.mg-input::placeholder {
+  color: #6b7280;
+}
+
+.mg-input:focus {
+  border-color: var(--mg-accent);
+  box-shadow: 0 0 0 0.08rem rgba(250, 204, 21, 0.4) !important;
+  background: rgba(15, 23, 42, 0.96);
+}
+
+/* ALERT ERRORE */
+.mg-alert-error {
+  background: rgba(248, 113, 113, 0.1);
+  border-color: rgba(248, 113, 113, 0.75);
+  color: #fecaca;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* BOTTONI */
+.mg-btn-primary,
+.mg-btn-secondary {
+  border-radius: 999px;
+  min-height: 42px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+}
+
+.mg-btn-primary {
+  background: linear-gradient(135deg, #facc15, #eab308);
+  color: #111827;
+  box-shadow: 0 16px 30px rgba(250, 204, 21, 0.4);
+}
+
+.mg-btn-primary:disabled {
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.mg-btn-primary:hover:not(:disabled),
+.mg-btn-primary:focus:not(:disabled) {
+  background: linear-gradient(135deg, #fde047, #facc15);
+  color: #111827;
+}
+
+.mg-btn-secondary {
+  background: rgba(15, 23, 42, 0.98);
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.9);
+}
+
+.mg-btn-secondary:hover,
+.mg-btn-secondary:focus {
+  background: rgba(31, 41, 55, 1);
+}
+
+/* SOCIAL */
+.hint-text {
+  font-size: 0.86rem;
+  color: #9ca3af;
+}
+
+.social-btn .btn {
+  color: #fff;
+  margin: 10px 0 0 30px;
+  font-size: 15px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-weight: normal;
+  border: none;
+  transition: all 0.4s;
+}
+
+.social-btn .btn:first-child {
+  margin-left: 0;
+}
+
+.social-btn .btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* Facebook */
+.social-btn .btn-primary {
+  background: #507cc0;
+}
+
+/* Telegram */
+.social-btn .btn-info {
+  background: #282d32;
+}
+
+/* Instagram */
+.social-btn .btn-danger {
+  background: #f09433;
+  background: -moz-linear-gradient(45deg,
+  #f09433 0%,
+  #e6683c 25%,
+  #dc2743 50%,
+  #cc2366 75%,
+  #bc1888 100%);
+  background: -webkit-linear-gradient(45deg,
+  #f09433 0%,
+  #e6683c 25%,
+  #dc2743 50%,
+  #cc2366 75%,
+  #bc1888 100%);
+  background: linear-gradient(45deg,
+  #f09433 0%,
+  #e6683c 25%,
+  #dc2743 50%,
+  #cc2366 75%,
+  #bc1888 100%);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .mg-login-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .mg-login-card {
+    padding: 1.6rem 1.3rem 1.4rem;
+  }
+
+  .mg-logo-wrap {
+    width: 140px;
+    height: 140px;
+    margin-top: -95px;
+  }
+}
+
+/* (vecchie classi mantenute per compatibilità, ma non più usate)
+.login-form { width: 350px; margin: 0 auto; }
+*/

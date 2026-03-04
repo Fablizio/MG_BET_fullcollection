@@ -1,0 +1,147 @@
+/* Layout di base */
+.mg-sidenav {
+  height: 100vh;
+  width: 240px;
+  position: fixed;
+  top: 72px;           /* altezza della navbar */
+  left: 0;
+  background: radial-gradient(circle at top left, #111827 0, #020617 65%);
+  border-right: 1px solid rgba(148, 163, 184, 0.25);
+  overflow-y: auto;
+  padding: 0.75rem 0.75rem 1.5rem;
+  z-index: 999;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.45);
+}
+
+/* Sezioni */
+.mg-sidenav-section {
+  margin-bottom: 0.75rem;
+  padding: 0.35rem 0.25rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.mg-sidenav-section:hover {
+  border-color: rgba(148, 163, 184, 0.6);
+}
+
+/* Header sezione */
+.mg-sidenav-header {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  color: #e5e7eb;
+}
+
+.mg-sidenav-header:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Icona sezione */
+.mg-section-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.5);
+}
+
+.mg-section-icon i {
+  font-size: 0.9rem;
+  color: var(--mg-accent);
+}
+
+.mg-section-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+/* Chevron */
+.mg-chevron {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  transition: transform 0.2s ease;
+}
+
+/* Link dentro la sezione */
+.mg-sidenav-link {
+  display: block;
+  padding: 0.35rem 0.9rem 0.35rem 2.9rem;
+  font-size: 0.82rem;
+  color: #d1d5db;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.mg-sidenav-link::before {
+  content: "";
+  position: absolute;
+  left: 1.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.7);
+}
+
+.mg-sidenav-link:hover {
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* Toggler mobile */
+.mg-side-toggler {
+  position: fixed;
+  top: 80px;
+  left: 0.5rem;
+  z-index: 9998;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #111827, #020617);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.mg-side-toggler span {
+  font-size: 0.9rem;
+  color: var(--mg-accent);
+}
+
+/* Nasconde completamente su desktop se non serve */
+@media (min-width: 992px) {
+  .mg-side-toggler {
+    display: none;
+  }
+}
+
+/* Su mobile riduci larghezza */
+@media (max-width: 991.98px) {
+  .mg-sidenav {
+    width: 75%;
+    max-width: 280px;
+    top: 70px;
+  }
+}

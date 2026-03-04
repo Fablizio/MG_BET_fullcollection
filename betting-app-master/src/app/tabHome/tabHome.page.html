@@ -1,0 +1,67 @@
+<app-header>
+    <ion-title>
+        Home
+    </ion-title>
+</app-header>
+
+<ion-content class="home-content">
+    <div class="home-inner ion-padding">
+
+        <!-- 🔹 Singola -->
+        <app-card-eventi
+                [title]="'Singola'"
+                [eventi]="singleMatch">
+        </app-card-eventi>
+
+        <!-- 🔹 Doppia -->
+        <app-card-eventi
+                [title]="'Doppia'"
+                [eventi]="twoMatchs">
+        </app-card-eventi>
+
+        <!-- 🔹 Schedina casuale -->
+        <app-card-eventi
+                [title]="'Schedina casuale'"
+                [eventi]="schedinaRandom">
+
+            <ion-button
+                    class="dice-btn"
+                    expand="block"
+                    (click)="generaSchedina()">
+                🎲 Genera nuova schedina
+            </ion-button>
+
+        </app-card-eventi>
+
+        <ion-card class="disclaimer-card">
+            <ion-card-content>
+
+                <div class="disc-header">
+                    <div class="disc-icon">
+                        <ion-icon name="warning-outline"></ion-icon>
+                    </div>
+                    <div class="disc-text">
+                        <div class="disc-kicker">Gioca responsabilmente</div>
+                        <div class="disc-title">Disclaimer</div>
+                    </div>
+                </div>
+
+                <div class="disc-body">
+                    <p>
+                        Le informazioni fornite da questa applicazione hanno esclusivamente
+                        scopo informativo e statistico. Non costituiscono in alcun modo un
+                        invito al gioco, alla scommessa o alla partecipazione ad attività di
+                        gioco d’azzardo.
+                    </p>
+                    <p>
+                        Nessuna garanzia è offerta circa l’esattezza o l’esito delle previsioni.
+                        Gioca sempre in modo responsabile.
+                    </p>
+                </div>
+
+            </ion-card-content>
+        </ion-card>
+
+
+    </div>
+</ion-content>

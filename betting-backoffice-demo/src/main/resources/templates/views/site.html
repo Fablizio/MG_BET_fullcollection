@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:include="fragment/header"/>
+
+    <div class="my-3 d-flex justify-content-between align-items-center">
+        <h4>Siti</h4>
+        <a class="btn btn-primary" th:href="@{/web/site/insert}">Inserisci Sito</a>
+        <a class="btn btn-primary" th:href="@{/web/site/required}">Richiedi lista siti</a>
+    </div>
+
+    <table id="main-table" class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Territorio</th>
+            <th>Campionato</th>
+            <th>Site</th>
+            <th>Attivo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="site : ${siteList}">
+            <td th:text="${site.id}"></td>
+            <td th:text="${site.territorio}"></td>
+            <td th:text="${site.campionato}"></td>
+            <td th:text="${site.site}"></td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" th:if="${site.attivo.equals('1')}" checked th:data-siteid="${site.id}" class="switchSite">
+                    <input type="checkbox" th:if="${!site.attivo.equals('1')}" th:data-siteid="${site.id}" class="switchSite">
+                    <span class="slider round"></span>
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <script>
+        $(".switchSite").change(function () {
+            var siteId = $(this).data("siteid");
+            var state = $(this).prop("checked") ? "1" : "0";
+
+            $.post("/web/site/changeState", {
+                idSite: siteId,
+                state: state
+            });
+        })
+    </script>
+</div>
+</body>
+</html>

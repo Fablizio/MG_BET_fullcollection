@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+
+  application:
+    build: .
+    networks:
+      - bettingrepository_default
+    image: betting-batch
+    container_name: betting-batch
+    ports:
+      - 127.0.0.1:30012:8080
+    environment:
+      - MYSQL_URI=jdbc:mysql://betting-mysql-prod:3306/betting
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - URL_BOT=http://betting-bot:3000/api/dailydoubling
+
+networks:
+   bettingrepository_default:

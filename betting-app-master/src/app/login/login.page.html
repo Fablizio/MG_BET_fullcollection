@@ -1,0 +1,54 @@
+<app-spinner *ngIf="loading"></app-spinner>
+
+<ion-content class="login-page ion-no-padding">
+    <div class="login-bg"></div>
+
+    <div class="login-wrapper">
+
+        <!-- LOGO SENZA SFONDO BIANCO -->
+        <div class="logo-wrapper">
+            <img src="assets/MGBET.png" alt="MG BET" class="logo" />
+        </div>
+
+        <!-- CARD SOLO PER IL FORM -->
+        <ion-card class="login-card">
+            <ion-card-content>
+                <form (submit)="login()">
+                    <ion-item lines="none" class="mg-input">
+                        <ion-label position="stacked">Codice accesso</ion-label>
+                        <ion-input
+                                [(ngModel)]="code"
+                                name="code"
+                                placeholder="Inserisci il tuo codice"
+                                [autofocus]="true">
+                        </ion-input>
+                    </ion-item>
+
+
+                    <ion-button
+                            class="btn-primary"
+                            expand="block"
+                            type="submit">
+                        Accedi
+                    </ion-button>
+
+                    <ion-button
+                            class="btn-secondary"
+                            expand="block"
+                            fill="outline"
+                            (click)="presentModalPayment(true)">
+                        Rinnova abbonamento
+                    </ion-button>
+                </form>
+            </ion-card-content>
+        </ion-card>
+
+        <app-socials></app-socials>
+    </div>
+</ion-content>
+
+<ion-footer class="login-footer ion-padding">
+    <ion-button expand="block" fill="clear" class="info-btn" (click)="presentModalInfo()">
+        Info &amp; supporto
+    </ion-button>
+</ion-footer>

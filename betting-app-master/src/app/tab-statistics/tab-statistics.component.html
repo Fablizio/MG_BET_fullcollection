@@ -1,0 +1,121 @@
+<app-header>
+    <ion-title>
+        Statistiche
+    </ion-title>
+</app-header>
+
+<ion-content class="stats-content">
+    <div class="stats-inner">
+
+        <!-- ========== STATISTICHE TOTALI ========== -->
+        <ion-card class="mg-stats-card">
+            <ion-card-header class="mg-stats-card__header">
+                <div class="mg-stats-header-main">
+                    <div class="mg-kicker">Overview</div>
+                    <div class="mg-title">Statistiche totali</div>
+                </div>
+
+                <div class="mg-summary-pill" *ngIf="totMatch">
+                    <span class="mg-summary-label">Win rate</span>
+                    <span class="mg-summary-value">
+            {{
+                            ((totMatch?.win + totMatch?.lose)
+                                ? (totMatch?.win * 100 / (totMatch?.win + totMatch?.lose))
+                                : 0) | number:'1.0-1'
+                        }}%
+          </span>
+                </div>
+            </ion-card-header>
+
+            <ion-card-content class="mg-stats-card__content">
+                <div class="mg-chart-row">
+                    <!-- 🔹 il grafico esiste SEMPRE -->
+                    <div id="pieChart3d" class="stats-chart"></div>
+
+                    <!-- metrica solo quando caricato -->
+                    <div class="mg-metrics-col" *ngIf="totMatch">
+                        <div class="mg-metric">
+                            <div class="mg-metric-label">Totale partite</div>
+                            <div class="mg-metric-value">
+                                {{ totMatch?.win + totMatch?.lose }}
+                            </div>
+                        </div>
+
+                        <div class="mg-metric mg-metric--win">
+                            <div class="mg-metric-label">Vinte</div>
+                            <div class="mg-metric-value">
+                                {{ totMatch?.win }}
+                            </div>
+                        </div>
+
+                        <div class="mg-metric mg-metric--loss">
+                            <div class="mg-metric-label">Perse</div>
+                            <div class="mg-metric-value">
+                                {{ totMatch?.lose }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <!-- ========== STATISTICHE RADDOPPI ========== -->
+        <ion-card class="mg-stats-card">
+            <ion-card-header class="mg-stats-card__header">
+                <div class="mg-stats-header-main">
+                    <div class="mg-kicker">Raddoppi</div>
+                    <div class="mg-title">Statistiche raddoppi</div>
+                </div>
+
+                <div class="mg-summary-pill" *ngIf="totDoubling">
+                    <span class="mg-summary-label">Win rate</span>
+                    <span class="mg-summary-value">
+            {{
+                            ((totDoubling?.win + totDoubling?.lose)
+                                ? (totDoubling?.win * 100 / (totDoubling?.win + totDoubling?.lose))
+                                : 0) | number:'1.0-1'
+                        }}%
+          </span>
+                </div>
+            </ion-card-header>
+
+            <ion-card-content class="mg-stats-card__content">
+                <div class="mg-chart-row">
+                    <!-- 🔹 anche questo esiste sempre -->
+                    <div id="pieChart3dRaddoppi" class="stats-chart"></div>
+
+                    <div class="mg-metrics-col" *ngIf="totDoubling">
+                        <div class="mg-metric">
+                            <div class="mg-metric-label">Totale raddoppi</div>
+                            <div class="mg-metric-value">
+                                {{ totDoubling?.win + totDoubling?.lose }}
+                            </div>
+                        </div>
+
+                        <div class="mg-metric mg-metric--win">
+                            <div class="mg-metric-label">Vinti</div>
+                            <div class="mg-metric-value">
+                                {{ totDoubling?.win }}
+                            </div>
+                        </div>
+
+                        <div class="mg-metric mg-metric--loss">
+                            <div class="mg-metric-label">Persi</div>
+                            <div class="mg-metric-value">
+                                {{ totDoubling?.lose }}
+                            </div>
+                        </div>
+
+                        <div class="mg-metric mg-metric--quote">
+                            <div class="mg-metric-label">Quota media vinti</div>
+                            <div class="mg-metric-value">
+                                {{ totDoubling?.avgQuote | number:'1.2-2' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+    </div>
+</ion-content>

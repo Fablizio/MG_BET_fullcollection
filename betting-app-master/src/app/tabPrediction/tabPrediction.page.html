@@ -1,0 +1,21 @@
+<app-header>
+    <ion-title>
+        Predictions
+    </ion-title>
+
+    <ion-buttons slot="end">
+        <ion-button (click)="sideMenu.open()">
+            Campionati
+            <ion-icon slot="end" name="menu"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</app-header>
+
+<app-side-menu #sideMenu>
+    <app-menu-nazioni (onClick)="fetchPrediction($event)" (onClose)="sideMenu.close()"></app-menu-nazioni>
+</app-side-menu>
+
+<ion-content>
+    <app-card-odds *ngIf="loaded" [campionato]="campionato" [odds]="odds"></app-card-odds>
+    <app-card-odds-skeleton *ngIf="!loaded"></app-card-odds-skeleton>
+</ion-content>

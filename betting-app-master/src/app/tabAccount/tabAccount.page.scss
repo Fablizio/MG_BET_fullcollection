@@ -1,0 +1,209 @@
+:host {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.4);
+  --mg-accent: #38bdf8;
+  --mg-accent-strong: #0ea5e9;
+  --mg-accent-soft: rgba(56, 189, 248, 0.16);
+  --mg-text-main: #e5e7eb;
+  --mg-text-muted: #9ca3af;
+}
+
+/* SFONDO */
+.account-content {
+  --background: transparent;
+  background:
+          radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.22), transparent 55%),
+          radial-gradient(circle at 90% 100%, rgba(30, 64, 175, 0.28), transparent 55%),
+          linear-gradient(135deg, #020617 0%, #020617 45%, #111827 100%);
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.account-inner {
+  padding: 12px 10px 24px;
+}
+
+/* BOTTONCINO SEGNALAZIONI NELL’HEADER */
+.report-btn {
+  --color: #e5e7eb;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  font-size: 0.8rem;
+}
+
+/* ========== CARD ACCOUNT ========== */
+
+.account-card {
+  border-radius: 20px;
+  --background: transparent;
+  background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.32), transparent 55%),
+          rgba(15, 23, 42, 0.98);
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+}
+
+/* HEADER CARD */
+.account-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: linear-gradient(
+                  90deg,
+                  rgba(15, 23, 42, 0.98),
+                  rgba(30, 64, 175, 0.9)
+  );
+}
+
+.account-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #e5e7eb, var(--mg-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.95);
+  margin-right: 10px;
+}
+
+.account-avatar ion-icon {
+  font-size: 26px;
+  color: #020617;
+}
+
+.account-header-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-nickname {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.account-username {
+  font-size: 0.8rem;
+  color: var(--mg-text-muted);
+}
+
+.account-header-meta {
+  text-align: right;
+  font-size: 0.72rem;
+}
+
+.meta-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mg-text-muted);
+}
+
+.meta-code {
+  font-weight: 600;
+  color: var(--mg-accent);
+  margin-top: 2px;
+}
+
+.meta-expire {
+  margin-top: 2px;
+  color: var(--mg-text-muted);
+}
+
+.meta-expire span {
+  color: #e5e7eb;
+}
+
+/* CONTENUTO */
+.account-card__content {
+  padding: 10px 10px 14px;
+}
+
+/* SEZIONI */
+.account-section {
+  margin-top: 10px;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--mg-text-muted);
+  margin-bottom: 4px;
+}
+
+/* ION-ITEM STILE “PANNELLO” */
+.account-item {
+  --background: rgba(15, 23, 42, 0.96);
+  --inner-padding-end: 0;
+  --padding-start: 6px;
+  border-radius: 14px;
+  margin-top: 4px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(31, 41, 55, 1);
+}
+
+.account-item + .account-item {
+  margin-top: 8px;
+}
+
+.account-item ion-icon[slot="start"] {
+  font-size: 20px;
+  color: var(--mg-accent);
+}
+
+.account-item ion-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mg-text-muted);
+}
+
+.account-item ion-input {
+  font-size: 0.85rem;
+  color: var(--mg-text-main);
+}
+
+/* bottoni all’interno degli item */
+.account-item ion-button {
+  --border-radius: 999px;
+  --background: linear-gradient(
+                  135deg,
+                  var(--mg-accent-strong),
+                  var(--mg-accent)
+  );
+  --color: #020617;
+  font-size: 0.78rem;
+}
+
+/* FOOTER / LOGOUT */
+.account-footer {
+  --background: transparent;
+  background: transparent;
+}
+
+.logout-btn {
+  --border-radius: 999px;
+  --background: linear-gradient(135deg, #ef4444, #b91c1c);
+  --box-shadow: 0 18px 40px rgba(0, 0, 0, 0.95);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* mobile piccoli */
+@media (max-width: 360px) {
+  .account-card__header {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .account-header-meta {
+    width: 100%;
+    text-align: left;
+    margin-top: 4px;
+  }
+}

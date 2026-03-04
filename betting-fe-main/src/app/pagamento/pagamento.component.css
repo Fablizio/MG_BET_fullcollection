@@ -1,0 +1,293 @@
+:root {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.45);
+  --mg-accent: #facc15;
+}
+
+/* Layout pagina */
+.mg-pay-page {
+  padding: 1.5rem 0 2.5rem;
+}
+
+/* Card principale */
+.mg-pay-card {
+  background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+  border-radius: 20px;
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.85);
+  color: #e5e7eb;
+  position: relative;
+  overflow: hidden;
+}
+
+.mg-pay-card::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at top center,
+  rgba(250, 204, 21, 0.08),
+  transparent 60%);
+  pointer-events: none;
+}
+
+/* HEADER */
+.mg-pay-header {
+  position: relative;
+  padding: 1rem 1.6rem 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.mg-pay-title-block {
+  max-width: 70%;
+}
+
+.mg-pay-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(250, 204, 21, 0.6);
+  color: var(--mg-accent);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+
+.mg-pay-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #f9fafb;
+}
+
+.mg-pay-subtitle {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 0;
+}
+
+.mg-pay-step-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.mg-pay-step-indicator {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-bottom: 0.4rem;
+}
+
+.mg-back-btn {
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.78rem;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.98);
+  color: #e5e7eb;
+}
+
+.mg-back-btn:hover {
+  background: rgba(31, 41, 55, 1);
+}
+
+/* Divider */
+.mg-divider {
+  border-top-color: rgba(55, 65, 81, 0.9);
+  margin: 0.4rem 0 0;
+}
+
+/* BODY */
+.mg-pay-body {
+  position: relative;
+  padding: 0.8rem 1.6rem 1.4rem;
+}
+
+/* ALERT INFO */
+.mg-pay-alert {
+  display: flex;
+  align-items: flex-start;
+  background: rgba(59, 130, 246, 0.12);
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.7);
+  padding: 0.7rem 0.9rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.mg-pay-alert-icon {
+  margin-right: 0.6rem;
+  font-size: 1.2rem;
+  color: #bfdbfe;
+  flex-shrink: 0;
+}
+
+.mg-pay-alert-content a {
+  color: #bfdbfe;
+  text-decoration: underline;
+}
+
+/* SEZIONE PIANO */
+.mg-plan-section {
+  margin-top: 0.5rem;
+}
+
+.mg-plan-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+  margin-bottom: 0.6rem;
+}
+
+.mg-plan-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* CARD PIANO */
+.paypal-link {
+  text-decoration: none;
+}
+
+.paypal-link:hover {
+  text-decoration: none;
+}
+
+.mg-plan-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background: rgba(15, 23, 42, 0.96);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  padding: 0.9rem 1rem;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.8);
+  color: #e5e7eb;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.mg-plan-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--mg-accent);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.95);
+}
+
+.mg-plan-main {
+  flex: 1 1 auto;
+  padding-right: 0.8rem;
+}
+
+.mg-plan-price-row {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.25rem;
+}
+
+.mg-plan-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fef9c3;
+  margin-right: 0.6rem;
+}
+
+.mg-plan-duration {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.mg-plan-desc {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.mg-plan-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.mg-plan-badge {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  color: #e5e7eb;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mg-plan-img {
+  max-height: 30px;
+  margin-top: 0.4rem;
+}
+
+/* BOTTONI AZIONI */
+.mg-pay-actions {
+  margin-top: 1.4rem;
+}
+
+.mg-secondary-btn {
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.96);
+  color: #e5e7eb;
+}
+
+.mg-secondary-btn:hover {
+  background: rgba(31, 41, 55, 1);
+}
+
+/* CLASSI ESISTENTI (per compatibilità) */
+.iHaveACode {
+  width: 225px;
+}
+
+.step {
+  width: 100px;
+  height: 100px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .mg-pay-title-block {
+    max-width: 100%;
+  }
+
+  .mg-pay-header {
+    padding: 0.9rem 1.1rem 0.3rem;
+  }
+
+  .mg-pay-body {
+    padding: 0.8rem 1.1rem 1.2rem;
+  }
+
+  .mg-plan-card {
+    flex-direction: column;
+  }
+
+  .mg-plan-right {
+    align-items: flex-start;
+    margin-top: 0.6rem;
+  }
+
+  .paypal-link img,
+  .mg-plan-img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+  }
+}

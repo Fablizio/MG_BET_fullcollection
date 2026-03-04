@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:include="fragment/header"/>
+    <div class="my-3 d-flex justify-content-between align-items-center">
+        <h5>Gestione Raddoppi</h5>
+        <br>
+        SINGLE MATCH
+        <label class="switch">
+            <input type="checkbox" th:if="${status.isActiveSingleMatch()}" checked th:value="SINGLE_MATCH" class="switchSite">
+            <input type="checkbox" th:if="${!status.isActiveSingleMatch()}" th:value="SINGLE_MATCH" class="switchSite">
+            <span class="slider round"></span>
+        </label>
+        <br>
+        DOPPIA
+        <label class="switch">
+            <input type="checkbox" th:if="${status.isActiveTwoMatch()}" checked  th:value="TWO_MATCHES" class="switchSite">
+            <input type="checkbox" th:if="${!status.isActiveTwoMatch()}" th:value="TWO_MATCHES"  class="switchSite">
+            <span class="slider round"></span>
+        </label>
+        <br>
+        DOPPIA CHANCE
+        <label class="switch">
+            <input type="checkbox" th:if="${status.isActiveDoublingChanceMatch()}" checked th:value="DOUBLING_CHANCE_MATCH" class="switchSite">
+            <input type="checkbox" th:if="${!status.isActiveDoublingChanceMatch()}" th:value="DOUBLING_CHANCE_MATCH" class="switchSite">
+            <span class="slider round"></span>
+        </label>
+
+        <script>
+            $(".switchSite").change(function () {
+                var doublingId = $(this).val();
+                var state = $(this).prop("checked") ? true : false;
+
+                $.post("../web/raddoppio", {
+                    doubling: doublingId,
+                    active: state
+                });
+            })
+        </script>
+
+    </div>
+
+
+</body>
+</html>

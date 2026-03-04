@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+</head>
+<body>
+<div class="container-fluid">
+
+    <!-- Header comune -->
+    <th:block th:include="fragment/header"/>
+
+    <!-- Info utente -->
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <h3 class="mb-1">
+                    Dettaglio Utente
+                </h3>
+                <div class="text-muted">
+                    <span>ID:&nbsp;</span><span th:text="${user.id}">1</span> ·
+                    <span>Nickname:&nbsp;</span><strong th:text="${user.nickname}">nickname</strong>
+                    <span th:if="${user.code != null}" class="d-inline-flex align-items-center">
+    &nbsp;· Codice:&nbsp;<code th:text="${user.code}">ABC123</code>
+
+                        <!-- Bottone AGGIUNGI GIORNI -->
+    <a class="btn btn-sm btn-outline-primary ms-2"
+       th:href="@{'/web/rinnovatoCodice/' + ${user.id}}">
+        AGGIUNGI GIORNI
+    </a>
+</span>
+
+                </div>
+            </div>
+
+            <div class="mt-2 mt-sm-0">
+                <!-- Esempio di azione/navigazione; aggiorna gli href secondo la tua app -->
+                <a class="btn btn-outline-secondary me-2" th:href="@{/web/users}">Torna alla lista</a>
+                <a class="btn btn-primary" th:href="@{'/rinnovaCodice/' + ${user.id}}">Ricarica</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Galleria immagini pagamenti -->
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-3">Pagamenti / Documenti</h4>
+            <span class="text-muted" th:text="${#lists.size(user.paymentsData)} + ' elemento/i'">0 elemento/i</span>
+        </div>
+
+        <!-- Nessuna immagine -->
+        <div class="alert alert-info" role="alert"
+             th:if="${user.paymentsData == null or #lists.isEmpty(user.paymentsData)}">
+            Nessuna immagine disponibile per questo utente.
+        </div>
+
+        <!-- Griglia immagini -->
+        <div class="row g-3" th:if="${user.paymentsData != null and !#lists.isEmpty(user.paymentsData)}">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+                 th:each="pd, idx : ${user.paymentsData}">
+
+                <div class="card h-100 shadow-sm">
+                    <div class="ratio ratio-1x1 bg-light">
+                        <!-- Se conosci il formato, sostituisci image/* con image/png o image/jpeg -->
+                        <img class="card-img-top object-fit-contain p-2"
+                             th:src="${'data:image/*;base64,' + pd.base64Image}"
+                             th:alt="${'Immagine pagamento #' + (idx.index + 1)}"
+                             loading="lazy">
+                    </div>
+
+                    <div class="card-body">
+                        <h6 class="card-title mb-1">
+                            <i class="bi bi-calendar3 me-1"></i>
+                            <span th:text="${pd.date}">2025-01-01</span>
+                        </h6>
+                        <p class="card-text text-muted small mb-0">
+                            Immagine <span th:text="${idx.index + 1}">1</span> di
+                            <span th:text="${#lists.size(user.paymentsData)}">N</span>
+                        </p>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <!-- Pulsante per aprire l’immagine in nuova scheda -->
+                        <a class="btn btn-sm btn-outline-primary"
+                           th:href="${'data:image/*;base64,' + pd.base64Image}"
+                           target="_blank" rel="noopener">
+                            Apri
+                        </a>
+                        <!-- Pulsante per scaricare l’immagine -->
+                        <a class="btn btn-sm btn-outline-secondary"
+                           th:attr="href=${'data:image/*;base64,' + pd.base64Image},
+                                    download=${'pagamento_' + (idx.index + 1) + '.png'}">
+                            Scarica
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer/Spazio -->
+    <div class="my-4"></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+:host {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.4);
+  --mg-accent: #38bdf8;
+  --mg-accent-strong: #0ea5e9;
+  --mg-accent-soft: rgba(56, 189, 248, 0.16);
+  --mg-text-main: #e5e7eb;
+  --mg-text-muted: #9ca3af;
+  --mg-win: #22c55e;
+  --mg-loss: #f97373;
+}
+
+/* SFONDO */
+.stats-content {
+  --background: transparent;
+  background:
+          radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.22), transparent 55%),
+          radial-gradient(circle at 90% 100%, rgba(30, 64, 175, 0.28), transparent 55%),
+          linear-gradient(135deg, #020617 0%, #020617 45%, #111827 100%);
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.stats-inner {
+  padding: 12px 10px 24px;
+}
+
+/* ========== CARD STATS ========== */
+
+.mg-stats-card {
+  margin-top: 12px;
+  border-radius: 20px;
+  --background: transparent;
+  background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.32), transparent 55%),
+          rgba(15, 23, 42, 0.98);
+  border: 1px solid var(--mg-border-subtle);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+}
+
+/* HEADER CARD */
+.mg-stats-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: linear-gradient(
+                  90deg,
+                  rgba(15, 23, 42, 0.98),
+                  rgba(30, 64, 175, 0.9)
+  );
+}
+
+.mg-stats-header-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.mg-kicker {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--mg-text-muted);
+}
+
+.mg-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+/* pill riassuntiva (win rate) */
+.mg-summary-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.mg-summary-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mg-text-muted);
+}
+
+.mg-summary-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--mg-accent);
+}
+
+/* CONTENUTO */
+.mg-stats-card__content {
+  padding: 10px 10px 12px;
+}
+
+/* grafico + metriche affiancate */
+.mg-chart-row {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+/* contenitore grafico */
+.stats-chart {
+  flex: 1 1 0;
+  min-height: 220px;
+}
+
+/* colonna metriche */
+.mg-metrics-col {
+  flex: 0 0 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* singola metrica */
+.mg-metric {
+  padding: 6px 8px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(31, 41, 55, 1);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.85);
+}
+
+.mg-metric-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mg-text-muted);
+  margin-bottom: 2px;
+}
+
+.mg-metric-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+/* colorazioni speciali */
+.mg-metric--win .mg-metric-value {
+  color: #bbf7d0;
+}
+
+.mg-metric--loss .mg-metric-value {
+  color: #fecaca;
+}
+
+.mg-metric--quote .mg-metric-value {
+  color: var(--mg-accent);
+}
+
+/* MOBILE: stack grafico + metriche in colonna */
+@media (max-width: 480px) {
+  .mg-chart-row {
+    flex-direction: column;
+  }
+
+  .mg-metrics-col {
+    flex: 1 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .mg-metric {
+    flex: 1 1 calc(50% - 4px);
+  }
+}
+
+@media (max-width: 360px) {
+  .mg-summary-pill {
+    padding: 3px 8px;
+  }
+
+  .stats-chart {
+    min-height: 200px;
+  }
+}
+.stats-chart {
+  flex: 1 1 0;
+  min-height: 220px;
+  height: 220px; /* altezza esplicita per amCharts */
+}
+

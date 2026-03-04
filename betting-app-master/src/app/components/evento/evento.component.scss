@@ -1,0 +1,147 @@
+:host {
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.4);
+  --mg-accent: #38bdf8;
+  --mg-accent-soft: rgba(56, 189, 248, 0.16);
+  --mg-text-main: #e5e7eb;
+  --mg-text-muted: #9ca3af;
+}
+
+/* Ion item “pulito” */
+.mg-event {
+  --background: transparent;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --min-height: 62px;
+  --border-color: transparent;
+  border-radius: 12px;
+}
+
+/* wrapper interno per poter posizionare l’accent */
+.mg-event-inner {
+  position: relative;
+  width: 100%;
+  padding: 8px 10px 8px 14px;
+  border-radius: 14px;
+  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
+  box-shadow:
+          0 10px 24px rgba(0, 0, 0, 0.9),
+          inset 0 0 0 1px rgba(31, 41, 55, 0.9);
+}
+
+/* linea luminosa a sinistra */
+.mg-event-accent {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+                  to bottom,
+                  rgba(56, 189, 248, 1),
+                  rgba(56, 189, 248, 0.2)
+  );
+}
+
+/* testo principale */
+.mg-event-main {
+  padding-right: 4px;
+}
+
+.mg-event-team {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--mg-text-main);
+  margin-bottom: 2px;
+}
+
+.mg-event-meta {
+  font-size: 0.72rem;
+  color: var(--mg-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mg-event-date {
+  margin-right: 4px;
+}
+
+.mg-event-separator {
+  margin: 0 4px;
+  opacity: 0.7;
+}
+
+.mg-event-league {
+  opacity: 0.85;
+}
+
+/* colonna destra */
+.mg-event-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* Prediction pill */
+.mg-event-prediction {
+  margin-bottom: 2px;
+}
+
+.mg-event-tag {
+  display: inline-block;
+  min-width: 42px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(56, 189, 248, 0.85);
+  color: var(--mg-accent);
+}
+
+/* Quota */
+.mg-event-odds {
+  font-size: 0.78rem;
+}
+
+.mg-odds-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--mg-text-muted);
+  margin-right: 6px;
+}
+
+.mg-odds-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--mg-accent);
+}
+
+/* hover / tap (solo effetto visivo, la logica resta la stessa) */
+.mg-event-inner:active {
+  transform: scale(0.99);
+  box-shadow:
+          0 8px 18px rgba(0, 0, 0, 0.9),
+          inset 0 0 0 1px rgba(56, 189, 248, 0.6);
+}
+
+/* mobile piccoli */
+@media (max-width: 360px) {
+  .mg-event-inner {
+    padding: 8px 8px 8px 12px;
+  }
+
+  .mg-event-right {
+    align-items: flex-end;
+  }
+
+  .mg-event-team {
+    font-size: 0.88rem;
+  }
+}

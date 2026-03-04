@@ -1,0 +1,128 @@
+<app-page-template>
+
+  <ngx-ui-loader></ngx-ui-loader>
+
+  <div class="mg-smell-page container-fluid">
+
+    <!-- HEADER + FILTRO DATA -->
+    <div class="row justify-content-center mb-3">
+      <div class="col-lg-10">
+        <div class="mg-smell-header">
+          <div>
+            <span class="mg-smell-kicker">
+              <i class="fa fa-fire mr-1"></i> Smell Bet
+            </span>
+            <h2 class="mg-smell-title">History Smell Bet</h2>
+            <p class="mg-smell-subtitle">
+              Storico delle giocate Smell Bet con esito finale e quote pre-match.
+            </p>
+          </div>
+
+          <div class="mg-smell-filter">
+            <label class="mg-form-label d-block mb-1">Seleziona giorno</label>
+            <div class="input-group mg-date-group">
+              <input
+                class="form-control mg-date-input"
+                placeholder="Scegli il giorno"
+                name="dp"
+                [(ngModel)]="model"
+                ngbDatepicker
+                #d="ngbDatepicker"
+                [container]="'body'">
+
+              <div class="input-group-append">
+                <button
+                  class="btn mg-calendar-btn"
+                  (click)="d.toggle()"
+                  type="button">
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </div>
+            </div>
+
+            <button class="btn mg-search-btn mt-2" (click)="search()">
+              <i class="fa fa-search mr-1"></i>
+              Cerca
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD TABELLA -->
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="mg-smell-card">
+          <div class="mg-smell-card-body">
+
+            <!-- ALERT NESSUN RISULTATO -->
+            <div class="alert mg-alert-empty" role="alert"
+                 *ngIf="listaOdds.getValue().length === 0">
+              <i class="fa fa-info-circle mr-2"></i>
+              Non sono presenti risultati per la data selezionata.
+            </div>
+
+            <!-- TABELLA -->
+            <div class="table-responsive" *ngIf="listaOdds.getValue().length !== 0">
+              <table class="table mg-smell-table">
+                <thead>
+                <tr>
+                  <th scope="col">Data evento</th>
+                  <th scope="col">Match</th>
+                  <th scope="col" class="text-center">1</th>
+                  <th scope="col" class="text-center">X</th>
+                  <th scope="col" class="text-center">2</th>
+                  <th scope="col" class="text-center">Prediction</th>
+                  <th scope="col" class="text-center">Risultato finale</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let p of listaOdds | async"
+                    [ngClass]="{
+                        'mg-row-win': p.presa,
+                        'mg-row-loss': !p.presa && p.result !== 'POSTP.',
+                        'mg-row-postp': !p.presa && p.result === 'POSTP.'
+                      }">
+                  <td>
+                    <div class="mg-event-date">{{ p.dataEvent }}</div>
+                  </td>
+                  <td>
+                    <div class="mg-event-team">{{ p.team }}</div>
+                  </td>
+                  <td class="text-center">{{ p.uno }}</td>
+                  <td class="text-center">{{ p.x }}</td>
+                  <td class="text-center">{{ p.due }}</td>
+                  <td class="text-center">
+                    <span class="mg-prediction-pill">{{ p.prediction }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="mg-result-main">{{ p.result }}</span>
+                    <span class="mg-result-pill"
+                          [ngClass]="{
+                              'mg-result-pill-win': p.presa,
+                              'mg-result-pill-loss': !p.presa && p.result !== 'POSTP.',
+                              'mg-result-pill-postp': !p.presa && p.result === 'POSTP.'
+                            }">
+                        <i class="fa"
+                           [ngClass]="{
+                             'fa-check': p.presa,
+                             'fa-times': !p.presa && p.result !== 'POSTP.',
+                             'fa-clock': !p.presa && p.result === 'POSTP.'
+                           }"></i>
+                        <span class="ml-1">
+                          {{ p.presa ? 'Presa' : (p.result === 'POSTP.' ? 'Posticipata' : 'Non presa') }}
+                        </span>
+                      </span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</app-page-template>

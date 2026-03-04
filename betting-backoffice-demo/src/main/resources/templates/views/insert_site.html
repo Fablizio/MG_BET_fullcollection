@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:include="fragment/header"/>
+
+    <span th:if="${saveSuccess}">
+
+    <div class="alert alert-success">
+        INSERTIMENTO ANDATO A BUON FINE DEL SITO: <label th:text="${siteSaved}"></label>
+
+    </div>
+    </span>
+
+    <div class="my-3 d-flex justify-content-between align-items-center">
+        <h4>Inserimento Sito</h4>
+        <a class="btn btn-primary" th:href="@{/web/site}">Lista Siti</a>
+    </div>
+
+    <form th:action="@{/web/site/newInsert}" method="post" th:object="${siteDTO}">
+        <div class="form-group">
+            <label>Territorio</label>
+            <input type="text" th:field="*{territorio}" class="form-control">
+            <div class="text-danger" th:if="${#fields.hasErrors('territorio')}" th:errors="*{territorio}"></div>
+        </div>
+        <div class="form-group">
+            <label>Campionato</label>
+            <input type="text" th:field="*{campionato}" class="form-control">
+            <div class="text-danger" th:if="${#fields.hasErrors('campionato')}" th:errors="*{campionato}"></div>
+        </div>
+        <div class="form-group">
+            <label>Site</label>
+            <input type="text" th:field="*{site}" class="form-control">
+            <div class="text-danger" th:if="${#fields.hasErrors('site')}" th:errors="*{site}"></div>
+        </div>
+        <div class="form-group">
+            <label>Attivo</label>
+            <select th:field="*{attivo}" class="form-control">
+                <option th:value="'1'" th:text="'ATTIVO'"></option>
+                <option th:value="'0'" th:text="'NON ATTIVO'"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Conferma</button>
+    </form>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<app-page-template>
+
+  <ngx-ui-loader></ngx-ui-loader>
+
+  <div class="mg-pay-page container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <div class="mg-pay-card mt-4">
+          <!-- HEADER -->
+          <div class="mg-pay-header">
+            <div class="mg-pay-title-block">
+              <span class="mg-pay-kicker">
+                <i class="fa fa-lock mr-1"></i> Rinnovo abbonamento
+              </span>
+              <h1 class="mg-pay-title">Segui questi passi per completare il pagamento</h1>
+              <p class="mg-pay-subtitle">
+                Scegli il tuo abbonamento, effettua il pagamento e conferma tramite il bot Telegram.
+              </p>
+            </div>
+
+            <div class="mg-pay-step-actions">
+              <div class="mg-pay-step-indicator" *ngIf="step">
+                Passo <strong>{{ step }}</strong>
+              </div>
+
+              <button
+                class="btn mg-back-btn"
+                *ngIf="step > 1"
+                (click)="goPrev()">
+                <i class="fa fa-arrow-left mr-1"></i> Indietro
+              </button>
+            </div>
+          </div>
+
+          <hr class="mg-divider">
+
+          <!-- STEP 1: SCELTA ABBONAMENTO -->
+          <div class="mg-pay-body" *ngIf="step === 1">
+
+            <!-- INFO BOT TELEGRAM -->
+            <div class="mg-pay-alert">
+              <div class="mg-pay-alert-icon">
+                <i class="fa fa-info-circle"></i>
+              </div>
+              <div class="mg-pay-alert-content">
+                <p class="mb-1">
+                  Per rinnovare il tuo codice, <strong>clicca sul pulsante del tuo abbonamento</strong> e completa il pagamento.
+                </p>
+                <p class="mb-1">
+                  Dopo aver effettuato l’acquisto, <strong>vai sul nostro bot Telegram</strong> e invia lo screenshot del pagamento.
+                </p>
+                <p class="mb-0">
+                  Bot Telegram:&nbsp;
+                  <a href="https://t.me/mgbet2bot" target="_blank">
+                    https://t.me/mgbet2bot
+                  </a>
+                  &nbsp;→ pulsante <strong>“Invia screenshot del pagamento”</strong>.
+                </p>
+                <!-- AVVISO IMPORTANTE -->
+                <p class="mt-2 mb-0 text-danger font-weight-bold">
+                  Attenzione: senza l’invio dello screenshot tramite il bot Telegram
+                  <strong>non potremo attivare o rinnovare il tuo abbonamento</strong> e
+                  <strong>l’importo pagato non sarà rimborsato</strong>.
+                </p>
+              </div>
+            </div>
+
+            <!-- PIANI -->
+            <div class="mg-plan-section">
+              <h2 class="mg-plan-title">Scegli l'abbonamento che fa per te</h2>
+
+              <div class="mg-plan-list">
+                <a
+                  target="_blank"
+                  class="paypal-link mg-plan-card"
+                  href="https://app.suby.fi/sub/9Q5TA27GSAU4VN0RTIOF">
+
+                  <div class="mg-plan-main">
+                    <div class="mg-plan-price-row">
+                      <span class="mg-plan-price">€ 20,00</span>
+                      <span class="mg-plan-duration">1 mese</span>
+                    </div>
+                    <div class="mg-plan-desc">
+                      Accesso completo alle prediction MG BET per 30 giorni.
+                    </div>
+                  </div>
+
+                  <div class="mg-plan-right">
+                    <span class="mg-plan-badge">
+                      <i class="fa fa-shield-alt mr-1"></i> Pagamento sicuro
+                    </span>
+                    <img src="assets/images/payment.svg" alt="Metodi di pagamento" class="mg-plan-img">
+                  </div>
+
+                </a>
+              </div>
+            </div>
+
+            <!-- AZIONI FINALI -->
+            <div class="mg-pay-actions text-center mt-4">
+              <a class="btn mg-secondary-btn mr-3" [routerLink]="['/home']">
+                Torna alla login <i class="fa fa-home ml-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</app-page-template>

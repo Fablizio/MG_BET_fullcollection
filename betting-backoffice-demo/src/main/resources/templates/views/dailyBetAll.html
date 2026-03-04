@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragment/head_import"/>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:include="fragment/header"/>
+    <br><br>
+
+    <h1>Lista delle giocate del giorno</h1>
+
+    <table id="bet-table" class="table table-striped">
+        <tr>
+            <th>No</th>
+            <th>Data evento</th>
+            <th>Evento</th>
+        </tr>
+        <tr th:each="daily, custStat : ${dailyBets}">
+            <td th:text="${custStat.count}">1</td>
+            <td th:text="${daily.date}">John</td>
+            <td>
+                <p th:each="odd: ${daily.odds}">
+                    <span th:text="${odd.team}"></span>
+                    <span th:text="${odd.prediction}"></span>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    $("#bet-table").DataTable();
+</script>
+</body>
+
+</html>

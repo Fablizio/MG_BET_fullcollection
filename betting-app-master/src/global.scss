@@ -1,0 +1,192 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "~animate.css/animate.css";
+
+:root {
+  --mg-bg: #020617;
+  --mg-panel: #111827;
+  --mg-border-subtle: rgba(148, 163, 184, 0.4);
+
+  /* ACCENTO BLU */
+  --mg-accent: #38bdf8;
+  --mg-accent-strong: #0ea5e9;
+  --mg-accent-soft: rgba(56, 189, 248, 0.16);
+
+  --mg-text-main: #e5e7eb;
+  --mg-text-muted: #9ca3af;
+
+  /* Allineo Ionic al tema */
+  --ion-background-color: var(--mg-bg);
+  --ion-text-color: var(--mg-text-main);
+
+  --ion-color-primary: var(--mg-accent);
+  --ion-color-primary-rgb: 56, 189, 248;
+  --ion-color-primary-contrast: #020617;
+  --ion-color-primary-contrast-rgb: 2, 6, 23;
+  --ion-color-primary-shade: #0ea5e9;
+  --ion-color-primary-tint: #38bdf8;
+}
+
+/* ALERT "SEGNALAZIONI" DARK STYLE */
+.mg-report-alert .alert-wrapper {
+  background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.3), transparent 60%),
+          #020617;
+  color: #e5e7eb;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95);
+}
+
+/* header */
+.mg-report-alert .alert-head {
+  padding-bottom: 4px;
+}
+
+.mg-report-alert .alert-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+/* messaggio */
+.mg-report-alert .alert-message {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+.mg-report-alert .alert-message a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.mg-report-alert .alert-message a:hover {
+  text-decoration: underline;
+}
+
+/* bottoni */
+.mg-report-alert .alert-button-group {
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.mg-report-alert .alert-button {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+.mg-report-alert .alert-button.role-cancel {
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* ALERT SCADENZA ABBONAMENTO */
+.mg-expire-alert .alert-wrapper {
+  background:
+          radial-gradient(circle at top left, rgba(250, 204, 21, 0.2), transparent 60%),
+          #020617;
+  color: #e5e7eb;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95);
+}
+
+/* header */
+.mg-expire-alert .alert-head {
+  padding-bottom: 4px;
+}
+
+.mg-expire-alert .alert-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fef9c3; /* giallo chiaro */
+}
+
+/* messaggio */
+.mg-expire-alert .alert-message {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+.mg-expire-alert .alert-message strong {
+  color: #fde68a;
+}
+
+/* bottoni */
+.mg-expire-alert .alert-button-group {
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.mg-expire-alert .alert-button {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+/* bottone "Rinnova ora" (primo) un po' evidenziato */
+.mg-expire-alert .alert-button:nth-child(1) {
+  font-weight: 600;
+  color: #facc15;
+}
+
+/* bottone "Più tardi" */
+.mg-expire-alert .alert-button.role-cancel {
+  opacity: 0.85;
+}
+/* ALERT GENERICO DARK (showAlert) */
+.mg-generic-alert .alert-wrapper {
+  background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.3), transparent 60%),
+          #020617;
+  color: #e5e7eb;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95);
+}
+
+/* header */
+.mg-generic-alert .alert-head {
+  padding-bottom: 4px;
+}
+
+.mg-generic-alert .alert-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+/* messaggio */
+.mg-generic-alert .alert-message {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+/* bottoni */
+.mg-generic-alert .alert-button-group {
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.mg-generic-alert .alert-button {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}

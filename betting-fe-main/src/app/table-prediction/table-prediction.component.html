@@ -1,0 +1,178 @@
+<ngx-ui-loader></ngx-ui-loader>
+
+<app-page-template>
+  <div class="mg-odds-page container-fluid">
+
+    <!-- BARRA FILTRI / CAMPIONATO -->
+    <div class="row justify-content-center mb-3">
+      <div class="col-md-10 col-lg-8">
+        <div class="mg-filter-bar">
+          <div class="mg-filter-label">
+            <span class="mg-filter-kicker">
+              <i class="fa fa-globe-europe mr-1"></i> Campionati
+            </span>
+            <h2 class="mg-filter-title">Seleziona il campionato da analizzare</h2>
+            <p class="mg-filter-subtitle">
+              Quote aggiornate, variazioni e livello di confidenza per ogni partita.
+            </p>
+          </div>
+
+          <div class="mg-filter-select">
+            <label class="mg-select-label">Campionato</label>
+            <select class="form-control form-control-lg mg-select"
+                    [(ngModel)]="idLegaSelected"
+                    (change)="load()">
+              <option *ngFor="let lega of leghe | async" [value]="lega.id">
+                {{ lega.campionato }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD QUOTE -->
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="card border-0 mg-card-odds">
+
+          <!-- Header card -->
+          <div class="mg-card-odds-header">
+            <div>
+              <span class="mg-card-kicker">Quote & Prediction</span>
+              <h3 class="mg-card-title">
+                {{ campionato || 'Seleziona un campionato' }}
+              </h3>
+            </div>
+
+            <div class="mg-card-meta" *ngIf="listaOdds.getValue().length !== 0">
+              <span class="mg-card-chip">
+                {{ listaOdds.getValue().length }} eventi
+              </span>
+
+              <button class="btn btn-sm btn-outline-light mg-sort-btn"
+                      (click)="reverseList()"
+                      title="Inverti ordine per data evento">
+                <i class="fa"
+                   [class.fa-chevron-down]="!direction"
+                   [class.fa-chevron-up]="direction"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="card-body mg-card-odds-body">
+
+            <!-- ALERT -->
+            <div class="alert alert-warning mg-alert" role="alert"
+                 *ngIf="listaOdds.getValue().length === 0">
+              <i class="fa fa-info-circle mr-2"></i>
+              Prediction in elaborazione. Torna tra qualche minuto per visualizzare le quote aggiornate.
+            </div>
+
+            <!-- TABELLA QUOTE -->
+            <div class="table-responsive" *ngIf="listaOdds.getValue().length !== 0">
+              <table class="table mg-odds-table">
+                <thead>
+                <tr>
+                  <th scope="col">Data evento</th>
+                  <th scope="col">Match</th>
+                  <th scope="col" class="text-center">1</th>
+                  <th scope="col" class="text-center">X</th>
+                  <th scope="col" class="text-center">2</th>
+                  <th scope="col" class="text-center">Confidence</th>
+                  <th scope="col" class="text-center">Prediction</th>
+                  <th scope="col" class="text-center"></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr *ngFor="let p of listaOdds | async">
+                  <!-- DATA -->
+                  <td>
+                    <div class="mg-event-date">{{ p.dataEvent }}</div>
+                  </td>
+
+                  <!-- MATCH -->
+                  <td>
+                    <div class="mg-event-team">{{ p.team }}</div>
+                  </td>
+
+                  <!-- 1 -->
+                  <td class="text-center mg-odd-cell">
+                    <div class="mg-odd-main">
+                      {{ p.uno }}
+                      <i title="{{p.quotaInizialeUno}} - {{p.uno}}"
+                         [ngClass]="p.uno <= p.quotaInizialeUno ? 'fa fa-arrow-down red' : 'fa fa-arrow-up green'">
+                      </i>
+                    </div>
+                    <div class="mg-odd-change">
+                      {{ ((p.uno - p.quotaInizialeUno)/p.uno)*100 | number:'1.2-2' }}%
+                    </div>
+                  </td>
+
+                  <!-- X -->
+                  <td class="text-center mg-odd-cell">
+                    <div class="mg-odd-main">
+                      {{ p.x }}
+                      <i title="{{p.quotaInizialeX}} - {{p.x}}"
+                         [ngClass]="p.x <= p.quotaInizialeX ? 'fa fa-arrow-down red' : 'fa fa-arrow-up green'">
+                      </i>
+                    </div>
+                    <div class="mg-odd-change">
+                      {{ ((p.x - p.quotaInizialeX)/p.x)*100 | number:'1.2-2' }}%
+                    </div>
+                  </td>
+
+                  <!-- 2 -->
+                  <td class="text-center mg-odd-cell">
+                    <div class="mg-odd-main">
+                      {{ p.due }}
+                      <i title="{{p.quotaInizialeDue}} - {{p.due}}"
+                         [ngClass]="p.due <= p.quotaInizialeDue ? 'fa fa-arrow-down red' : 'fa fa-arrow-up green'">
+                      </i>
+                    </div>
+                    <div class="mg-odd-change">
+                      {{ ((p.due - p.quotaInizialeDue)/p.due)*100 | number:'1.2-2' }}%
+                    </div>
+                  </td>
+
+                  <!-- CONFIDENCE -->
+                  <td class="text-center">
+                    <span class="mg-confidence-pill"
+                          [ngClass]="{
+                            'mg-confidence-high': p.predictionConfidence >= 70,
+                            'mg-confidence-mid': p.predictionConfidence < 70 && p.predictionConfidence >= 40,
+                            'mg-confidence-low': p.predictionConfidence < 40
+                          }">
+                      {{ p.predictionConfidence | number:'1.2-2' }}
+                    </span>
+                  </td>
+
+                  <!-- PREDICTION -->
+                  <td class="text-center">
+                    <span class="mg-prediction-pill">
+                      {{ p.prediction }}
+                    </span>
+                  </td>
+
+                  <!-- BTN CHART -->
+                  <td class="text-center">
+                    <button
+                      [routerLink]="['/change-of-odds',  p.id , campionato.concat(' ').concat(p.team) ]"
+                      title="Andamento quote"
+                      class="btn btn-sm mg-chart-btn">
+                      <i class="fa fa-chart-line"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</app-page-template>

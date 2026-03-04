@@ -1,0 +1,12 @@
+a{
+  color: #eafff6;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 0.50rem;
+}
+
+.card-header {
+  margin-top: 1px;
+}

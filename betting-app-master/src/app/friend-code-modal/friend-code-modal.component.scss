@@ -1,0 +1,197 @@
+ion-content.friend-referral {
+  --background: transparent;
+  background:
+          radial-gradient(circle at top, #1a5d74 0, #05141f 55%, #02070b 100%);
+}
+
+/* Wrapper per centrare la card */
+.referral-wrapper {
+  padding: 24px 16px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card principale */
+.referral-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px;
+  padding: 18px 18px 22px;
+  --background: #ffffff;
+  box-shadow:
+          0 18px 45px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+.referral-header {
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.referral-header .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(17, 185, 129, 0.08);
+  color: #11b981;
+  margin-bottom: 8px;
+}
+
+.referral-header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.referral-header .subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Stats */
+.stats-row {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0 10px;
+}
+
+.stat {
+  flex: 1;
+  padding: 10px 10px 12px;
+  border-radius: 16px;
+  background: #f3f4f6;
+  text-align: center;
+}
+
+.stat.highlight {
+  background: linear-gradient(135deg, #06b6d4, #22c55e);
+  color: #ffffff;
+}
+
+.stat .value {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.stat .label {
+  font-size: 11px;
+  line-height: 1.2;
+  opacity: 0.9;
+}
+
+/* Steps */
+.steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 8px 0 14px;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #e5f3ff;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.step p {
+  font-size: 11px;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* Esempio */
+.example-box {
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  font-size: 12px;
+  color: #1f2937;
+}
+
+/* CTA */
+.cta-text {
+  margin: 12px 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Codice */
+.code-section {
+  margin-top: 8px;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.code-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.code-hint {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+/* Riga codice */
+.code-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 16px;
+  background: #f9fafb;
+  border: 1px dashed #cbd5e1;
+}
+
+.code-input {
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: transparent;
+  flex: 1;
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #111827;
+}
+
+.copy-btn {
+  --border-radius: 999px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  font-size: 12px;
+}

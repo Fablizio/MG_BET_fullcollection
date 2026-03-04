@@ -1,0 +1,198 @@
+<app-page-template>
+  <ngx-ui-loader></ngx-ui-loader>
+
+  <div class="mg-home container-fluid">
+
+    <!-- HERO -->
+    <section class="mg-home-hero">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+          <span class="mg-hero-kicker">
+            <i class="fa fa-bolt mr-1"></i> Raddoppio del giorno
+          </span>
+          <h1 class="mg-hero-title">
+            Le giocate selezionate per oggi
+          </h1>
+          <p class="mg-hero-subtitle">
+            Singole e doppie  generate dal nostro algoritmo.
+            Aggiornate ogni giorno per offrirti uno sguardo rapido sulle migliori opportunità.
+          </p>
+
+          <div class="mg-hero-actions">
+            <button [routerLink]="'/today-match/todayMatch'"
+                    class="btn btn-sm btn-outline-light mg-hero-btn">
+              <i class="fa fa-futbol mr-1"></i>
+              Partite del giorno
+            </button>
+
+            <button [routerLink]="'/today-match/smellBet'"
+                    class="btn btn-sm btn-warning mg-hero-btn ml-2">
+              <i class="fa fa-fire mr-1"></i>
+              Smell Bet
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- CARTE GIOCATE -->
+    <section class="mg-home-bets">
+      <div class="row">
+
+        <!-- SINGLE MATCH -->
+        <div class="col-lg-6 mb-6">
+          <div class="mg-bet-card">
+            <div class="mg-bet-card-header">
+              <div>
+                <span class="mg-bet-pill pill-single">Single Match</span>
+                <h5 class="mg-bet-title" *ngIf="(singleMatch | async).length > 0">
+                  Del giorno
+                </h5>
+                <h5 class="mg-bet-title" *ngIf="(singleMatch | async).length == 0">
+                  Oggi niente single match!
+                </h5>
+              </div>
+              <span class="mg-bet-tag">
+                <i class="fa fa-star mr-1"></i> Value pick
+              </span>
+            </div>
+
+            <div class="mg-bet-card-body" *ngIf="(singleMatch | async).length > 0">
+              <div class="table-responsive">
+                <table class="table mg-bet-table">
+                  <tbody>
+                  <tr *ngFor="let p of singleMatch | async">
+                    <td>
+                      <div class="mg-bet-league">{{ p.campionato }}</div>
+                      <div class="mg-bet-date">{{ p.dateMatch }}</div>
+                      <div class="mg-bet-team">{{ p.team }}</div>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="mg-bet-prediction">{{ p.prediction }}</span>
+                    </td>
+                    <td class="align-middle text-right">
+                      <span class="mg-bet-odd">{{ p.quota }}</span>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DOPPIA DEL GIORNO -->
+        <div class="col-lg-6 mb-6">
+          <div class="mg-bet-card">
+            <div class="mg-bet-card-header">
+              <div>
+                <span class="mg-bet-pill pill-double">Doppia</span>
+                <h5 class="mg-bet-title" *ngIf="(twoMatch | async).length > 0">
+                  Del giorno
+                </h5>
+                <h5 class="mg-bet-title" *ngIf="(twoMatch | async).length == 0">
+                  Oggi niente doppia!
+                </h5>
+              </div>
+              <span class="mg-bet-tag">
+                <i class="fa fa-layer-group mr-1"></i> Combo
+              </span>
+            </div>
+
+            <div class="mg-bet-card-body" *ngIf="(twoMatch | async).length > 0">
+              <div class="table-responsive">
+                <table class="table mg-bet-table">
+                  <tbody>
+                  <tr *ngFor="let p of twoMatch | async">
+                    <td>
+                      <div class="mg-bet-league">{{ p.campionato }}</div>
+                      <div class="mg-bet-date">{{ p.dateMatch }}</div>
+                      <div class="mg-bet-team">{{ p.team }}</div>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="mg-bet-prediction">{{ p.prediction }}</span>
+                    </td>
+                    <td class="align-middle text-right">
+                      <span class="mg-bet-odd">{{ p.quota }}</span>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="mg-bet-footer">
+                <span>Quota totale</span>
+                <span class="mg-bet-total">
+                  {{ totalQuoteTwoMatch | number:'1.0-2' }}
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DISCLAIMER + SOCIAL -->
+    <section class="mg-home-bottom">
+      <div class="row justify-content-center">
+
+        <div class="col-lg-8 mb-4">
+          <div class="mg-disclaimer-card">
+            <div class="d-flex">
+              <div class="mg-disclaimer-icon">
+                <i class="fa fa-exclamation-triangle"></i>
+              </div>
+              <div>
+                <h5 class="mg-disclaimer-title">DISCLAIMER</h5>
+                <p class="mg-disclaimer-text">
+                  Le informazioni fornite da questa applicazione hanno esclusivamente
+                  scopo informativo e statistico. Non costituiscono in alcun modo un
+                  invito al gioco, alla scommessa o alla partecipazione ad attività di
+                  gioco d’azzardo.
+                </p>
+                <p class="mg-disclaimer-text mb-0">
+                  Nessuna garanzia è offerta circa l’esattezza o l’esito delle
+                  previsioni. Decidi sempre in autonomia e gioca con moderazione.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <div class="mg-social-card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="mg-social-title">
+                Lascia un commento sui nostri social
+              </span>
+              <span class="mg-social-pill">Community</span>
+            </div>
+
+            <p class="mg-social-text">
+              Raccontaci come utilizzi le nostre previsioni e inviaci i tuoi feedback.
+            </p>
+
+            <div class="mg-social-buttons">
+              <a [href]="linkSocial.facebook" target="_blank"
+                 class="mg-social-btn mg-social-facebook" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+
+              <a [href]="linkSocial.instagram" target="_blank"
+                 class="mg-social-btn mg-social-instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</app-page-template>

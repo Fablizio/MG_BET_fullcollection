@@ -1,0 +1,29 @@
+<app-page-template>
+
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card bg-white border-0 mb-2" *ngFor="let f of feeds | async">
+        <!--<h5 class="card-header">{{f.titolo}}</h5>-->
+        <div class="card-body">
+          <p class="card-text">
+          <div class="row">
+            <div class="col-md-12">
+              <div [innerHTML]="f.descrizione" class="article-content">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-1 text-right" style="margin-bottom: 5px; margin-top: 15px; text-align: right">
+              <a [href]="f.link" [target]="'_blank'" class="btn btn-dark">Vai alla notizia <i class="fa fa-share ml-2"></i></a>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+
+
+</app-page-template>
+<ngx-ui-loader ></ngx-ui-loader>
+

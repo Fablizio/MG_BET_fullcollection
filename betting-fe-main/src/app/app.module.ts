@@ -34,6 +34,7 @@ import { HistorySmellBetComponent } from './history-smell-bet/history-smell-bet.
 import { HistoryTodayMatchComponent } from './history-today-match/history-today-match.component';
 import { FilterComponent } from './filter/filter.component';
 import { SiteComponent } from './site/site.component';
+import { StatiumLandingComponent } from './statium-landing/statium-landing.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -64,6 +65,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HistoryTodayMatchComponent,
     FilterComponent,
     SiteComponent,
+    StatiumLandingComponent,
   ],
   imports: [
     FormsModule,

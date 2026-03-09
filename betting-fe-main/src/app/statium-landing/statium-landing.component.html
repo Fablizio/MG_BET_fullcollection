@@ -1,0 +1,121 @@
+<div class="landing">
+  <header class="nav shell">
+    <a class="logo-wrap" href="#top" aria-label="Statium home">
+      <div class="logo-mark" aria-hidden="true"></div>
+      <div>
+        <div class="logo-text">STATIUM</div>
+        <div class="logo-sub">{{ isIt ? 'Performance Intelligence per il Calcio' : 'Football Performance Intelligence' }}</div>
+      </div>
+    </a>
+
+    <div class="nav-actions">
+      <div class="lang-switch" aria-label="language switch">
+        <button type="button" class="lang-btn" [class.active]="isIt" (click)="setLang('it')">IT</button>
+        <button type="button" class="lang-btn" [class.active]="!isIt" (click)="setLang('en')">EN</button>
+      </div>
+      <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="btn ghost">The Funded Pick</a>
+      <a href="/mgbet/auth" class="btn primary">{{ isIt ? 'Accedi' : 'Sign In' }}</a>
+    </div>
+  </header>
+
+  <main class="shell" id="top">
+    <section class="hero panel">
+      <div class="hero-badge">{{ isIt ? 'Con supporto strategico di The Funded Pick' : 'Strategically supported by The Funded Pick' }}</div>
+      <h1>{{ isIt ? 'Segnali calcistici premium, letti con metodo quantitativo.' : 'Premium football signals, interpreted through quantitative methodology.' }}</h1>
+      <p class="hero-lead">{{ isIt ? 'Statium unisce modelli statistici, validazione continua e storico verificabile per aiutarti a prendere decisioni più informate.' : 'Statium combines statistical models, continuous validation and verifiable history to help you make better-informed decisions.' }}</p>
+
+      <div class="hero-cta-row">
+        <a href="/mgbet/auth" class="cta-primary">{{ isIt ? 'Accedi alla piattaforma' : 'Access the platform' }}</a>
+        <a [href]="fundedPickUrl" target="_blank" rel="noopener" class="cta-secondary">{{ isIt ? 'Scopri The Funded Pick' : 'Explore The Funded Pick' }}</a>
+      </div>
+
+      <div class="trust-grid">
+        <article>
+          <p class="trust-kicker">{{ isIt ? 'Aggiornamento' : 'Update speed' }}</p>
+          <strong>{{ isIt ? 'Dati in tempo reale' : 'Real-time data' }}</strong>
+        </article>
+        <article>
+          <p class="trust-kicker">{{ isIt ? 'Motore' : 'Engine' }}</p>
+          <strong>{{ isIt ? 'Scoring multi-fattore' : 'Multi-factor scoring' }}</strong>
+        </article>
+        <article>
+          <p class="trust-kicker">{{ isIt ? 'Controllo' : 'Control' }}</p>
+          <strong>{{ isIt ? 'Storico trasparente' : 'Transparent history' }}</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="proof-strip">
+      <article>
+        <strong>4</strong>
+        <span>{{ isIt ? 'moduli operativi' : 'core modules' }}</span>
+      </article>
+      <article>
+        <strong>24/7</strong>
+        <span>{{ isIt ? 'monitoraggio segnali' : 'signal monitoring' }}</span>
+      </article>
+      <article>
+        <strong>{{ isIt ? 'Storico' : 'History' }}</strong>
+        <span>{{ isIt ? 'verificabile e consultabile' : 'verifiable and queryable' }}</span>
+      </article>
+    </section>
+
+    <section class="modules">
+      <div class="section-head">
+        <span>{{ isIt ? 'Moduli operativi' : 'Operational modules' }}</span>
+        <h2>{{ isIt ? 'Tutti gli strumenti Statium in un unico flusso' : 'All Statium tools in a single workflow' }}</h2>
+      </div>
+
+      <div class="module-grid">
+        <article class="module-card">
+          <div class="module-icon">⚡</div>
+          <h3>Daily Double</h3>
+          <p>{{ isIt ? 'Selezione giornaliera ad alta priorità con contesto numerico e razionale sintetico.' : 'Daily high-priority selection with numerical context and concise rationale.' }}</p>
+        </article>
+        <article class="module-card">
+          <div class="module-icon">🎲</div>
+          <h3>Random Ticket</h3>
+          <p>{{ isIt ? 'Combinazioni generate con supporto probabilistico per esplorare scenari alternativi.' : 'Probability-supported generated combinations to explore alternative scenarios.' }}</p>
+        </article>
+        <article class="module-card">
+          <div class="module-icon">📊</div>
+          <h3>Stats Dashboard</h3>
+          <p>{{ isIt ? 'Metriche su campionati, squadre e mercati con lettura rapida dei trend principali.' : 'League, team and market metrics with fast visibility on major trends.' }}</p>
+        </article>
+        <article class="module-card">
+          <div class="module-icon">📜</div>
+          <h3>History Tracker</h3>
+          <p>{{ isIt ? 'Archivio completo delle predizioni e risultati per verificare coerenza e performance.' : 'Complete archive of predictions and results to verify consistency and performance.' }}</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="partnership panel">
+      <div class="partnership-badge">{{ isIt ? 'Collaborazione attiva' : 'Active collaboration' }}</div>
+      <h2>The Funded Pick × Statium</h2>
+      <p>{{ isIt ? 'La collaborazione con The Funded Pick rafforza distribuzione, qualità editoriale e standard operativi di Statium, mantenendo identità e framework proprietario.' : 'Collaboration with The Funded Pick strengthens Statium distribution, editorial quality and operational standards while keeping Statium identity and proprietary framework.' }}</p>
+    </section>
+
+    <section class="final-cta panel">
+      <h2>{{ isIt ? 'Entri, analizzi, decidi.' : 'Enter, analyze, decide.' }}</h2>
+      <p>{{ isIt ? 'Accedi ora e usa i moduli Statium per una lettura più strutturata delle opportunità calcistiche.' : 'Sign in now and use Statium modules for a more structured read of football opportunities.' }}</p>
+      <a href="/mgbet/auth" class="cta-primary">{{ isIt ? 'Vai a Statium' : 'Go to Statium' }}</a>
+    </section>
+
+    <section class="compliance panel" aria-label="compliance disclaimer">
+      <h3>{{ isIt ? 'Informativa di conformità e uso responsabile' : 'Compliance and responsible-use notice' }}</h3>
+      <ul>
+        <li>{{ isIt ? 'Statium fornisce contenuti informativi, analitici ed educativi; non facilita né intermedia attività di gioco/scommessa.' : 'Statium provides informational, analytical and educational content; it does not facilitate or broker gambling activity.' }}</li>
+        <li>{{ isIt ? 'Le analisi non costituiscono consulenza finanziaria o promessa di rendimento: ogni decisione resta personale e sotto la tua responsabilità.' : 'Analytics are not financial advice and do not guarantee returns: every decision remains personal and under your responsibility.' }}</li>
+        <li>{{ isIt ? 'Nessun risultato è garantito. Opera solo dove legalmente consentito e nel rispetto delle normative locali applicabili.' : 'No outcome is guaranteed. Operate only where legally permitted and in full compliance with applicable local regulations.' }}</li>
+        <li>{{ isIt ? 'Se il gioco rappresenta un rischio, interrompi l’attività e rivolgiti ai servizi di supporto dedicati al gioco responsabile.' : 'If gambling becomes a risk, stop immediately and contact dedicated responsible-gambling support services.' }}</li>
+      </ul>
+    </section>
+  </main>
+
+  <a href="/mgbet/auth" class="sticky-cta-mobile">{{ isIt ? 'Accedi a Statium' : 'Access Statium' }}</a>
+
+  <footer class="footer">
+    <p>© 2026 Statium · {{ isIt ? 'Piattaforma di analisi calcistica' : 'Football analytics platform' }}</p>
+  </footer>
+</div>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statium — Real-time Football Analytics</title>
+  <meta name="description" content="Statium transforms live football data, probability shifts and market movements into clear, high-confidence betting insights across Web App, Mobile and Telegram.">
+  <meta name="theme-color" content="#07111f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <div class="ambient ambient-left"></div>
+    <div class="ambient ambient-right"></div>
+    <div class="grid-overlay"></div>
+
+    <header class="site-header" id="home">
+      <div class="container header-inner">
+        <a class="brand" href="#home" aria-label="Statium home">
+          <img src="assets/statium_logo_app.webp" alt="Statium logo" class="brand-logo">
+          <span class="brand-text">Statium</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="#features">Features</a>
+          <a href="#platform">Platform</a>
+          <a href="#network">Referral</a>
+          <a href="#partnership">Partnership</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">Real-time football analytics ecosystem</span>
+            <h1>Turn Football Data Into Winning Insights</h1>
+            <p class="hero-lead">
+              Statium analyzes thousands of match variables, probability shifts and market movements to deliver real-time predictions with mathematical confidence levels.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Start Using Statium</a>
+              <a href="#dashboard-preview" class="btn btn-secondary">View Live Predictions</a>
+            </div>
+            <div class="hero-badges" aria-label="Available platforms">
+              <span>Web App</span>
+              <span>Mobile App</span>
+              <span>Telegram Bot</span>
+            </div>
+
+            <div class="hero-metrics glass-card reveal">
+              <div>
+                <strong>+500</strong>
+                <span>Matches analyzed weekly</span>
+              </div>
+              <div>
+                <strong>100k+</strong>
+                <span>Data points processed daily</span>
+              </div>
+              <div>
+                <strong>Live</strong>
+                <span>Probability engine</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal" id="dashboard-preview" aria-label="Statium analytics dashboard preview">
+            <div class="stadium-halo"></div>
+            <section class="dashboard-frame glass-card">
+              <div class="dashboard-topbar">
+                <div>
+                  <p class="mini-label">Live board</p>
+                  <h2>Premier slate / 18:30 CET</h2>
+                </div>
+                <div class="status-pill">Market synced</div>
+              </div>
+
+              <div class="dashboard-content">
+                <article class="match-card selected">
+                  <div class="match-header">
+                    <span class="league-pill">Premier League</span>
+                    <span class="market-up">Value detected</span>
+                  </div>
+                  <div class="teams-row">
+                    <div>
+                      <strong>Liverpool</strong>
+                      <small>vs Arsenal</small>
+                    </div>
+                    <div class="confidence-ring" data-value="87">
+                      <span>87%</span>
+                    </div>
+                  </div>
+                  <div class="signal-grid">
+                    <div>
+                      <span>Prediction</span>
+                      <strong>Home Win</strong>
+                    </div>
+                    <div>
+                      <span>Odds move</span>
+                      <strong class="odds-live">1.85 → 1.92</strong>
+                    </div>
+                    <div>
+                      <span>Model bias</span>
+                      <strong>+9.4%</strong>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="match-card">
+                  <div class="match-header">
+                    <span class="league-pill alt">La Liga</span>
+                    <span class="market-neutral">Tracking</span>
+                  </div>
+                  <div class="teams-row compact">
+                    <div>
+                      <strong>Real Madrid</strong>
+                      <small>vs Barcelona</small>
+                    </div>
+                    <div class="mini-confidence positive">92%</div>
+                  </div>
+                  <div class="signal-line">
+                    <span>Over 2.5</span>
+                    <span class="odds-live">2.10 → 2.05</span>
+                  </div>
+                </article>
+
+                <article class="match-card">
+                  <div class="match-header">
+                    <span class="league-pill gold">Serie A</span>
+                    <span class="market-up">Steam move</span>
+                  </div>
+                  <div class="teams-row compact">
+                    <div>
+                      <strong>Inter</strong>
+                      <small>vs Napoli</small>
+                    </div>
+                    <div class="mini-confidence">81%</div>
+                  </div>
+                  <div class="signal-line">
+                    <span>BTTS Yes</span>
+                    <span class="odds-live">1.68 → 1.74</span>
+                  </div>
+                </article>
+              </div>
+
+              <div class="dashboard-sidebar glass-panel">
+                <div class="sidebar-chart">
+                  <div class="chart-title">
+                    <span>Probability movement</span>
+                    <strong>Last 90 min</strong>
+                  </div>
+                  <div class="chart-lines" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="alert-box">
+                  <span class="alert-label">Telegram alert</span>
+                  <p>Model confidence crossed 85%. Signal pushed instantly to subscribers.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="section intro-strip">
+        <div class="container intro-grid reveal">
+          <div>
+            <span class="eyebrow">Built for serious decision-making</span>
+            <h2>Real-time football analytics. Smarter predictions. Better decisions.</h2>
+          </div>
+          <p>
+            Statium is an advanced sports analytics ecosystem available via Web App, Mobile App and Telegram. It turns complex match data, mathematical models and live market analysis into clear, actionable betting intelligence.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Core capabilities</span>
+            <h2>Powerful Analytics. Simple Decisions.</h2>
+            <p>Everything is designed to reduce noise, surface value faster and make each prediction easier to understand.</p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card glass-card reveal">
+              <span class="feature-index">01</span>
+              <h3>Real-Time Match Analysis</h3>
+              <p>Monitor matches with continuously updated statistical models, momentum changes and probability swings.</p>
+            </article>
+            <article class="feature-card glass-card reveal">
+              <span class="feature-index">02</span>
+              <h3>Confidence Index</h3>
+              <p>Every prediction includes a confidence score generated through proprietary mathematical logic.</p>
+            </article>
+            <article class="feature-card glass-card reveal">
+              <span class="feature-index">03</span>
+              <h3>Market Movement Tracking</h3>
+              <p>Detect odds fluctuations and value opportunities before the market fully prices them in.</p>
+            </article>
+            <article class="feature-card glass-card reveal">
+              <span class="feature-index">04</span>
+              <h3>Instant Telegram Alerts</h3>
+              <p>Receive high-signal predictions and market triggers directly on Telegram in real time.</p>
+            </article>
+            <article class="feature-card glass-card reveal">
+              <span class="feature-index">05</span>
+              <h3>Multi-League Coverage</h3>
+              <p>Track major European leagues and competitions through a single live analytics workflow.</p>
+            </article>
+            <article class="feature-card glass-card reveal">
+              <span class="feature-index">06</span>
+              <h3>Smart Prediction Engine</h3>
+              <p>Advanced models combine match statistics, trend shifts and price action into clear predictive outputs.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="platform">
+        <div class="container">
+          <div class="section-heading reveal centered">
+            <span class="eyebrow">Access points</span>
+            <h2>One Platform. Multiple Ways to Access.</h2>
+          </div>
+
+          <div class="platform-grid">
+            <article class="platform-card glass-card reveal">
+              <div class="platform-icon">⌘</div>
+              <h3>Web App</h3>
+              <p>Full analytics dashboard with advanced filters, richer match context and deeper model visibility.</p>
+            </article>
+            <article class="platform-card glass-card reveal">
+              <div class="platform-icon">◔</div>
+              <h3>Mobile Experience</h3>
+              <p>Check predictions instantly, review confidence signals and stay synced from anywhere.</p>
+            </article>
+            <article class="platform-card glass-card reveal">
+              <div class="platform-icon">✦</div>
+              <h3>Telegram Bot</h3>
+              <p>Get real-time alerts, market signals and sharp insights directly inside Telegram.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="network">
+        <div class="container network-layout">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Growth system</span>
+            <h2>A referral model built to stay simple, clear and scalable.</h2>
+            <p>
+              Statium’s network structure is intentionally compact: sustainable margins for the platform, strong incentives for growth and zero confusion around how value moves.
+            </p>
+          </div>
+
+          <div class="network-grid">
+            <article class="glass-card payout-card reveal">
+              <div class="card-topline">€100 sale distribution</div>
+              <h3>Three fixed roles. One predictable split.</h3>
+              <div class="payout-stack">
+                <div><span>Admin</span><strong>€50</strong></div>
+                <div><span>Partner</span><strong>€20</strong></div>
+                <div><span>Influencer</span><strong>€30</strong></div>
+              </div>
+              <ul class="check-list">
+                <li>Stable margin for the platform</li>
+                <li>Simple structure, no messy multi-level math</li>
+                <li>Clear incentive to grow into an earning role</li>
+              </ul>
+            </article>
+
+            <article class="glass-card referral-card reveal">
+              <div class="card-topline">User progression</div>
+              <h3>Invite first. Earn access. Unlock promotion.</h3>
+              <div class="reward-grid">
+                <div>
+                  <span>Invite reward</span>
+                  <strong>+10 days</strong>
+                  <small>for the user who invites</small>
+                </div>
+                <div>
+                  <span>Welcome bonus</span>
+                  <strong>+5 days</strong>
+                  <small>for the invited user</small>
+                </div>
+                <div>
+                  <span>Promotion rule</span>
+                  <strong>10 invites</strong>
+                  <small>unlock Influencer status</small>
+                </div>
+                <div>
+                  <span>Promotion bonus</span>
+                  <strong>€100</strong>
+                  <small>one-time reward on upgrade</small>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="glass-card network-flow reveal">
+            <div class="card-topline">Referral path</div>
+            <div class="flow-columns">
+              <div class="flow-node admin">Admin</div>
+              <div class="flow-line"></div>
+              <div class="flow-node partner">Partner</div>
+              <div class="flow-line"></div>
+              <div class="flow-node influencer">Influencer</div>
+              <div class="flow-branch">
+                <div>
+                  <div class="flow-line short"></div>
+                  <div class="flow-node user">User A</div>
+                  <div class="flow-line short"></div>
+                  <div class="flow-node client">Client</div>
+                </div>
+                <div>
+                  <div class="flow-line short"></div>
+                  <div class="flow-node user">User B</div>
+                  <div class="flow-line short"></div>
+                  <div class="flow-node client">Client</div>
+                </div>
+              </div>
+            </div>
+            <p class="flow-note">
+              Regular users do not earn cash commissions yet — they help grow the network, collect service days and can be promoted to Influencer once they hit the threshold.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="partnership">
+        <div class="container partnership-layout">
+          <div class="partner-panel glass-card reveal">
+            <span class="eyebrow">Strategic partnership</span>
+            <h2>Statium × The Funded Pick</h2>
+            <p>
+              Statium proudly collaborates with <strong>The Funded Pick</strong>, a platform dedicated to supporting talented sports analysts and bettors.
+            </p>
+            <p>
+              Together, the ecosystem emphasizes performance, transparency and a more professional approach to sports betting decisions.
+            </p>
+            <ul class="benefit-list">
+              <li>Professional betting ecosystem</li>
+              <li>Performance-based evaluation</li>
+              <li>Opportunity for skilled analysts</li>
+              <li>Strategic collaboration powered by Statium analytics</li>
+            </ul>
+            <a class="text-link" href="https://www.thefundedpick.com/it" target="_blank" rel="noopener noreferrer">Visit The Funded Pick</a>
+          </div>
+
+          <aside class="partner-logo-card glass-card reveal" aria-label="The Funded Pick partner badge">
+            <div class="partner-orb"></div>
+            <span class="mini-label">Partner platform</span>
+            <strong>The Funded Pick</strong>
+            <p>Performance-first environment for talented sports analysts and bettors.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="how-it-works">
+        <div class="container">
+          <div class="section-heading reveal centered">
+            <span class="eyebrow">Workflow</span>
+            <h2>How Statium Works</h2>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card glass-card reveal">
+              <span>01</span>
+              <h3>Collect</h3>
+              <p>Statium gathers large volumes of football statistics, form indicators and market data.</p>
+            </article>
+            <article class="step-card glass-card reveal">
+              <span>02</span>
+              <h3>Model</h3>
+              <p>Mathematical models calculate probabilities and flag market inefficiencies in real time.</p>
+            </article>
+            <article class="step-card glass-card reveal">
+              <span>03</span>
+              <h3>Score</h3>
+              <p>The engine produces high-confidence predictions with clear confidence and value indicators.</p>
+            </article>
+            <article class="step-card glass-card reveal">
+              <span>04</span>
+              <h3>Deliver</h3>
+              <p>Users receive those insights instantly via web dashboard, mobile access or Telegram alerts.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section social-section">
+        <div class="container">
+          <div class="section-heading reveal centered">
+            <span class="eyebrow">Proof of engine</span>
+            <h2>Built For Data-Driven Bettors</h2>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card glass-card reveal">
+              <strong>+500</strong>
+              <span>Matches analyzed weekly</span>
+            </article>
+            <article class="stat-card glass-card reveal">
+              <strong>+100,000</strong>
+              <span>Data points processed daily</span>
+            </article>
+            <article class="stat-card glass-card reveal">
+              <strong>Real-time</strong>
+              <span>Probability engine</span>
+            </article>
+            <article class="stat-card glass-card reveal">
+              <strong>Advanced</strong>
+              <span>Predictive models</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta" id="contact">
+        <div class="container final-cta-inner glass-card reveal">
+          <span class="eyebrow">Ready to start</span>
+          <h2>Start Using Statium Today</h2>
+          <p>Access real-time football analytics, smarter match predictions and a growth system designed to reward serious users over time.</p>
+          <div class="hero-actions centered-actions">
+            <a href="#home" class="btn btn-primary">Access the Platform</a>
+            <a href="#network" class="btn btn-secondary">Join Telegram Alerts</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#platform">Platform</a>
+          <a href="#partnership">Partnership</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <p>© Statium – Advanced Football Analytics Platform</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
